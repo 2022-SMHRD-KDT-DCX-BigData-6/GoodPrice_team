@@ -1,0 +1,77 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+  	<servlet-name>JoinService</servlet-name>
+  	<display-name>JoinService</display-name>
+  	<description></description>
+  	<servlet-class>com.smhrd.controller.JoinService</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>LoginService</servlet-name>
+  	<display-name>LoginService</display-name>
+  	<description></description>
+  	<servlet-class>com.smhrd.controller.LoginService</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>LogoutService</servlet-name>
+  	<display-name>LogoutService</display-name>
+  	<description></description>
+  	<servlet-class>com.smhrd.controller.LogoutService</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>UpdateService</servlet-name>
+  	<display-name>UpdateService</display-name>
+  	<description></description>
+  	<servlet-class>com.smhrd.controller.UpdateService</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>DeleteService</servlet-name>
+  	<display-name>DeleteService</display-name>
+  	<description></description>
+  	<servlet-class>com.smhrd.controller.DeleteService</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>WriteBoardService</servlet-name>
+  	<display-name>WriteBoardService</display-name>
+  	<description></description>
+  	<servlet-class>com.smhrd.controller.WriteBoardService</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>Frontcontroller</servlet-name>
+  	<display-name>Frontcontroller</display-name>
+  	<description></description>
+  	<servlet-class>com.smhrd.frontcontroller.Frontcontroller</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>JoinService</servlet-name>
+  	<url-pattern>/JoinService</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>LoginService</servlet-name>
+  	<url-pattern>/LoginService</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>LogoutService</servlet-name>
+  	<url-pattern>/LogoutService</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UpdateService</servlet-name>
+  	<url-pattern>/UpdateService</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DeleteService</servlet-name>
+  	<url-pattern>/DeleteService</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>WriteBoardService</servlet-name>
+  	<url-pattern>/WriteBoardService</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Frontcontroller</servlet-name>
+  	<url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+</web-app>

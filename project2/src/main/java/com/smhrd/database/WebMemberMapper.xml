@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.smhrd.database.WebMemberMapper">
+
+  <insert id="insertMember" 
+  		  parameterType="WebMember">
+	
+	insert into WebMember values(#{email}, #{pw}, #{tel}, #{address})
+  
+  </insert>
+  
+  <select id="selectMember" 
+  		  parameterType="WebMember" 
+  		  resultType="WebMember">
+  	
+  	select * from WebMember where email = #{email} and pw = #{pw}
+  
+  </select>
+  
+  <update id="updateMember"  
+  	 	  parameterType="WebMember">
+  
+  	update WebMember set pw = #{pw}, tel = #{tel}, address = #{address} where email = #{email}
+  
+  </update>
+  
+  <select id="selectAllMember"
+  		  resultType="WebMember">
+
+	select * from WebMember where not(email='admin')
+  
+  </select>
+  
+  <delete id="deleteMember"
+  		  parameterType="WebMember">
+  
+  	delete from WebMember where email = #{email}
+  	
+  </delete>
+  
+</mapper>

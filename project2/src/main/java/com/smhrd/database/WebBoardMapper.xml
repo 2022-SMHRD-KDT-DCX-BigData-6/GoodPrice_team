@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.smhrd.database.WebBoardMapper">
+
+	<insert id="boardUpload" parameterType="WebBoard">
+		insert into WebBoard values(num_board.nextval, #{title}, #{writer}, #{filename}, #{content}, sysdate)
+	</insert>
+	
+	<select id="selectAllBoard"
+			resultType="WebBoard">
+		select * from WebBoard order by b_date desc
+	</select>
+	
+	<select id="selectContent"
+			parameterType="WebBoard"
+			resultType="WebBoard">
+		select * from WebBoard where num=#{num}
+	</select>
+</mapper>
