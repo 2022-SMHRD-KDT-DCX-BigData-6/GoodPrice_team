@@ -21,7 +21,6 @@ public class LoginService implements Command{
 		tb_memberDAO loginDao = new tb_memberDAO();
 		
 		tb_memberDTO result = loginDao.loginMember(loginDto);
-		
 		// m_id, m_pw 입력정보에 맞는 사용자 정보가 있으면 
 		if (result != null) {
 			HttpSession hs = request.getSession();

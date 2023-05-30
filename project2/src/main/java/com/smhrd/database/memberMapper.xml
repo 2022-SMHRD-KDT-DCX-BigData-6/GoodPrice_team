@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.smhrd.database.memberMapper">
+	
+	<insert id="insertMember" parameterType="tb_member">
+	insert into TB_MEMBER values(#{m_id},#{m_pw},#{m_name},#{m_nick},#{m_birthdate},#{m_gender1},#{m_addr},0,sysdate,'N')
+	</insert>
+	
+	<select id="selectMember" resultType="tb_member" parameterType="tb_member">
+	select * from TB_MEMBER where m_id = #{m_id} and m_pw = #{m_pw}
+	</select>
+	
+	<!-- 회원가입 중복체크 -->
+	
+	<select id="emailCheck" parameterType="tb_member">
+	select m_id from TB_MEMBER where m_id = #{m_id}  
+	</select>
+</mapper>
