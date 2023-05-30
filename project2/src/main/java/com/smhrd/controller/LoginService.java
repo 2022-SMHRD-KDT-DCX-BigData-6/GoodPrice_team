@@ -5,33 +5,37 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.smhrd.command.Command;
-import com.smhrd.model.WebMemberDAO;
-import com.smhrd.model.WebMemberDTO;
+import com.smhrd.model.tb_memberDAO;
+import com.smhrd.model.tb_memberDTO;
 
 public class LoginService implements Command{
 	
-	public String execute(HttpServletRequest request, HttpServletResponse response){
-		// [로그인기능]
+	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		String moveURL = null;
+	
+		String m_id = request.getParameter("m_id");
+		String m_pw = request.getParameter("m_pw");
 		
-		// 1.입력받은 이메일, 비밀번호 가져오기
-		String email = request.getParameter("email");
-		String pw = request.getParameter("pw");
+		tb_memberDTO loginDto = new tb_memberDTO(m_id, m_pw, null, null, null, null, null, null, null, null);
 		
-		// 2.데이터베이스에 해당 회원이 존재하는지 조회
-		WebMemberDAO dao = new WebMemberDAO();
-		WebMemberDTO member = dao.selectMember(new WebMemberDTO(email, pw));
+		tb_memberDAO loginDao = new tb_memberDAO();
 		
-		// 2-1.회원이 존재할 경우, 세션영역에 저장하고 main.jsp로 이동
-		if(member != null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("member", member);
+		tb_memberDTO result = loginDao.loginMember(loginDto);
+		
+		// m_id, m_pw 입력정보에 맞는 사용자 정보가 있으면 
+		if (result != null) {
+			HttpSession hs = request.getSession();
+			//다음페이지로(메인페이지) 세션(사용자 정보) 넘김
+			hs.setAttribute("loginResult", result);
 			
-//			response.sendRedirect("main.jsp");
+			moveURL = "main.jsp";
+			System.out.println("성공 : " + result);
+		}else {
+			moveURL = "login.jsp";
+			System.out.println("실패");
+			
 		}
-		// 2-2.비회원일 경우, main.jsp로 이동
-		else {
-//			response.sendRedirect("main.jsp");
-		}
-		return "main.jsp";
+		
+		return moveURL;
 	}
 }

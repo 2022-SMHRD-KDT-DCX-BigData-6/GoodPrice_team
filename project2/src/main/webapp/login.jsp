@@ -22,14 +22,14 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">로그인</h3></div>
                                     <div class="card-body">
-                                        <form>
+                                        <form action="LoginService.do" method="post">
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
-                                                <label for="inputEmail">Email address</label>
+                                                <input class="form-control" name="m_id" id="inputEmail" type="email" placeholder="name@example.com" />
+                                                <label for="inputEmail">이메일</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputPassword" type="password" placeholder="Password" />
-                                                <label for="inputPassword">Password</label>
+                                                <input class="form-control" name="m_pw" id="inputPassword" type="password" placeholder="Password" />
+                                                <label for="inputPassword">패스워드</label>
                                             </div>
                                             <div class="form-check mb-3">
                                                 <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" />
@@ -37,12 +37,12 @@
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                                 <a class="small" href="password.jsp">비밀번호 찾기</a>
-                                                <a class="btn btn-primary" href="main.jsp">로그인</a>
-                                            </div>
+                                                <input class="btn btn-primary" type="submit" value="로그인">                                            </div>
                                         </form>
                                     </div>
                                     <div class="card-footer text-center py-3">
-                                        <div class="small"><a href="register.jsp">회원가입</a></div>
+                                        <span class="small"><a href="register.jsp">회원가입</a></span>
+                                        <span class="small"><a href="main.jsp">메인페이지</a></span>
                                     </div>
                                 </div>
                             </div>
