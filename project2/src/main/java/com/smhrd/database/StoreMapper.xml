@@ -2,11 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.smhrd.database.StoreMapper">
-
 	
 	<select id="selectAllStore"
 			resultType="Store">
 		select * from tb_store
+	</select>
+
+	<select id="selectStore"
+			parameterType="Store"
+			resultType="Store">
+		<![CDATA[
+			select * from tb_store where(lat >= #{lat}-0.1 AND 
+				lat <= #{lat}+0.1 AND 
+				lng >= #{lng}-0.1 AND 
+				lng <= #{lng}+0.1)
+		]]>
 	</select>
 	
 </mapper>

@@ -9,6 +9,7 @@
 		<typeAlias type="com.smhrd.model.WebMemberDTO" alias="WebMember"/>
 		<typeAlias type="com.smhrd.model.WebBoardDTO" alias="WebBoard"/>
 		<typeAlias type="com.smhrd.model.tb_storeDTO" alias="Store"/>
+		<typeAlias type="com.smhrd.model.tb_reviewDTO" alias="Review"/>
 		<typeAlias type="com.smhrd.model.tb_boardDTO" alias="Board"/>
 		<typeAlias type="com.smhrd.model.tb_memberDTO" alias="tb_member"/>
 	</typeAliases>
@@ -28,6 +29,7 @@
     <mapper resource="com/smhrd/database/WebMemberMapper.xml"/>
     <mapper resource="com/smhrd/database/WebBoardMapper.xml"/>
     <mapper resource="com/smhrd/database/StoreMapper.xml"/>
+    <mapper resource="com/smhrd/database/ReviewMapper.xml"/>
     <mapper resource="com/smhrd/database/BoardMapper.xml"/>
     <mapper resource="com/smhrd/database/memberMapper.xml"/>
   </mappers>

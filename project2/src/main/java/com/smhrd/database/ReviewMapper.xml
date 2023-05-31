@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.smhrd.database.ReviewMapper">
+	
+	<insert id="insertReview"
+			parameterType="Review">
+	
+		insert into tb_review values(tb_review_seq.nextval, #{store_idx}, #{m_id}, #{review_service}, #{review_price}, #{review_clean}, #{review_content}, #{review_file}, sysdate)
+	
+	</insert>
+	
+	<select id="CountReview"
+			parameterType="Review"
+			resultType="int">
+			
+		SELECT COUNT(CASE WHEN STORE_IDX = #{store_idx} THEN 1 END) FROM TB_REVIEW
+	
+	</select>
+	
+</mapper>
