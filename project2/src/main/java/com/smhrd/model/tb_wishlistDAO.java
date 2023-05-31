@@ -20,4 +20,16 @@ public class tb_wishlistDAO {
 		return cnt;
 	}
 	
+	public int CountWish(tb_wishlistDTO dto) {
+		
+		int cnt = 0;
+		
+		cnt = sqlSession.selectOne("CountWish", dto);
+		
+		sqlSession.close();
+		
+		return cnt;
+		
+	}
+	
 }

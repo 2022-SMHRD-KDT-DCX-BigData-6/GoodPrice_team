@@ -10,5 +10,13 @@
 	
 	</insert>
 	
+	<select id="CountWish"
+			parameterType="Wish"
+			resultType="int">
+			
+		SELECT COUNT(CASE WHEN STORE_IDX = #{store_idx} THEN 1 END) FROM TB_WISHLIST
+	
+	</select>
+	
 	
 </mapper>

@@ -736,8 +736,9 @@
 					ps.keywordSearch(a + ' ' + b+'청', placesSearchCB); 
 
 				}
-			   var shop_Idx;
+			    var shop_Idx;
 				var shop_cnt;
+				var wish_cnt;
 				
 				function placesSearchCB (data, status, pagination) {
 					if (status === kakao.maps.services.Status.OK) {
@@ -802,6 +803,24 @@
 				       					        }  
 				       					    });
 				                    	
+				       			  		// 가게 찜수 AJAX 통신
+				       			        $.ajax({
+				       					        type:"POST",             //POST방식통신
+				       					        url:"http://localhost:8081/MessageSystem/CountWish",     // Servlet과 mapping할 URL
+				       					        dataType : "json",       //dataType은  JSON형식으로 지정한다.
+				       					        data : {
+				       					        	shopIdx: shop_Idx
+				       					        },
+				       					        success: function(data){
+				       					            console.log(data);
+													wish_cnt = data.cnt;
+													document.getElementById("shop_like").innerText = wish_cnt;
+				       					        },
+				       					        error: function(xhr, status, error) {
+				       					        	console.log(error);
+				       					        }  
+				       					    });
+				                    	
 				                    	
 				                    	   // 가게정보 테이블 출력
 				                    	   
@@ -852,7 +871,7 @@
 			
 				     // userId 값 확인
 			        if (!userId) {
-			            alert("로그인이 필요합니다."); // 경고창 표시
+			            alert("로그인이 필요한 서비스입니다"); // 경고창 표시
 			            return; // 등록 중단
 			        }
 
@@ -909,6 +928,13 @@
 			    
 			    <!-- 찜 데이터 전송 -->
 			    function saveWish(){
+			    	
+			    	 // userId 값 확인
+			        if (!userId) {
+			            alert("로그인이 필요한 서비스입니다"); // 경고창 표시
+			            return; // 등록 중단
+			        }
+			    	
 			    	// AJAX 통신
 			        $.ajax({
 					        type:"POST",             //POST방식통신
@@ -920,6 +946,10 @@
 					        },
 					        success: function(data){
 					        	console.log(data);
+					        	
+					        	// 찜수 업데이트
+					            var currentWishCount = parseInt($("#shop_like").text());
+					            $("#shop_like").text((currentWishCount + 1));
 					        },
 					        error: function(xhr, status, error) {
 					        	console.log(error);

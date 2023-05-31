@@ -16,4 +16,10 @@ public class tb_wishlistDTO {
     @NonNull private Double store_idx;
     private Date wish_dt;
     @NonNull private String m_id;
+	
+    public tb_wishlistDTO(@NonNull Double store_idx) {
+		super();
+		this.store_idx = store_idx;
+	}
+    
 }
