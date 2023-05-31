@@ -267,8 +267,23 @@
             <!-- -----------------------------------마이페이지, 로그아웃------------------------------------- -->
     
 <!-- ---------------------------로그인 세션 정보(모든 컬럼값)----------------------------- -->    
+			<script>
+				var userId;
+				console.log(userId);
+	    	</script>
 		<% tb_memberDTO loginResult = (tb_memberDTO)session.getAttribute("loginResult"); 
-			out.print("넘어오는 값 : " + loginResult);
+			if(loginResult != null){
+				System.out.print("로그인 회원 아이디 : " + loginResult.getM_id());
+				String userId = loginResult.getM_id();
+		%>
+			<script>
+		        // JavaScript 코드 내에서 JSP 변수를 사용
+		        userId = '<%= userId %>';
+		        console.log(userId);
+	    	</script>
+
+    	<% 
+			}
 		%>    
 <!-- ---------------------------로그인 세션 정보(모든 컬럼값)----------------------------- -->    
     
@@ -549,7 +564,7 @@
 		                       <td>💕찜 수</td>
 		                       <td id="shop_like">0</td>
 		                       <td colspan="2">
-			                       <button class="like_poeple">💛 찜하기</button>
+			                       <button class="like_poeple" onclick="saveWish()">💛 찜하기</button>
 		                       </td>
 		                   </tr>
 	                   </tbody>
@@ -559,7 +574,7 @@
 				<!-- 리뷰 작성 팝업창 -->
 			   <div class="black_bg"></div>
 			   <div class="modal_wrap">
-			       <div class="modal_close"><a href="#">❎</a></div>
+			       <div class="modal_close"><a href="#" onclick="resetForm();">❎</a></div>
 			       <div>
 			       <table>
 			       
@@ -835,13 +850,20 @@
 			        var content = document.querySelector('textarea[name="content"]').value;
 			        var filename = document.querySelector('#file').value;
 			
+				     // userId 값 확인
+			        if (!userId) {
+			            alert("로그인이 필요합니다."); // 경고창 표시
+			            return; // 등록 중단
+			        }
+
+			        
 			        // AJAX 통신
 			        $.ajax({
 					        type:"POST",             //POST방식통신
 					        url:"http://localhost:8081/MessageSystem/InsertReview",     // Servlet과 mapping할 URL
 					        dataType : "text",       //dataType은  JSON형식으로 지정한다.
 					        data : {
-					        	userId: "ckdeo070",
+					        	userId: userId,
 					        	shopIdx: shop_Idx,
 					            serviceRating: serviceRating,
 					            effectiveRating: effectiveRating,
@@ -884,6 +906,26 @@
 			    	  var fileName = $("#file").val();
 			    	  $(".upload-name").val(fileName);
 			    	});
+			    
+			    <!-- 찜 데이터 전송 -->
+			    function saveWish(){
+			    	// AJAX 통신
+			        $.ajax({
+					        type:"POST",             //POST방식통신
+					        url:"http://localhost:8081/MessageSystem/InsertWish",     // Servlet과 mapping할 URL
+					        dataType : "text",       //dataType은  JSON형식으로 지정한다.
+					        data : {
+					        	userId: userId,
+					        	shopIdx: shop_Idx
+					        },
+					        success: function(data){
+					        	console.log(data);
+					        },
+					        error: function(xhr, status, error) {
+					        	console.log(error);
+					        }  
+					    });
+			    }
 			    
                </script>
                                        
