@@ -62,10 +62,10 @@
             <!-- -------------------로그인 했을 때----------------------------------- -->
             <% if(loginResult != null){ %>
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown"> 
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <!-- -----------로그인 했는데 관리자일 때-------------------- -->
-                    <% if(loginResult.getAdmin_yn().equals("Y")){ %>
+                    <% if(loginResult.getAdmin_yn().equals("Y")){ %>	
                     관리자
                     <!-- -----------로그인 했는데 관리자일 때-------------------- -->
                     <% }else{ %>
