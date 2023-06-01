@@ -19,14 +19,12 @@ public class SelectReviewScore extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("application/x-json; charset=UTF-8"); //JSON형식으로 response 타입지정
 		
-		System.out.println("리뷰데이타 값 확인 : " + request.getParameter("shopIdx"));
 		double shopIdx = Double.parseDouble(request.getParameter("shopIdx"));
 		tb_reviewDTO dto = new tb_reviewDTO(shopIdx);
 		tb_reviewDAO dao = new tb_reviewDAO();
 		
 		tb_reviewDTO data = dao.SelectReviewData(dto);
 		
-		System.out.println("dto:" + data);
 		JsonObject obj = new JsonObject();
 		Double Service = data.getReview_service();
 		Double Price = data.getReview_price();

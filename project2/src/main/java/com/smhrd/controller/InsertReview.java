@@ -20,7 +20,6 @@ public class InsertReview extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("application/x-json; charset=UTF-8"); //JSON형식으로 response 타입지정
 		
-		System.out.println("값 확인 : " + request.getParameter("shopIdx"));
 		double shopIdx = Double.parseDouble(request.getParameter("shopIdx"));
 		String userId = request.getParameter("userId");
 		double serviceRating = Double.parseDouble(request.getParameter("serviceRating"));
