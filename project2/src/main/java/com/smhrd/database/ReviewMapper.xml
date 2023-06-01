@@ -18,5 +18,14 @@
 	
 	</select>
 	
+	<!-- 마이페이지 리뷰목록 sql - 이은화 강효석 -->
+	<select id="reviewList" parameterType="String" resultType="Review">
+	select * from TB_REVIEW where m_id = #{m_id}
+	</select>
+	
+	<!-- 마이페이지 리뷰 날짜 메소드- 이은화 강효석 -->
+	<select id="dateToChar" parameterType="String" resultType="Review">
+	select to_char(sysdate,'YYYY-MM-DD') from tb_review where m_id = #{m_id}
+	</select>
 	
 </mapper>
