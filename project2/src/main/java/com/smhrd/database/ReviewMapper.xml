@@ -18,10 +18,27 @@
 	
 	</select>
 	
+	<!-- 리뷰등록시 포인트 업데이트 -->
 	<select id="SelectReviewData"
 			parameterType="Review"
 			resultType="Review">
+		
 		SELECT ROUND(AVG(TO_NUMBER(review_service)), 1), ROUND(AVG(TO_NUMBER(review_price)), 1), ROUND(AVG(TO_NUMBER(review_clean)), 1) FROM tb_review WHERE store_idx = #{store_idx}	
+	
+	</select>
+	
+	<!-- 마이페이지 리뷰목록 sql - 이은화 강효석 -->
+	<select id="reviewList" parameterType="String" resultType="Review">
+		
+		select * from TB_REVIEW where m_id = #{m_id}
+	
+	</select>
+	
+	<!-- 마이페이지 리뷰 날짜 메소드- 이은화 강효석 -->
+	<select id="dateToChar" parameterType="String" resultType="Review">
+		
+		select to_char(sysdate,'YYYY-MM-DD') from tb_review where m_id = #{m_id}
+	
 	</select>
 	
 </mapper>

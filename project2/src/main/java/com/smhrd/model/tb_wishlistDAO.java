@@ -1,5 +1,7 @@
 package com.smhrd.model;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -30,6 +32,18 @@ public class tb_wishlistDAO {
 		
 		return cnt;
 		
+	}
+	
+	//마이페이지 찜 리스트 메소드 - 이은화, 강효석
+	public List<tb_wishlistDTO> wishList(String m_id) {
+		
+		List<tb_wishlistDTO> result = null;
+		
+		result = sqlSession.selectList("wishList", m_id);
+	
+		sqlSession.close();
+		
+		return result;
 	}
 	
 }

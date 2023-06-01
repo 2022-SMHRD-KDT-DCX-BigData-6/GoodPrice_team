@@ -18,5 +18,11 @@
 	
 	</select>
 	
+	<!-- 마이페이지 찜 리스트 메소드 - 이은화, 강효석 -->
+	<select id="wishList" parameterType="String" resultType="String">
+		
+		select s.SHOP_NAME from TB_STORE s, tb_wishlist w where w.m_id=#{m_id} and s.SHOP_IDX=w.STORE_IDX
+	
+	</select>
 	
 </mapper>
