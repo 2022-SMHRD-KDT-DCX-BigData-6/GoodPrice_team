@@ -433,6 +433,11 @@
                     window.onload = function() {
  	            	   
 	            	    function onClick() {
+	            	    	 // userId 값 확인
+	    			        if (!userId) {
+	    			            alert("로그인이 필요한 서비스입니다"); // 경고창 표시
+	    			            return; // 등록 중단
+	    			        }
 	            	        document.querySelector('.modal_wrap').style.display ='block';
 	            	        document.querySelector('.black_bg').style.display ='block';
 	            	    }   
@@ -870,8 +875,8 @@
 			        var filename = document.querySelector('#file').value;
 			
 				     // userId 값 확인
-			        if (!userId) {
-			            alert("로그인이 필요한 서비스입니다"); // 경고창 표시
+			        if (!filename) {
+			            alert("영수증을 첨부해주세요!"); // 경고창 표시
 			            return; // 등록 중단
 			        }
 
