@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.smhrd.model.tb_memberDAO;
+import com.smhrd.model.tb_memberDTO;
 import com.smhrd.model.tb_reviewDAO;
 import com.smhrd.model.tb_reviewDTO;
 
@@ -31,6 +33,7 @@ public class InsertReview extends HttpServlet {
 		tb_reviewDAO dao = new tb_reviewDAO();
 		int cnt = 0;
 		cnt = dao.insertReview(dto);
+		
 	}
 
 }

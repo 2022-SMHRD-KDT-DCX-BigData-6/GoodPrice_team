@@ -1,5 +1,7 @@
 package com.smhrd.model;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -43,5 +45,16 @@ public class tb_memberDAO {
 		sqlSession.close();
 		
 		return result;
+	}
+	
+	public int UpdatePoint(tb_memberDTO dto) {
+		
+		int cnt = 0;
+		
+		cnt = sqlSession.update("UpdatePoint", dto);	
+		
+		sqlSession.close();
+		
+		return cnt;
 	}
 }

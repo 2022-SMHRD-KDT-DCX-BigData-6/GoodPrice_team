@@ -20,6 +20,7 @@
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c21e04ab9896f84f77e9ff0564735da3&libraries=services"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
        <title>닫기가 가능한 커스텀 오버레이</title>
        <style>
        .wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
@@ -555,7 +556,7 @@
 		                       <td>🚘주차여부</td>
 		                       <td id="shop_parking"></td>
 		                       <td >
-			                       <button class="review">🔍 평점조회</button>
+			                       <button class="review" onclick="makeChart()">🔍 평점조회</button>
 		                       </td>
 		                   </tr>
 		                   <tr>
@@ -575,6 +576,11 @@
 	                   </tbody>
 	               </table>
                </div>
+               
+                <div style="width: 800px; height: 800px;">
+					<!--차트가 그려질 부분-->
+					<canvas id="myChart"></canvas>
+				</div>
 
 				<!-- 리뷰 작성 팝업창 -->
 			   <div class="black_bg"></div>
@@ -679,6 +685,58 @@
 	          	   List<tb_storeDTO> store_list = new tb_storeDAO().selectStore(dto);   
           	   %>
                <script>
+               
+               /* 평점 차트 그리기 */
+               function makeChart() {
+            	var chartShopName = document.getElementById('shop_name').innerText;
+            	var chartTitle = chartShopName + ' 평점';
+            	
+			    var context = document.getElementById('myChart').getContext('2d');
+			    var myChart = new Chart(context, {
+			        type: 'bar',
+			        data: {
+			            labels: ['서비스 or 맛', '가성비', '청결도'],
+			            datasets: [{
+			                label: '평가점수',
+			                fill: false,
+			                data: [4.3, 5, 3],
+			                backgroundColor: [
+			                    'rgba(255, 99, 132, 0.2)',
+			                    'rgba(54, 162, 235, 0.2)',
+			                    'rgba(255, 206, 86, 0.2)'
+			                ],
+			                borderColor: [
+			                    'rgba(255, 99, 132, 1)',
+			                    'rgba(54, 162, 235, 1)',
+			                    'rgba(255, 206, 86, 1)'
+			                ],
+			                borderWidth: 1
+			            }]
+			        },
+			        options: {
+			            title: {
+			                display: true,
+			                text: chartTitle,
+			                fontSize: 24
+			            },
+			            scales: {
+			                yAxes: [{
+			                    ticks: {
+			                        beginAtZero: true,
+			                        fontSize: 14
+			                    }
+			                }],
+			                xAxes: [{
+			                    ticks: {
+			                        fontSize: 14
+			                    },
+			                    barThickness: 70 // 바의 넓이 조절
+			                }]
+			            }
+			        }
+			    });
+			}
+               
                
                var storeData = <%= new Gson().toJson(store_list) %>;
                
@@ -884,8 +942,8 @@
 			        // AJAX 통신
 			        $.ajax({
 					        type:"POST",             //POST방식통신
-					        url:"http://localhost:8081/MessageSystem/InsertReview",     // Servlet과 mapping할 URL
-					        dataType : "text",       //dataType은  JSON형식으로 지정한다.
+					        url:"http://localhost:8081/MessageSystem/InsertReview",     // Servlet과 mapping할 URL	
+					        dataType : "text",
 					        data : {
 					        	userId: userId,
 					        	shopIdx: shop_Idx,
@@ -896,6 +954,28 @@
 					            filename: filename
 					        },
 					        success: function(){
+					        	
+					         // 리뷰등록 성공시 회원 포인트정보 업데이트 AJAX 통신
+					        	$.ajax({
+					        	    type: "POST",
+					        	    url: "http://localhost:8081/MessageSystem/UpdatePoint",
+					        	    dataType: "text",
+					        	    data: {
+					        	        user_Id: userId // 업데이트할 회원의 userId
+					        	    },
+					        	    success: function(response) {
+					        	        console.log("회원 정보 업데이트 성공");
+					        	        // 추가적인 처리 로직 작성
+					        	    },
+					        	    error: function(xhr, status, error) {
+					        	        console.log("회원 정보 업데이트 실패");
+					        	        console.log(error);
+					        	        // 에러 처리 로직 작성
+					        	    }
+					        	}); 
+					        	
+					        	
+					        	alert("리뷰작성 완료! 500포인트 적립!");
 					            // 등록 성공시 창을 닫는 함수
 					        	$(".modal_wrap").hide();
 					            $(".black_bg").hide();
@@ -951,6 +1031,8 @@
 					        },
 					        success: function(data){
 					        	console.log(data);
+					        	
+					        	alert("찜목록에 추가되었습니다.");
 					        	
 					        	// 찜수 업데이트
 					            var currentWishCount = parseInt($("#shop_like").text());

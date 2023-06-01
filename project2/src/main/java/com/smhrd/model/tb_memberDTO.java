@@ -17,10 +17,11 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 
 public class tb_memberDTO {
 
-	private String m_id;
+	@NonNull private String m_id;
     private String m_pw;
     private String m_name;
     private String m_nick;
