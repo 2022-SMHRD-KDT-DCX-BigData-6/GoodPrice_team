@@ -34,4 +34,15 @@ public class tb_reviewDAO {
 		
 	}
 	
+	public tb_reviewDTO SelectReviewData(tb_reviewDTO dto) {
+		
+		tb_reviewDTO data;
+		
+		data = sqlSession.selectOne("SelectReviewData", dto);
+		
+		sqlSession.close();
+		
+		return data;
+	}
+	
 }

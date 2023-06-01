@@ -1,5 +1,6 @@
 package com.smhrd.model;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 import lombok.AllArgsConstructor;
@@ -27,4 +28,11 @@ public class tb_reviewDTO {
     	this.store_idx = store_idx;
     }
 
+	public tb_reviewDTO(@NonNull Double review_service, @NonNull Double review_price, @NonNull Double review_clean) {
+		super();
+		this.review_service = review_service;
+		this.review_price = review_price;
+		this.review_clean = review_clean;
+	}
+    
 }

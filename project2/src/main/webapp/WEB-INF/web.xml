@@ -47,6 +47,12 @@
   	<description>*.do</description>
   	<servlet-class>com.smhrd.frontcontroller.Frontcontroller1</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>SelectReviewScore</servlet-name>
+  	<display-name>SelectReviewScore</display-name>
+  	<description></description>
+  	<servlet-class>com.smhrd.controller.SelectReviewScore</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>JoinService</servlet-name>
   	<url-pattern>/JoinService</url-pattern>
@@ -78,5 +84,9 @@
   <servlet-mapping>
   	<servlet-name>Frontcontroller1</servlet-name>
   	<url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SelectReviewScore</servlet-name>
+  	<url-pattern>/SelectReviewScore</url-pattern>
   </servlet-mapping>
 </web-app>

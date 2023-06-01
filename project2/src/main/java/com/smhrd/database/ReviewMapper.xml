@@ -18,5 +18,10 @@
 	
 	</select>
 	
+	<select id="SelectReviewData"
+			parameterType="Review"
+			resultType="Review">
+		SELECT ROUND(AVG(TO_NUMBER(review_service)), 1), ROUND(AVG(TO_NUMBER(review_price)), 1), ROUND(AVG(TO_NUMBER(review_clean)), 1) FROM tb_review WHERE store_idx = #{store_idx}	
+	</select>
 	
 </mapper>

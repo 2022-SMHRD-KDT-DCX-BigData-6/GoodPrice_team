@@ -686,57 +686,6 @@
           	   %>
                <script>
                
-               /* 평점 차트 그리기 */
-               function makeChart() {
-            	var chartShopName = document.getElementById('shop_name').innerText;
-            	var chartTitle = chartShopName + ' 평점';
-            	
-			    var context = document.getElementById('myChart').getContext('2d');
-			    var myChart = new Chart(context, {
-			        type: 'bar',
-			        data: {
-			            labels: ['서비스 or 맛', '가성비', '청결도'],
-			            datasets: [{
-			                label: '평가점수',
-			                fill: false,
-			                data: [4.3, 5, 3],
-			                backgroundColor: [
-			                    'rgba(255, 99, 132, 0.2)',
-			                    'rgba(54, 162, 235, 0.2)',
-			                    'rgba(255, 206, 86, 0.2)'
-			                ],
-			                borderColor: [
-			                    'rgba(255, 99, 132, 1)',
-			                    'rgba(54, 162, 235, 1)',
-			                    'rgba(255, 206, 86, 1)'
-			                ],
-			                borderWidth: 1
-			            }]
-			        },
-			        options: {
-			            title: {
-			                display: true,
-			                text: chartTitle,
-			                fontSize: 24
-			            },
-			            scales: {
-			                yAxes: [{
-			                    ticks: {
-			                        beginAtZero: true,
-			                        fontSize: 14
-			                    }
-			                }],
-			                xAxes: [{
-			                    ticks: {
-			                        fontSize: 14
-			                    },
-			                    barThickness: 70 // 바의 넓이 조절
-			                }]
-			            }
-			        }
-			    });
-			}
-               
                
                var storeData = <%= new Gson().toJson(store_list) %>;
                
@@ -767,6 +716,7 @@
                
                // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
                kakao.maps.event.addListener(marker[i], 'click', function() {
+            	   
                    overlay.setMap(map);
                });
                	   overlay.setMap(null)
@@ -846,6 +796,7 @@
 				                   kakao.maps.event.addListener(marker[i], 'click', (function(marker, overlay, store) {
 				                       return function() {
 				                    	
+				                    	$('#myChart').hide(); // 차트 숨기기
 				                    	shop_Idx = store.shop_idx;   
 				                    	
 				                    	// 가게 리뷰건수 AJAX 통신
@@ -1043,6 +994,76 @@
 					        }  
 					    });
 			    }
+			    
+			    /* 평점 차트 그리기 */
+               function makeChart() {
+            	$('#myChart').show();
+			    var chartShopName = document.getElementById('shop_name').innerText;
+			    var chartTitle = chartShopName + ' 평점';
+			
+			    // AJAX 요청
+			    $.ajax({
+			        type: "POST",
+			        url: "http://localhost:8081/MessageSystem/SelectReviewData",
+			        data: { shopIdx: shop_Idx }, // 요청에 필요한 데이터 전달
+			        dataType: "json",
+			        success: function (response) {
+			            var reviewData = response.data; // 가져온 데이터
+						console.log(response.Clean);
+			            var context = document.getElementById('myChart').getContext('2d');
+			            var myChart = new Chart(context, {
+			                type: 'bar',
+			                data: {
+			                    labels: ['서비스 or 맛', '가성비', '청결도'],
+			                    datasets: [{
+			                        label: '평가점수',
+			                        fill: false,
+			                        data: [response.Service, response.Price, response.Clean],
+			                        backgroundColor: [
+			                            'rgba(255, 99, 132, 0.2)',
+			                            'rgba(54, 162, 235, 0.2)',
+			                            'rgba(255, 206, 86, 0.2)'
+			                        ],
+			                        borderColor: [
+			                            'rgba(255, 99, 132, 1)',
+			                            'rgba(54, 162, 235, 1)',
+			                            'rgba(255, 206, 86, 1)'
+			                        ],
+			                        borderWidth: 1
+			                    }]
+			                },
+			                options: {
+			                    title: {
+			                        display: true,
+			                        text: chartTitle,
+			                        fontSize: 24
+			                    },
+			                    scales: {
+			                        yAxes: [{
+			                            ticks: {
+			                                beginAtZero: true,
+			                                min: 0, // 최소값 설정
+			                                max: 5, // 최대값 설정
+			                                fontSize: 14
+			                            }
+			                        }],
+			                        xAxes: [{
+			                            ticks: {
+			                                fontSize: 14
+			                            },
+			                            barThickness: 70
+			                        }]
+			                    }
+			                }
+			            });
+			        },
+			        error: function (xhr, status, error) {
+			            console.log(error); // 에러 처리
+			        }
+			    });
+			}
+			    
+			    
 			    
                </script>
                                        
