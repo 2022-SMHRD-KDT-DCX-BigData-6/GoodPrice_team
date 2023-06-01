@@ -685,7 +685,8 @@
 	          	   List<tb_storeDTO> store_list = new tb_storeDAO().selectStore(dto);   
           	   %>
                <script>
-               
+               // 전역 변수로 차트 객체 선언
+               var myChart = null;
                
                var storeData = <%= new Gson().toJson(store_list) %>;
                
@@ -796,8 +797,15 @@
 				                   kakao.maps.event.addListener(marker[i], 'click', (function(marker, overlay, store) {
 				                       return function() {
 				                    	
-				                    	$('#myChart').hide(); // 차트 숨기기
+				                    	// 차트 숨기기
+				                    	$('#myChart').hide();
 				                    	shop_Idx = store.shop_idx;   
+				                    	
+				                    	// 기존 차트 제거
+				                        if (myChart) {
+				                            myChart.destroy();
+				                            myChart = null;
+				                        }
 				                    	
 				                    	// 가게 리뷰건수 AJAX 통신
 				       			        $.ajax({
@@ -997,10 +1005,18 @@
 			    
 			    /* 평점 차트 그리기 */
                function makeChart() {
+			    	
             	$('#myChart').show();
+            	   
 			    var chartShopName = document.getElementById('shop_name').innerText;
 			    var chartTitle = chartShopName + ' 평점';
-			
+				
+			 	// 기존 차트 제거
+			    if (myChart) {
+			        myChart.destroy();
+			        myChart = null;
+			    }
+			    
 			    // AJAX 요청
 			    $.ajax({
 			        type: "POST",
@@ -1011,7 +1027,7 @@
 			            var reviewData = response.data; // 가져온 데이터
 						console.log(response.Clean);
 			            var context = document.getElementById('myChart').getContext('2d');
-			            var myChart = new Chart(context, {
+			            myChart = new Chart(context, {
 			                type: 'bar',
 			                data: {
 			                    labels: ['서비스 or 맛', '가성비', '청결도'],
@@ -1020,16 +1036,16 @@
 			                        fill: false,
 			                        data: [response.Service, response.Price, response.Clean],
 			                        backgroundColor: [
-			                            'rgba(255, 99, 132, 0.2)',
-			                            'rgba(54, 162, 235, 0.2)',
-			                            'rgba(255, 206, 86, 0.2)'
+			                            'rgba(54, 162, 235, 0.5)',
+			                            'rgba(54, 162, 235, 0.5)',
+			                            'rgba(54, 162, 235, 0.5)',
 			                        ],
 			                        borderColor: [
-			                            'rgba(255, 99, 132, 1)',
 			                            'rgba(54, 162, 235, 1)',
-			                            'rgba(255, 206, 86, 1)'
+			                            'rgba(54, 162, 235, 1)',
+			                            'rgba(54, 162, 235, 1)',
 			                        ],
-			                        borderWidth: 1
+			                        borderWidth: 3
 			                    }]
 			                },
 			                options: {
