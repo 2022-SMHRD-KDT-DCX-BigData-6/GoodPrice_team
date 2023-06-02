@@ -31,6 +31,12 @@ public class tb_memberDTO {
     private Double m_point;
     private Date m_joindate;
     private String admin_yn;
+	
+    public tb_memberDTO(String m_pw, String m_name) {
+		super();
+		this.m_pw = m_pw;
+		this.m_name = m_name;
+	}
 
     
 	

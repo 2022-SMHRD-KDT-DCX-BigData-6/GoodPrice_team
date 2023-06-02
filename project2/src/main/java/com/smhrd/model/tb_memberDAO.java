@@ -57,4 +57,28 @@ public class tb_memberDAO {
 		
 		return cnt;
 	}
+	
+	// 아이디 찾기 메소드 - 효석
+		public String findId(tb_memberDTO paramFindIdDto) {
+			
+			String result = null;
+			
+			result = sqlSession.selectOne("findId", paramFindIdDto);
+			
+			sqlSession.close();
+			
+			return result;
+		}
+		
+	//멤버 포인트 가져오기 메소드
+		public Double memPoint(String m_id) {
+			
+			Double result = null;
+			
+			result = sqlSession.selectOne("memPoint",m_id);
+			
+			sqlSession.close();
+			
+			return result; 
+		}
 }

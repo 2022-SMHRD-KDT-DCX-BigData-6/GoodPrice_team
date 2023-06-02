@@ -1,4 +1,3 @@
-<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="com.smhrd.model.tb_memberDTO"%>
 <%@page import="com.google.gson.Gson"%>
 <%@page import="com.smhrd.model.tb_storeDAO"%>

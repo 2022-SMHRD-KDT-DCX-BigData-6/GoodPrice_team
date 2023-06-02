@@ -37,6 +37,7 @@
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                                 <a class="small" href="password.jsp">비밀번호 찾기</a>
+                                                <a class="small" href="findId.jsp">아이디 찾기</a>
                                                 <input class="btn btn-primary" type="submit" value="로그인">                                            </div>
                                         </form>
                                     </div>

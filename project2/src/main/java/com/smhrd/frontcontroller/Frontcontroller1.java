@@ -12,6 +12,7 @@ import com.smhrd.controller.JoinService;
 import com.smhrd.controller.LoginService;
 import com.smhrd.controller.LogoutService;
 import com.smhrd.controller.emailCheck;
+import com.smhrd.controller.findId;
 
 
 public class Frontcontroller1 extends HttpServlet {
@@ -61,6 +62,9 @@ public class Frontcontroller1 extends HttpServlet {
 //		else if(result.equals("WriteBoardService.do")) {
 ////			service = new WriteBoardService();
 //		}
+		else if (result.equals("findId.do")) {
+			service = new findId();
+		}
 		
 		moveURL = service.execute(request, response);
 		response.sendRedirect(moveURL);
