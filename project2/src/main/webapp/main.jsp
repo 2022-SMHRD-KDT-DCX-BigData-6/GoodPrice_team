@@ -1253,12 +1253,7 @@
 			          console.log(error); // 에러 처리
 			        }
 			      });
-			    },
-			    error: function (xhr, status, error) {
-			      console.log(error); // 에러 처리
-			    }
-			  });
-			  
+			   
 			 	  // 히스토그램 차트 그리기
 			      var histogramData = {
 			        labels: ['A', 'B', 'C', 'D', 'E', 'F'],
