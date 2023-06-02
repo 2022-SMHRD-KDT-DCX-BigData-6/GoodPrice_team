@@ -4,7 +4,6 @@
 <%@page import="com.smhrd.model.tb_reviewDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="com.smhrd.model.tb_reviewDAO"%>
-<%@page import="com.smhrd.model.tb_pointDTO"%>
 <%@page import="com.smhrd.model.tb_memberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
