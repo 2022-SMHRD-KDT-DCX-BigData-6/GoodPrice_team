@@ -26,10 +26,9 @@ public class SelectGenderData extends HttpServlet {
 		tb_reviewDAO dao = new tb_reviewDAO();
 		
 		GenderCountDTO data = dao.SelectGenderData(dto);
-		
 		JsonObject obj = new JsonObject();
-		Double Man = data.getManCount();
-		Double Woman = data.getManCount();
+		Double Man = data.getMale();
+		Double Woman = data.getFemale();
 
 		obj.addProperty("man", Man);
 		obj.addProperty("woman", Woman);

@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 
 public class GenderCountDTO {
 	
-	private Double ManCount;
-	private Double WomanCount;
+	private Double male;
+	private Double female;
 }

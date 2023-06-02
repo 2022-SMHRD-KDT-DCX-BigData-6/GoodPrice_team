@@ -52,7 +52,7 @@ public class tb_reviewDAO {
 	// 가게별 이용자 성별 조회하는 메서드
 	public GenderCountDTO SelectGenderData(tb_reviewDTO dto) {
 		
-		GenderCountDTO data;
+		GenderCountDTO data = null;
 		
 		data = sqlSession.selectOne("SelectGenderData", dto);
 		

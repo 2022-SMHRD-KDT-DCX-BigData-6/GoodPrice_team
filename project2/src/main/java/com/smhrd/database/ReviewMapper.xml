@@ -33,8 +33,8 @@
 			resultType="Gender">
 		
 		SELECT COUNT(CASE WHEN m.m_gender = 'm' THEN 1 END) AS male, COUNT(CASE WHEN m.m_gender = 'w' THEN 1 END) AS female
-		FROM TB_REVIEW R
-		JOIN TB_MEMBER M ON r.m_id = m.m_id AND r.store_idx = #{store_idx}
+		FROM TB_REVIEW r
+		JOIN TB_MEMBER m ON r.m_id = m.m_id AND r.store_idx = #{store_idx}
 	
 	</select>
 	

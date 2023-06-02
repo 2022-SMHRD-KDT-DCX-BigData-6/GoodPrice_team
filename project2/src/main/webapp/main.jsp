@@ -720,6 +720,7 @@
                <script>
                // 전역 변수로 차트 객체 선언
                var myChart = null;
+               var pieChart = null;
                
                var storeData = <%= new Gson().toJson(store_list) %>;
                
@@ -838,6 +839,10 @@
 				                        if (myChart) {
 				                            myChart.destroy();
 				                            myChart = null;
+				                        }
+				                        if (pieChart) {
+				                            pieChart.destroy();
+				                            pieChart = null;
 				                        }
 				                    	
 				                    	// 가게 리뷰건수 AJAX 통신
@@ -1092,12 +1097,16 @@
             	$('#histogramChartCanvas').show();
             	
 			    var chartShopName = document.getElementById('shop_name').innerText;
-			    var chartTitle = chartShopName + ' 평점';
+// 			    var chartTitle = '리뷰 평점';
 				
 			 	// 기존 차트 제거
 			    if (myChart) {
 			        myChart.destroy();
 			        myChart = null;
+			    }
+			    if (pieChart) {
+			        pieChart.destroy();
+			        pieChart = null;
 			    }
 			    
 			    // AJAX 요청
@@ -1107,8 +1116,6 @@
 			        data: { shopIdx: shop_Idx }, // 요청에 필요한 데이터 전달
 			        dataType: "json",
 			        success: function (response) {
-			            var reviewData = response.data; // 가져온 데이터
-						console.log(response.Clean);
 			            var context = document.getElementById('myChart').getContext('2d');
 			            myChart = new Chart(context, {
 			                type: 'bar',
@@ -1134,7 +1141,7 @@
 			                options: {
 			                    title: {
 			                        display: true,
-			                        text: chartTitle,
+			                        text: '이용자 리뷰 평점',
 			                        fontSize: 24
 			                    },
 			                    scales: {
@@ -1169,8 +1176,7 @@
 			        data: { shopIdx: shop_Idx }, // 요청에 필요한 데이터 전달
 			        dataType: "json",
 			        success: function (response) {
-			          var genderData = response.data; // 가져온 데이터
-			          console.log(genderData);
+			          var genderData = response; 
 			          var pieChartData = {
 			            labels: ['남성', '여성'],
 			            datasets: [{
@@ -1184,7 +1190,12 @@
 			            type: 'pie',
 			            data: pieChartData,
 			            options: {
-			              responsive: false
+			              responsive: false,
+			              title: {
+			                  display: true,
+			                  text: '이용자 성별 비율', // 제목 설정
+			                  fontSize: 24
+			                }
 			            }
 			          });
 			        },
