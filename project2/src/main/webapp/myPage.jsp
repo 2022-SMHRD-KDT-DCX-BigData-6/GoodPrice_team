@@ -8,6 +8,9 @@
 <%@page import="com.smhrd.model.tb_memberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<<<<<<< HEAD
+
+=======
 <style>
 .point{
 	text-align: center;
@@ -18,7 +21,9 @@
 
 </style>
 <!DOCTYPE html>
+>>>>>>> branch 'master' of https://github.com/2022-SMHRD-KDT-DCX-BigData-6/GoodPrice_team.git
 <html>
+
 <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -27,21 +32,12 @@
         <meta name="author" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-	
-
-	<!-- <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
-
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	
-	<link rel="stylesheet" href="css/style.css">  -->
-	
-	       
-        
- 		<title>MYPAGE</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="css/mypage/assets/css/main.css"/>
+	   	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<noscript><link rel="stylesheet" href="css/mypage/assets/css/noscript.css" /></noscript>
+		<link rel="stylesheet" href="css/mypage/assets/css/main.css"/>
+		<!-- <link rel="stylesheet" href="css/mypage/assets/css/all.min.css"/> -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0//css/all.min.css">
+		<title>MYPAGE</title>
 	</head>
 	  <%tb_memberDTO member = (tb_memberDTO)session.getAttribute("loginResult");   
        
@@ -55,12 +51,22 @@
       Double point = m_point.memPoint(m_id);
       
        List<tb_reviewDTO> reviewList = new tb_reviewDAO().reviewList(m_id);
+            session.setAttribute("reviewList", reviewList);
       // System.out.print(list.get(0).getReview_content());
      
       /* List<tb_reviewDTO> dateList = new tb_reviewDAO().dateToChar(m_id);
       System.out.print(dateList.get(0).getReview_dt()); */
       
       List<tb_wishlistDTO> wishList = new tb_wishlistDAO().wishList(m_id);
+            System.out.print(wishList);
+            %> 
+		<body class="is-preload">
+			<div id = "top" align="right">
+			<a href="main.jsp"><span>HOME</span></a>
+			<a href="logout.html"><span>LOGOUT</span></a>			
+			</div>
+			<!-- Wrapper-->
+=======
             System.out.print(wishList);%> 
 	<body class="is-preload">
 	<div id="top" align="right">
@@ -69,12 +75,14 @@
 		</label>
 	</div>
 	<!-- Wrapper-->
+>>>>>>> branch 'master' of https://github.com/2022-SMHRD-KDT-DCX-BigData-6/GoodPrice_team.git
 			<div id="wrapper"><!-- 박스 가로 너비 -->
 
 				<!-- Nav -->
 					<nav id="nav"> <!-- 네비게이션 아이콘 디자인 -->
 					<!-- $nav_links = $nav.children('a') -->
-						<a href="#" class="icon solid fa-receipt"><span>POINT</span></a>
+					
+						<a href="" class="icon solid fa-receipt"><span>POINT</span></a>
 						<a href="#work" class="icon solid fa-pen"><span>REVIEW</span></a>
 						<a href="#wishList" class="icon solid fa-heart"><span>WISHLIST</span></a>
 						<a href="#contact" class="icon fa-user"><span>MYINFO</span></a>
@@ -87,9 +95,48 @@
 							<article id="home" class="panel intro">
 								<header>
 									<h1>Good-Price</h1>
-									<p><%=member.getM_nick()%>님 환영합니다.</p>
+									<%=member.getM_nick()%>님 환영합니다.
 								</header>
+								
+								<table>
+								<th><h3> My Point : <%= member.getM_point() %></h3><th> 
+								</table>
+								
+								<table>								
+									
+									    <th><span=3>포인트 사용 항목</span></th>
+										<tr>									
+										  <td><i class="fas fa-coffee fa-3x"></i></td>
+										  <td></td>
+										  <td><i class="fas fa-umbrella fa-3x"></i></td>
+										</tr> 
+										<tr> 
+										  <td>2000p</td>
+										  <td></td>
+										  <td>4000p</td>
+										</tr>
+										<tr> 
+										  <td><i class="fas fa-gift fa-3x"></i></td>
+										  <td></td>
+										  <td><i class="fas fa-camera fa-3x"></i></td>
+										</tr> 
+										<tr> 
+										  <td>6000p</td>
+										  <td></td>
+										  <td>8000p</td>
+										</tr>
+									</table>
+										
+								
+								</span>
+								
 								<a href="#work" class="jumplink pic">
+									
+									
+								
+									
+									
+									
 									<p> Point : <%= point %></p>
 									
 									<span class="arrow icon solid fa-chevron-right" vertical-align = center">
@@ -100,109 +147,96 @@
 							</article>
 
 						<!-- Work -->
-							<article id="work" class="panel">
-								<header>
-									<h2>Review</h2>
-								</header>
-								<body>
-								<% for(int i = 0; i < reviewList.size();i++){ %>
-								<%= reviewList.get(i).getReview_content() %>
+			<article id="work" class="panel">
+			<header>
+				<h2>Review</h2>
+			</header>
+			<body>
+																			
+				<div class="wrap">
+				<div class="table_wrap">							
+				<div class="table_box">							
+				<table>
+				<tbody>
+					<tr>
+					    <th>번호</th>
+						<th>내용</th>
+					    <th>날짜</th>
+						<th>삭제</th>								
+					</tr>				
+					<% for(int i = 0; i < reviewList.size();i++){%>
+					<tr>
+					     <td><%= i + 1%></td>
+						 <td><%= reviewList.get(i).getReview_content()%></td>
+						 <td><%= reviewList.get(i).getReview_dt()%></td>
+						 <td><a href = "#">삭제</a></td>
+						 <%-- <td><a href = "ReviewDelete.do<%=reviewList.get(i).getReview_idx()%>">삭제</a></td> --%>
+						 </tr>
+						 <%}%>
+					</tbody>
+					</table>
+				</div>
+			</div>
+
+
+																
 								
-								<% } %>
+							
+								<%--   <% for(int i = 0; i < reviewList.size();i++){ %>
+								     <%= i + 1%>
+								     <%= reviewList.get(i).getReview_content()%>
+								     <%=reviewList.get(i).getReview_dt()%>
+								  
+								   
+								   <%}%> --%>
+								 
+							
+								
 								
 								</body>
-								<!-- <section>
-									<div class="row">
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic01.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic02.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic03.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic04.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic05.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic06.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic07.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic08.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic09.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic10.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic11.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic12.jpg" alt=""></a>
-										</div>
-									</div>
-								</section> -->
+								
 							</article>
 							<article id="wishList" class="panel">
 								<header>
 									<h2>WishList</h2>
 								</header>
 								<body>
-								<% for(int i = 0; i < wishList.size();i++){ %>
+								
+								
+								
+																			
+				<div class="wrap">
+				<div class="table_wrap">							
+				<div class="table_box">							
+				<table>
+				<tbody>
+					<tr>
+					    <th>번호</th>
+						<th>찜</th>
+						<th>삭제</th>								
+					</tr>
+					
+					</tr>				
+					<% for(int i = 0; i < wishList.size();i++){%>
+					<tr>
+					     <td><%= i + 1%></td>
+						 <td><%= wishList.get(i)%></td>	
+						 <td>삭제</td>
+						 </tr>
+						 <%}%>
+					</tbody>
+					</table>
+				</div>
+			</div>
+					
+									
+							<%-- 	<% for(int i = 0; i < wishList.size();i++){ %>
 								<%= wishList.get(i) %>
 								
 								<% } %>
 								
 								</body>
-								<!-- <section>
-									<div class="row">
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic01.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic02.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic03.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic04.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic05.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic06.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic07.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic08.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic09.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic10.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic11.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic12.jpg" alt=""></a>
-										</div>
-									</div>
-								</section> -->
+							 --%>
 							</article>
 
 						<!-- Contact -->
@@ -277,7 +311,7 @@
 				<!-- Footer -->
 					<div id="footer">
 						<ul class="copyright">
-							<li>&copy; @ HEAJA UNIT </li><li>Design:HEAJA UNIT</a></li>
+							<li>copy; @ HEAJA UNIT </li><li>Design:HEAJA UNIT</a></li>
 						</ul>
 					</div>
 
@@ -289,92 +323,16 @@
 			<script src="css/mypage/assets/js/breakpoints.min.js"></script>
 			<script src="css/mypage/assets/js/util.js"></script>
 			
-			<!-- 회원탈퇴 눌렀을 때 form action값 바꾸기 -->
-			<script> 
+	<!-- 회원탈퇴 눌렀을 때 form action값 바꾸기 -->
+	<script> 
     //회원탈퇴 하고 뒤로가기 하고 확인 누르면 회원 수정 되야하는데 회원 탈퇴가 되는 버그 존재
   	function outMember(frm) { 
     frm.action="outMember.do";
     frm.submit(); 
     return true; 
-  } 
-  </script>
-			
-			
-			
-			
-			<!-- <script src="css/mypage/assets/js/main.js"></script> -->
-
-	<!-- <title>My Page</title>
- 	-->
-	<!--  <body class="sb-nav-fixed">
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            Navbar Brand
-            <a class="navbar-brand ps-3" href="index.html"></a>
-            Sidebar Toggle
-            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-            Navbar Search
-            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-                <div class="input-group">
-                </div>
-            </form>
-            
-            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-           <li class="nav-item dropdown">
-           <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown"></ul>
-           <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-           <li class="nav-item dropdown">
-           <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-             -->
-            
-           
-                    	<!-- <br><br> -->
-                       <!--  <li><hr class="dropdown-divider" /></li> -->
-         
-                       
-                      <!--   <li><a href="main.jsp">
-     						<img src="img/001.png" style="width:70px;height:70px;">
-   							</a></li>
-   							
-						<li><a href="layout-sidenav-light.html">
-     						<img src="img/002.png" style="width:70px;height:70px;">
-   							</a></li>             
-                        -->
-                
-     <!--    </nav> 
-           
+  	} 
+  	</script>
 	
-	<br>
-	<br> -->
-	
-         <!-- <div id = "header" ><img src = "img/banner.png" ani_type="bounce" style="width:100%;"></div>
-          -->
-     <%--  <%tb_memberDTO member = (tb_memberDTO)session.getAttribute("loginResult");   
-       
-      String m_id = member.getM_id();
-      System.out.print(m_id);
-       
-       List<tb_reviewDTO> reviewList = new tb_reviewDAO().reviewList(m_id);
-      // System.out.print(list.get(0).getReview_content());
-     
-      /* List<tb_reviewDTO> dateList = new tb_reviewDAO().dateToChar(m_id);
-      System.out.print(dateList.get(0).getReview_dt()); */
-      
-      List<tb_wishlistDTO> wishList = new tb_wishlistDAO().wishList(m_id);
-            System.out.print(wishList);%> --%>
-        
-   <%--  <h1>My Page</h1>     
-	<form action = "mypage" align="center">
-		<table align = "center">
-		<br>
-		<br>
-		<br>
-		<br>
-			<tr>
-				<td><h5><b><%=member.getM_nick()%>님 환영합니다.</b></h5></td>
-			</tr>
-		</table>
-	</form> --%>
 	<script type="text/javascript">
 	/*
 	Astral by HTML5 UP
@@ -590,141 +548,6 @@
 })(jQuery);
 	</script>
 
-
-	
- 
-	  
-	  
-	  
-	 <!--  <div align="center">
-	   
-	  <button class="btn" id="btn1" type="button" style="padding:0px; margin:0px;"><img class="img_btn" onmouseover ="src='img/003-2.png'" onmouseout="src='img/003.png'" style="width:140px;height:140px;"></button>
-	  <button class="btn" id="btn2" type="button" style="padding:0px; margin:0px;"><img class="img_btn" onmouseover ="src='img/004-2.png'" onmouseout="src='img/004.png'" style="width:140px;height:140px;"></button>
-	  <button class="btn" id="btn3" type="button" style="padding:0px; margin:0px;"><img class="img_btn" onmouseover ="src='img/005-2.png'" onmouseout="src='img/005.png'" style="width:140px;height:140px;"></button>
-	  <button class="btn" id="btn4" type="button" style="padding:0px; margin:0px;"><img class="img_btn" onmouseover ="src='img/006-2.png'" onmouseout="src='img/006.png'" style="width:160px;height:140px;"></button>
-     
-
-
-   	  <div align="center" style="width : 1000px; height:500px;">
-      <div id="page1" style="color:black; background-color:#FAFAFA; width: 100%; height: 100%; " >
-      </div>
-    -->
-  		
-           
-          <!--  double m_point = M_point.getM_point(); -->
-   
-   <%-- <script>
-  
-      const btn1 = document.getElementById("btn1");
-
-      btn1.addEventListener("click", ()=>{
-
-         console.log("btn1 clicked");
-
-         const page = document.getElementById("page1");
-
-         page.innerHTML = `
-         <div style="width:40%; height:50%; background-color:#FA8258">
-         <br>
-         <br>
-
-            <h1>포인트</h1><br><br>  
-          
-            <%= member.getM_point()%> <br>
-            
-         </div>
-         `;
-
-      })
-      
-     
-       	const btn2 = document.getElementById("btn2");
-
-     	 btn2.addEventListener("click", ()=>{
-
-         console.log("btn2 clicked");
-
-         const page = document.getElementById("page1");
-
-         page.innerHTML = `
-         <div style="width:40%; height:50%; background-color:#FAAC58">
-         
-        	 <br>
-             <br>
-             <h1>리뷰</h1>
-             <table id="rwd-table">
-             <thead>
-               <tr>
-                 <th>번호</th>
-                 <th>내용</th>
-                 <th>날짜</th>
-                 <th>삭제</th>
-               </tr>
-             </thead>
-             <tbody>
-             
-        	 <%for(int i = 0; i < reviewList.size();i++){%>
-     		<tr >
-     			<td><%= i + 1%></td>
-          		<td><%= reviewList.get(i).getReview_content()%></td>
-          		<td><%=reviewList.get(i).getReview_dt()%></td>
-          		<td><a>삭제</a></td>
-          	</tr>
-          		<%}%>
-             </tbody>
-           </table>
-            
-            
-            
-       </div>    
-         
-         `;
-
-      })
-      
-     
-      	
-      	 const btn3 = document.getElementById("btn3");
-
-     	 btn3.addEventListener("click", ()=>{
-
-         console.log("btn3 clicked");
-
-         const page = document.getElementById("page1");
-
-         page.innerHTML = `
-         <div style="width:40%; height:50%; background-color:#F7D358">
-            찜 클릭!  
-            <% for (int i = 0; i<wishList.size();i++){%>
-            <%= wishList.get(i)%>
-            <%}%>
-            
-         </div>
-         `;
-
-      })
-      
-      
-      
-         const btn4 = document.getElementById("btn4");
-
-     	 btn4.addEventListener("click", ()=>{
-
-         console.log("btn4 clicked");
-
-         const page = document.getElementById("page1");
-         
-         page.innerHTML = `
-         <div style="width:40%; height:50%; background-color:#F7FE2E">
-            
-            
-         </div>
-         `;
-
-      })
-	
-             	
-   </script> --%>
 	
 </body>
 </html>

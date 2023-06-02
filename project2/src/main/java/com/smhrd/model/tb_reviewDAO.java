@@ -36,11 +36,25 @@ public class tb_reviewDAO {
 		
 	}
 	
+	// 가게별 평점 평균 조회하는 메서드
 	public tb_reviewDTO SelectReviewData(tb_reviewDTO dto) {
 		
 		tb_reviewDTO data;
 		
 		data = sqlSession.selectOne("SelectReviewData", dto);
+		
+		sqlSession.close();
+		
+		return data;
+		
+	}
+	
+	// 가게별 이용자 성별 조회하는 메서드
+	public GenderCountDTO SelectGenderData(tb_reviewDTO dto) {
+		
+		GenderCountDTO data = null;
+		
+		data = sqlSession.selectOne("SelectGenderData", dto);
 		
 		sqlSession.close();
 		
@@ -70,5 +84,19 @@ public class tb_reviewDAO {
 		sqlSession.close();
 		return result;
 		}
+		
+		// 마이페이지 리뷰 삭제 메소드 - 이은화
+		
+		public Double reviewListDelete(Double Review_idx) {
+		
+		Double result = 0.0;
+		
+		result = (double)sqlSession.delete("reviewListDelete", Review_idx);
+		
+		sqlSession.close();
+		
+		return result;
+		}
+			
 	
 }

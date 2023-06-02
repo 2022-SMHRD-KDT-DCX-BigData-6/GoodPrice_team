@@ -8,7 +8,7 @@ import com.smhrd.command.Command;
 import com.smhrd.model.tb_memberDAO;
 import com.smhrd.model.tb_memberDTO;
 
-public class findId implements Command{
+public class FindId implements Command{
 	
 	
 	

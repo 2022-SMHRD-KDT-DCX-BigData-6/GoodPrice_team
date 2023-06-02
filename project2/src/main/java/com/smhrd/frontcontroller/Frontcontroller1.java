@@ -12,8 +12,11 @@ import com.smhrd.controller.JoinService;
 import com.smhrd.controller.LoginService;
 import com.smhrd.controller.LogoutService;
 import com.smhrd.controller.UpdateMemberService;
+import com.smhrd.controller.ReviewDelete;
+import com.smhrd.controller.UpdateTb_BoardService;
+import com.smhrd.controller.WriteTb_BoardService;
 import com.smhrd.controller.emailCheck;
-import com.smhrd.controller.findId;
+import com.smhrd.controller.FindId;
 
 
 public class Frontcontroller1 extends HttpServlet {
@@ -22,14 +25,12 @@ public class Frontcontroller1 extends HttpServlet {
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		System.out.println("[Frontcontroller2]");
 
 		// 공통되는 부분 = post방식 인코딩
 		request.setCharacterEncoding("UTF-8");
 
 		// 어떤 요청이 들어왔는지 구분
 		String reqURI = request.getRequestURI();
-		System.out.println("주소 : " + reqURI);
 
 		
 		// ContextPath 출력
@@ -37,7 +38,6 @@ public class Frontcontroller1 extends HttpServlet {
 		System.out.println(contextPath);
 
 		String result = reqURI.substring(contextPath.length() + 1);
-		System.out.println(result);
 
 		String moveURL = null;
 		Command service = null;
@@ -54,6 +54,13 @@ public class Frontcontroller1 extends HttpServlet {
 		else if (result.equals("emailCheck.do")) {
 			service = new emailCheck();
 		}
+		else if(result.equals("WriteTb_BoardService.do")) {
+			service = new WriteTb_BoardService();
+		}
+		else if(result.equals("UpdateTb_BoardService.do")) {
+			service = new UpdateTb_BoardService();
+		}
+		
 //		else if(result.equals("UpdateService.do")) {
 ////			service = new UpdateService();
 //		}
@@ -63,8 +70,11 @@ public class Frontcontroller1 extends HttpServlet {
 //		else if(result.equals("WriteBoardService.do")) {
 ////			service = new WriteBoardService();
 //		}
+		else if (result.equals("ReviewDelete.do")) {
+			service = new ReviewDelete();
+		}
 		else if (result.equals("findId.do")) {
-			service = new findId();
+			service = new FindId();
 		}
 		else if (result.equals("updateMember.do")) {
 			service = new UpdateMemberService();
@@ -72,8 +82,5 @@ public class Frontcontroller1 extends HttpServlet {
 		
 		moveURL = service.execute(request, response);
 		response.sendRedirect(moveURL);
-
-	
 	}
-
 }

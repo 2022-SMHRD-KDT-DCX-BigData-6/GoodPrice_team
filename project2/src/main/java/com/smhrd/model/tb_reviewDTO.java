@@ -22,13 +22,12 @@ public class tb_reviewDTO {
     @NonNull private String review_content;
     @NonNull private String review_file;
     private Date review_dt;
-    @NonNull private String m_gender;
-    @NonNull private String m_age;
-
+    
     public tb_reviewDTO(@NonNull Double store_idx) {
     	super();
     	this.store_idx = store_idx;
     }
+    
 
 	public tb_reviewDTO(@NonNull Double review_service, @NonNull Double review_price, @NonNull Double review_clean) {
 		super();
@@ -36,5 +35,16 @@ public class tb_reviewDTO {
 		this.review_price = review_price;
 		this.review_clean = review_clean;
 	}
+
+
+	public tb_reviewDTO(Double review_idx, Date review_dt) {
+		super();
+		this.review_idx = review_idx;
+		this.review_dt = review_dt;
+	}
+
+
+	
     
+	
 }

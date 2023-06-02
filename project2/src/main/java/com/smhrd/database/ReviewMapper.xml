@@ -6,7 +6,7 @@
 	<insert id="insertReview"
 			parameterType="Review">
 	
-		insert into tb_review values(tb_review_seq.nextval, #{store_idx}, #{m_id}, #{review_service}, #{review_price}, #{review_clean}, #{review_content}, #{review_file}, sysdate, #{m_gender}, #{m_age})
+		insert into tb_review values(tb_review_seq.nextval, #{store_idx}, #{m_id}, #{review_service}, #{review_price}, #{review_clean}, #{review_content}, #{review_file}, sysdate)
 	
 	</insert>
 	
@@ -18,12 +18,23 @@
 	
 	</select>
 	
-	<!-- 리뷰등록시 포인트 업데이트 -->
+	<!-- 가게별 평점 조회 -->
 	<select id="SelectReviewData"
 			parameterType="Review"
 			resultType="Review">
 		
 		SELECT ROUND(AVG(TO_NUMBER(review_service)), 1), ROUND(AVG(TO_NUMBER(review_price)), 1), ROUND(AVG(TO_NUMBER(review_clean)), 1) FROM tb_review WHERE store_idx = #{store_idx}	
+	
+	</select>
+
+	<!-- 이용자 성별 조회 -->
+	<select id="SelectGenderData"
+			parameterType="Review"
+			resultType="Gender">
+		
+		SELECT COUNT(CASE WHEN m.m_gender = 'm' THEN 1 END) AS male, COUNT(CASE WHEN m.m_gender = 'w' THEN 1 END) AS female
+		FROM TB_REVIEW r
+		JOIN TB_MEMBER m ON r.m_id = m.m_id AND r.store_idx = #{store_idx}
 	
 	</select>
 	
@@ -40,5 +51,10 @@
 		select to_char(sysdate,'YYYY-MM-DD') from tb_review where m_id = #{m_id}
 	
 	</select>
+	
+	<!-- 마이페이지 리뷰 삭제 -->
+	<delete id="reviewListDelete" parameterType="int">
+		DELETE FROM TB_REVIEW WHERE REVIEW_IDX = #(REVIEW_IDX)
+	</delete>
 	
 </mapper>
