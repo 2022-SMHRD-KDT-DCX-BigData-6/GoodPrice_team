@@ -95,4 +95,16 @@ public class tb_memberDAO {
 			
 			return result;
 		}
+		
+	//마이페이지 회원탈퇴 - 효석
+		public int outMember(String m_id) {
+			
+			int result = 0;
+			
+			result = sqlSession.delete("com.smhrd.database.memberMapper.outMember", m_id);
+			
+			sqlSession.close();
+			
+			return result;
+		}
 }

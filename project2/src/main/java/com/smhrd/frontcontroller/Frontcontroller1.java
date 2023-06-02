@@ -16,6 +16,8 @@ import com.smhrd.controller.ReviewDelete;
 import com.smhrd.controller.UpdateTb_BoardService;
 import com.smhrd.controller.WriteTb_BoardService;
 import com.smhrd.controller.emailCheck;
+import com.smhrd.controller.myDelWisilist;
+import com.smhrd.controller.outMemberService;
 import com.smhrd.controller.FindId;
 
 
@@ -79,7 +81,12 @@ public class Frontcontroller1 extends HttpServlet {
 		else if (result.equals("updateMember.do")) {
 			service = new UpdateMemberService();
 		}
-		
+		else if (result.equals("outMemberService.do")) {
+			service = new outMemberService();
+		}
+		else if (result.equals("myDelWisilist.do")) {
+			service = new myDelWisilist();
+		}
 		moveURL = service.execute(request, response);
 		response.sendRedirect(moveURL);
 	}

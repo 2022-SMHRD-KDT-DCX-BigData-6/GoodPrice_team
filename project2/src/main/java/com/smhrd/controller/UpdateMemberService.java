@@ -24,6 +24,7 @@ public class UpdateMemberService implements Command{
 		String m_nick = request.getParameter("m_nick");
 		String m_addr = request.getParameter("m_addr");
 		System.out.println("업데이트 들어왔니");
+		//tb_memberDTO(m_id=123, m_pw=강효석, m_name=HTT, m_nick=광주 서구 화정로 29111, m_age=null, m_gender=null, m_addr=smart@gmail.com, m_point=null, m_joindate=null, admin_yn=null)
 		
 		tb_memberDTO updateMemDto = new tb_memberDTO(m_pw, m_name, m_nick,m_addr,m_id);
 		tb_memberDAO updateMemDao = new tb_memberDAO();

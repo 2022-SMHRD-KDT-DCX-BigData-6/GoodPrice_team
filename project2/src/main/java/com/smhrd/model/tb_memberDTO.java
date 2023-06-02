@@ -38,7 +38,7 @@ public class tb_memberDTO {
 		this.m_name = m_name;
 	}
 
-	public tb_memberDTO(@NonNull String m_id, String m_pw, String m_name, String m_nick, String m_addr) {
+	public tb_memberDTO(String m_pw, String m_name, String m_nick, String m_addr, @NonNull String m_id) {
 		super();
 		this.m_pw = m_pw;
 		this.m_name = m_name;

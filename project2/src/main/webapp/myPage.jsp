@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.controller.Count_Review"%>
 <%@page import="com.smhrd.model.tb_memberDAO"%>
 <%@page import="com.smhrd.model.tb_wishlistDAO"%>
 <%@page import="com.smhrd.model.tb_wishlistDTO"%>
@@ -8,9 +9,7 @@
 <%@page import="com.smhrd.model.tb_memberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<<<<<<< HEAD
 
-=======
 <style>
 .point{
 	text-align: center;
@@ -19,9 +18,15 @@
 	vertical-align : middle;
 }
 
+.textAlgins{
+	text-align: left;
+}
+#heartIcon{
+	color: red;
+}
+
 </style>
 <!DOCTYPE html>
->>>>>>> branch 'master' of https://github.com/2022-SMHRD-KDT-DCX-BigData-6/GoodPrice_team.git
 <html>
 
 <head>
@@ -39,8 +44,11 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0//css/all.min.css">
 		<title>MYPAGE</title>
 	</head>
-	  <%tb_memberDTO member = (tb_memberDTO)session.getAttribute("loginResult");   
+	  <%
+	  //로그인 후 세션 정보 (모든컬럼 포함)
+	  tb_memberDTO member = (tb_memberDTO)session.getAttribute("loginResult");   
        
+	  // 회원정보 수정용
 	  tb_memberDTO updateMember = (tb_memberDTO)session.getAttribute("updateMember");   
 	  
       String m_id = member.getM_id();
@@ -49,7 +57,7 @@
       tb_memberDAO m_point = new tb_memberDAO();
       
       Double point = m_point.memPoint(m_id);
-      
+      //리뷰 목록(모든 컬럼 포함)
        List<tb_reviewDTO> reviewList = new tb_reviewDAO().reviewList(m_id);
             session.setAttribute("reviewList", reviewList);
       // System.out.print(list.get(0).getReview_content());
@@ -57,25 +65,22 @@
       /* List<tb_reviewDTO> dateList = new tb_reviewDAO().dateToChar(m_id);
       System.out.print(dateList.get(0).getReview_dt()); */
       
-      List<tb_wishlistDTO> wishList = new tb_wishlistDAO().wishList(m_id);
-            System.out.print(wishList);
+      //가게 이름 목록(가게이름만 담김) 
+      List<tb_wishlistDTO> shopNameList = new tb_wishlistDAO().wishList(m_id);
+      
+      //찜 테이블 모든 컬럼
+      List<tb_wishlistDTO> selectAllWish = new tb_wishlistDAO().selectAllWish(m_id);
+      
             %> 
-		<body class="is-preload">
-			<div id = "top" align="right">
-			<a href="main.jsp"><span>HOME</span></a>
-			<a href="logout.html"><span>LOGOUT</span></a>			
-			</div>
+		
 			<!-- Wrapper-->
-=======
-            System.out.print(wishList);%> 
 	<body class="is-preload">
 	<div id="top" align="right">
 		<label class="outMyPage">
-			<a href="main.jsp">HOME</a> <a href="logout.html">LOGOUT</a>
+			<a href="main.jsp">HOME</a> <a href="LogoutService.do">LOGOUT</a>
 		</label>
 	</div>
 	<!-- Wrapper-->
->>>>>>> branch 'master' of https://github.com/2022-SMHRD-KDT-DCX-BigData-6/GoodPrice_team.git
 			<div id="wrapper"><!-- 박스 가로 너비 -->
 
 				<!-- Nav -->
@@ -158,21 +163,24 @@
 				<div class="table_box">							
 				<table>
 				<tbody>
-					<tr>
+					<tr class = "textAlgins">
 					    <th>번호</th>
 						<th>내용</th>
 					    <th>날짜</th>
 						<th>삭제</th>								
 					</tr>				
-					<% for(int i = 0; i < reviewList.size();i++){%>
+					 <% for(int i = 0; i < reviewList.size();i++){%>
 					<tr>
 					     <td><%= i + 1%></td>
 						 <td><%= reviewList.get(i).getReview_content()%></td>
 						 <td><%= reviewList.get(i).getReview_dt()%></td>
-						 <td><a href = "#">삭제</a></td>
-						 <%-- <td><a href = "ReviewDelete.do<%=reviewList.get(i).getReview_idx()%>">삭제</a></td> --%>
+						 <!-- <td><a href = "#">삭제</a></td> -->
+						 <td><a href = "ReviewDelete.do?Review_idx=<%=reviewList.get(i).getReview_idx()%>">삭제</a></td>
 						 </tr>
-						 <%}%>
+						 <%}%> 
+						 
+					
+						 
 					</tbody>
 					</table>
 				</div>
@@ -210,20 +218,20 @@
 				<div class="table_box">							
 				<table>
 				<tbody>
-					<tr>
+					<tr class="textAlgins">
 					    <th>번호</th>
 						<th>찜</th>
 						<th>삭제</th>								
 					</tr>
 					
 					</tr>				
-					<% for(int i = 0; i < wishList.size();i++){%>
+					<% for(int i = 0; i < shopNameList.size();i++){%>
 					<tr>
 					     <td><%= i + 1%></td>
-						 <td><%= wishList.get(i)%></td>	
-						 <td>삭제</td>
-						 </tr>
-						 <%}%>
+						 <td><%= shopNameList.get(i)%></td>	
+						 <td ><a href="myDelWisilist.do?Wish_idx=<%=selectAllWish.get(i).getWish_idx()%>"><i id ="heartIcon" class="icon solid fa-heart"></i></a></td>
+					</tr>
+					<%}%>
 					</tbody>
 					</table>
 				</div>
@@ -258,7 +266,7 @@
 												<input type="text" name="m_pw" value="<%= updateMember.getM_pw()%>"placeholder="비밀번호를 입력해주세요" />
 											</div>
 											<div class="col-6 col-12-medium">
-												<input type="text" name="m_pwcheck" placeholder="비밀번호를 확인해주세요" />
+												<input type="text" name="m_pwCheck" placeholder="비밀번호를 확인해주세요" />
 											</div>
 											
 											<div class="col-12">
@@ -327,7 +335,7 @@
 	<script> 
     //회원탈퇴 하고 뒤로가기 하고 확인 누르면 회원 수정 되야하는데 회원 탈퇴가 되는 버그 존재
   	function outMember(frm) { 
-    frm.action="outMember.do";
+    frm.action="outMemberService.do";
     frm.submit(); 
     return true; 
   	} 

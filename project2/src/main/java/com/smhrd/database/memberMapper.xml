@@ -53,4 +53,12 @@
 	where m_id = #{m_id}
 	
 	</update>
+	
+	<!-- 마이페이지 회원 탈퇴 -->
+	
+	<delete id="outMember" parameterType="String">
+	
+	delete from TB_MEMBER where m_id = #{m_id}
+	
+	</delete>
 </mapper>
