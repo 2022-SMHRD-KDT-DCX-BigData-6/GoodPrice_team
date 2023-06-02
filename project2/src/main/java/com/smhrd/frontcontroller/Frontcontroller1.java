@@ -11,6 +11,7 @@ import com.smhrd.command.Command;
 import com.smhrd.controller.JoinService;
 import com.smhrd.controller.LoginService;
 import com.smhrd.controller.LogoutService;
+import com.smhrd.controller.ReviewDelete;
 import com.smhrd.controller.emailCheck;
 
 
@@ -20,14 +21,12 @@ public class Frontcontroller1 extends HttpServlet {
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		System.out.println("[Frontcontroller2]");
 
 		// 공통되는 부분 = post방식 인코딩
 		request.setCharacterEncoding("UTF-8");
 
 		// 어떤 요청이 들어왔는지 구분
 		String reqURI = request.getRequestURI();
-		System.out.println("주소 : " + reqURI);
 
 		
 		// ContextPath 출력
@@ -35,7 +34,6 @@ public class Frontcontroller1 extends HttpServlet {
 		System.out.println(contextPath);
 
 		String result = reqURI.substring(contextPath.length() + 1);
-		System.out.println(result);
 
 		String moveURL = null;
 		Command service = null;
@@ -61,6 +59,9 @@ public class Frontcontroller1 extends HttpServlet {
 //		else if(result.equals("WriteBoardService.do")) {
 ////			service = new WriteBoardService();
 //		}
+		else if (result.equals("ReviewDelete.do")) {
+			service = new ReviewDelete();
+		}
 		
 		moveURL = service.execute(request, response);
 		response.sendRedirect(moveURL);

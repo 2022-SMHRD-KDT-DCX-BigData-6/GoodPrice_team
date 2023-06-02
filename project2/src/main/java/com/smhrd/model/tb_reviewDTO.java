@@ -27,6 +27,7 @@ public class tb_reviewDTO {
     	super();
     	this.store_idx = store_idx;
     }
+    
 
 	public tb_reviewDTO(@NonNull Double review_service, @NonNull Double review_price, @NonNull Double review_clean) {
 		super();
@@ -34,5 +35,15 @@ public class tb_reviewDTO {
 		this.review_price = review_price;
 		this.review_clean = review_clean;
 	}
+
+
+	public tb_reviewDTO(Double review_idx, Date review_dt) {
+		super();
+		this.review_idx = review_idx;
+		this.review_dt = review_dt;
+	}
+
+
+	
     
 }
