@@ -606,8 +606,13 @@
 				</div>
 				
 			   <!-- 성별 통계 파이 차트 -->
-			    <div class="chart-div">
+			    <div class="pie_chart">
 		            <canvas id="pieChartCanvas" width="350px" height="350px"></canvas>
+		        </div>
+
+			   <!-- 연령대 히스토그램 -->
+			    <div class="histogram_chart">
+		            <canvas id="histogramChartCanvas" width="650px" height="650px"></canvas>
 		        </div>
 			   </div>
 
@@ -1088,6 +1093,8 @@
             	$('#myChart').show();
             	// 파이 차트를 표시
             	$('#pieChartCanvas').show();
+            	// 히스토그램 표시
+            	$('#histogramChartCanvas').show();
             	
 			    var chartShopName = document.getElementById('shop_name').innerText;
 			    var chartTitle = chartShopName + ' 평점';
@@ -1176,6 +1183,42 @@
 			        responsive: false
 			      }
 			    });
+			    
+			 	  // 히스토그램 차트 그리기
+			      var histogramData = {
+			        labels: ['A', 'B', 'C', 'D', 'E', 'F'],
+			        datasets: [{
+			          label: '히스토그램',
+			          data: [10, 20, 30, 40, 50, 60],
+			          backgroundColor: 'rgba(75, 192, 192, 0.8)',
+			          borderColor: 'rgba(75, 192, 192, 1)',
+			          borderWidth: 3
+			        }]
+			      };
+
+			      var histogramContext = document.getElementById('histogramChartCanvas').getContext('2d');
+			      window.histogramChart = new Chart(histogramContext, {
+			        type: 'bar',
+			        data: histogramData,
+			        options: {
+			          responsive: false,
+			          scales: {
+			            yAxes: [{
+			              ticks: {
+			                beginAtZero: true,
+			                min: 0, // 최소값 설정
+			                fontSize: 14
+			              }
+			            }],
+			            xAxes: [{
+			              ticks: {
+			                fontSize: 14
+			              },
+			              barThickness: 70
+			            }]
+			          }
+			        }
+			      });
 			  }
 			    
 
