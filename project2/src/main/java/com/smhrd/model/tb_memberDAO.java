@@ -40,6 +40,7 @@ public class tb_memberDAO {
 		tb_memberDTO result = null;
 		
 		result = sqlSession.selectOne
+		
 		("com.smhrd.database.memberMapper.emailCheck", paramEmailCheckDto);
 		
 		sqlSession.close();

@@ -34,6 +34,7 @@
 </style>
 <title>회원가입</title>
 <link href="css/styles.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.min.css">
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
 	crossorigin="anonymous"></script>
 
@@ -91,6 +92,7 @@
 														<option value="hanmail.net">hanmail.net</option>
 													</select>
 													<input type="button" class="btn btn-primary mb-3" id="emailCheck" name="emailCheck" value="중복체크" style="color:white">
+													<span id="checkResult"></span>
 												</div>
 											</div>
 										</div>
@@ -314,9 +316,9 @@
 		crossorigin="anonymous"></script>
 	<script src="js/scripts.js"></script>
 	<script src="./js/dataCheck.js"></script>
+	
 	<script type="text/javascript">
 	//-------------이름 유효성검사----------------
-	
 	
 	
 	
@@ -342,6 +344,12 @@
 		
 		
 	}
-	</script>
+	
+	
+ 
+ 
+</script>
+
+	
 </body>
 </html>
