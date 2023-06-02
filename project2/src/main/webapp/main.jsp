@@ -271,16 +271,22 @@
 <!-- ---------------------------로그인 세션 정보(모든 컬럼값)----------------------------- -->    
 			<script>
 				var userId;
+				var userGender;
+				var userAge;
 				console.log(userId);
 	    	</script>
 		<% tb_memberDTO loginResult = (tb_memberDTO)session.getAttribute("loginResult"); 
 			if(loginResult != null){
 				System.out.print("로그인 회원 아이디 : " + loginResult.getM_id());
 				String userId = loginResult.getM_id();
+				String userGender = loginResult.getM_gender1();
+				String userAge = loginResult.getM_age();
 		%>
 			<script>
 		        // JavaScript 코드 내에서 JSP 변수를 사용
 		        userId = '<%= userId %>';
+		        userGender = '<%= userGender%>'
+		        userAGE = '<%= userAge%>'
 		        console.log(userId);
 	    	</script>
 
@@ -593,10 +599,18 @@
 	               </table>
                </div>
                
-                <div style="width: 800px; height: 800px;">
+               <!-- 평점 통계 바 차트 -->
+               <div style="display: flex;">
+                <div style="width: 650px; height: 900px;">
 					<!--차트가 그려질 부분-->
 					<canvas id="myChart"></canvas>
 				</div>
+				
+			   <!-- 성별 통계 파이 차트 -->
+			    <div class="chart-div">
+		            <canvas id="pieChartCanvas" width="350px" height="350px"></canvas>
+		        </div>
+			   </div>
 
 				<!-- 리뷰 작성 팝업창 -->
 			   <div class="black_bg"></div>
@@ -931,6 +945,8 @@
 					            cleanRating: cleanRating,
 					            content: content,
 					            filename: filename
+					            userGender: userGender,
+					            userAge: userAge
 					        },
 					        success: function(){
 					        	
@@ -1071,9 +1087,11 @@
 			    
 			    /* 평점 차트 그리기 */
                function makeChart() {
-			    	
+            	// 막대 차트를 표시	
             	$('#myChart').show();
-            	   
+            	// 파이 차트를 표시
+            	$('#pieChartCanvas').show();
+            	
 			    var chartShopName = document.getElementById('shop_name').innerText;
 			    var chartTitle = chartShopName + ' 평점';
 				
@@ -1102,9 +1120,9 @@
 			                        fill: false,
 			                        data: [response.Service, response.Price, response.Clean],
 			                        backgroundColor: [
-			                            'rgba(54, 162, 235, 0.5)',
-			                            'rgba(54, 162, 235, 0.5)',
-			                            'rgba(54, 162, 235, 0.5)',
+			                            'rgba(54, 162, 235, 0.8)',
+			                            'rgba(54, 162, 235, 0.8)',
+			                            'rgba(54, 162, 235, 0.8)',
 			                        ],
 			                        borderColor: [
 			                            'rgba(54, 162, 235, 1)',
@@ -1143,7 +1161,25 @@
 			            console.log(error); // 에러 처리
 			        }
 			    });
-			}
+			 	
+			    // 파이 차트 그리기
+			    var pieChartData = {
+			      labels: ['foo', 'bar', 'baz', 'fie', 'foe', 'fee'],
+			      datasets: [{
+			        data: [95, 12, 13, 7, 13, 10],
+			        backgroundColor: ['rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)']
+			      }]
+			    };
+
+			    var pieContext = document.getElementById('pieChartCanvas').getContext('2d');
+			    window.pieChart = new Chart(pieContext, {
+			      type: 'pie',
+			      data: pieChartData,
+			      options: {
+			        responsive: false
+			      }
+			    });
+			  }
 			    
 
                </script>
