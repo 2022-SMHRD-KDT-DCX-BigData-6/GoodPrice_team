@@ -45,7 +45,9 @@ public class tb_reviewDAO {
 		sqlSession.close();
 		
 		return data;
+		
 	}
+	
 		//마이페이지 리뷰목록 메소드 - 이은화 강효석
 		public List<tb_reviewDTO> reviewList(String m_id) {
 			

@@ -14,9 +14,12 @@ public class emailCheck  implements Command{
 	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		String m_id = request.getParameter("m_id");
+		String id = request.getParameter("m_id");
+		String inputDomain = request.getParameter("inputDomain");
+
+		String m_id = id + "@" + inputDomain;
 		
-		tb_memberDTO emailCheckDto = new tb_memberDTO(m_id, null, null, null, null, null, null, null, null, null);
+		tb_memberDTO emailCheckDto = new tb_memberDTO(m_id);
 		tb_memberDAO emailCheckDao = new tb_memberDAO();
 		
 		tb_memberDTO emailCheckResult = emailCheckDao.emailCheck(emailCheckDto);
@@ -25,6 +28,6 @@ public class emailCheck  implements Command{
 				hs.setAttribute("emailCheckResult", emailCheckResult);
 		
 		
-		return "register.jsp";
+		return "main.jsp";
 	}
 }

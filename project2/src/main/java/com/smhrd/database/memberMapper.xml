@@ -4,23 +4,41 @@
 <mapper namespace="com.smhrd.database.memberMapper">
 	
 	<insert id="insertMember" parameterType="tb_member">
-		insert into TB_MEMBER values(#{m_id},#{m_pw},#{m_name},#{m_nick},#{m_birthdate},#{m_gender1},#{m_addr},0,sysdate,'N')
+	
+		insert into TB_MEMBER values(#{m_id},#{m_pw},#{m_name},#{m_nick},#{m_age},#{m_gender},#{m_addr},0,sysdate,'N')
+		
 	</insert>
 	
 	<select id="selectMember" resultType="tb_member" parameterType="tb_member">
+	
 		select * from TB_MEMBER where m_id = #{m_id} and m_pw = #{m_pw}
+		
 	</select>
 	
 	<!-- 회원가입 중복체크 -->
 	
 	<select id="emailCheck" parameterType="tb_member">
-		select m_id from TB_MEMBER where m_id = #{m_id}  
+	
+		select m_id from TB_MEMBER where m_id = #{m_id} 
+		 
 	</select>
 	
 	<!-- 포인트 업데이트 -->
 	<update id="UpdatePoint" parameterType="tb_member">
+	
 		UPDATE TB_MEMBER SET m_point = m_point+500 where m_id = #{m_id}
+		
 	</update> 
 	
+	<!-- 비밀번호 찾기  - 효석-->
+	<select id="findId" parameterType="tb_member" resultType="String">
 	
+	select m_id from TB_MEMBER where m_name = #{m_name} and m_pw = #{m_pw}
+	
+	</select>
+	
+	<!-- 회원 포인트 가져오기 - 효석 -->
+	<select id="memPoint" parameterType="String" resultType="Double">
+	SELECT m_point FROM tb_member WHERE m_id = #{m_id} 
+	</select>
 </mapper>

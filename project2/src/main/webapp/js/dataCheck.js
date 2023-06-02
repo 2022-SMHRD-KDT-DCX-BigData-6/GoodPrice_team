@@ -88,9 +88,4 @@ var inputAddr = document.getElementById("sample4_roadAddress");
 }
 
 
-function domainChange(domain){
-	document.write(domain);
-	
-	document.joinForm.value = domain;
-	document.write(document.joinForm.value);
-}
+
