@@ -20,6 +20,8 @@
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c21e04ab9896f84f77e9ff0564735da3&libraries=services"></script>
        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.min.css">
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0"></script>
        <title>닫기가 가능한 커스텀 오버레이</title>
        <style>
        .wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
@@ -435,7 +437,8 @@
 	            	    function onClick() {
 	            	    	 // userId 값 확인
 	    			        if (!userId) {
-	    			            alert("로그인이 필요한 서비스입니다"); // 경고창 표시
+	    			        	// 경고창
+	    			        	$("#alertLogin").click();
 	    			            return; // 등록 중단
 	    			        }
 	            	        document.querySelector('.modal_wrap').style.display ='block';
@@ -450,6 +453,17 @@
 	            	    document.querySelector('.modal_close').addEventListener('click', offClick);
 	            	 
 	            	};
+	            	
+	            	// 비로그인 에러 알림창 실행 버튼 클릭 이벤트
+	            	$(document).ready(function() {
+	            	    $("#alertLogin").click(function() {
+	            	        Swal.fire({
+	            	            icon: 'error',
+	            	            title: '로그인이 필요한 서비스입니다.',
+	            	            text: '',
+	            	        });
+	            	    });
+	            	});
 	            	
 	            	<!-- 셀렉트박스 생성 -->
                     var cnt = new Array();
@@ -563,6 +577,7 @@
 		                       <td id="shop_review">0건</td>
 		                       <td colspan="2">
 			                       <button class="review" id="modal_btn">🖊 리뷰작성</button>
+			                       <button id="alertLogin" style="display: none;"></button>
 		                       </td>
 		                   </tr>
 		                   <tr>
@@ -570,6 +585,8 @@
 		                       <td id="shop_like">0</td>
 		                       <td colspan="2">
 			                       <button class="like_poeple" onclick="saveWish()">💛 찜하기</button>
+			                       <button id="WishSuccess" style="display: none;"></button>
+			                       <button id="alertWish" style="display: none;"></button>
 		                       </td>
 		                   </tr>
 	                   </tbody>
@@ -671,6 +688,9 @@
 			          <tr>
 			          	<td colspan="2">
 			          	<button class="register" onclick="saveReview()" type="button">등록</button>
+					    <!-- 리뷰등록 성공시 알림창 -->
+						<button id="ReviewSuccess" style="display: none;"></button>
+						<button id="alertReceipt" style="display: none;"></button>
 					    </td>
 			          </tr>
 					
@@ -678,64 +698,15 @@
 			       </div>
 			    </div>
                     
+                    
 <!--             지도 마커에 찍는 부분 -->
                <% 
 	               tb_storeDTO dto = new tb_storeDTO(35.1520445, 126.888729);	
 	          	   List<tb_storeDTO> store_list = new tb_storeDAO().selectStore(dto);   
           	   %>
                <script>
-               
-               /* 평점 차트 그리기 */
-               function makeChart() {
-            	var chartShopName = document.getElementById('shop_name').innerText;
-            	var chartTitle = chartShopName + ' 평점';
-            	
-			    var context = document.getElementById('myChart').getContext('2d');
-			    var myChart = new Chart(context, {
-			        type: 'bar',
-			        data: {
-			            labels: ['서비스 or 맛', '가성비', '청결도'],
-			            datasets: [{
-			                label: '평가점수',
-			                fill: false,
-			                data: [4.3, 5, 3],
-			                backgroundColor: [
-			                    'rgba(255, 99, 132, 0.2)',
-			                    'rgba(54, 162, 235, 0.2)',
-			                    'rgba(255, 206, 86, 0.2)'
-			                ],
-			                borderColor: [
-			                    'rgba(255, 99, 132, 1)',
-			                    'rgba(54, 162, 235, 1)',
-			                    'rgba(255, 206, 86, 1)'
-			                ],
-			                borderWidth: 1
-			            }]
-			        },
-			        options: {
-			            title: {
-			                display: true,
-			                text: chartTitle,
-			                fontSize: 24
-			            },
-			            scales: {
-			                yAxes: [{
-			                    ticks: {
-			                        beginAtZero: true,
-			                        fontSize: 14
-			                    }
-			                }],
-			                xAxes: [{
-			                    ticks: {
-			                        fontSize: 14
-			                    },
-			                    barThickness: 70 // 바의 넓이 조절
-			                }]
-			            }
-			        }
-			    });
-			}
-               
+               // 전역 변수로 차트 객체 선언
+               var myChart = null;
                
                var storeData = <%= new Gson().toJson(store_list) %>;
                
@@ -766,6 +737,7 @@
                
                // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
                kakao.maps.event.addListener(marker[i], 'click', function() {
+            	   
                    overlay.setMap(map);
                });
                	   overlay.setMap(null)
@@ -845,7 +817,15 @@
 				                   kakao.maps.event.addListener(marker[i], 'click', (function(marker, overlay, store) {
 				                       return function() {
 				                    	
+				                    	// 차트 숨기기
+				                    	$('#myChart').hide();
 				                    	shop_Idx = store.shop_idx;   
+				                    	
+				                    	// 기존 차트 제거
+				                        if (myChart) {
+				                            myChart.destroy();
+				                            myChart = null;
+				                        }
 				                    	
 				                    	// 가게 리뷰건수 AJAX 통신
 				       			        $.ajax({
@@ -931,9 +911,9 @@
 			        var content = document.querySelector('textarea[name="content"]').value;
 			        var filename = document.querySelector('#file').value;
 			
-				     // userId 값 확인
 			        if (!filename) {
-			            alert("영수증을 첨부해주세요!"); // 경고창 표시
+			        	// 경고창 표시
+			        	$("#alertReceipt").click(); 
 			            return; // 등록 중단
 			        }
 
@@ -973,8 +953,9 @@
 					        	    }
 					        	}); 
 					        	
+					        	// 리뷰등록 성공시 알림창
+					        	$("#ReviewSuccess").click();
 					        	
-					        	alert("리뷰작성 완료! 500포인트 적립!");
 					            // 등록 성공시 창을 닫는 함수
 					        	$(".modal_wrap").hide();
 					            $(".black_bg").hide();
@@ -991,7 +972,28 @@
 					        	console.log(error);
 					        }  
 					    });
+			        
+			     	// 리뷰등록성공시 알림창 실행 버튼 클릭 이벤트
+			        $(document).ready(function() {
+			            $("#ReviewSuccess").click(function() {
+			                Swal.fire({
+			                    icon: 'success',
+			                    title: '리뷰 등록 완료!',
+			                    text: '500P 적립되었습니다.',
+			                });
+			            });
+			        });
 			    }
+			    
+			 	// 영수증 미첨부시 경고창 실행 버튼 클릭 이벤트
+			    $(document).ready(function() {
+			        $("#alertReceipt").click(function() {
+			            Swal.fire({
+			                icon: 'warning',
+			                title: '영수증 파일을 첨부해주세요!',
+			            });
+			        });
+			    });
               
 			 	// 폼 필드 초기화 함수
 			    function resetForm() {
@@ -1015,7 +1017,8 @@
 			    	
 			    	 // userId 값 확인
 			        if (!userId) {
-			            alert("로그인이 필요한 서비스입니다"); // 경고창 표시
+			        	// 경고 알림창
+			        	$("#alertWish").click();
 			            return; // 등록 중단
 			        }
 			    	
@@ -1031,7 +1034,8 @@
 					        success: function(data){
 					        	console.log(data);
 					        	
-					        	alert("찜목록에 추가되었습니다.");
+					        	// 찜 성공 알림창
+					        	$("#WishSuccess").click();
 					        	
 					        	// 찜수 업데이트
 					            var currentWishCount = parseInt($("#shop_like").text());
@@ -1041,10 +1045,109 @@
 					        	console.log(error);
 					        }  
 					    });
+			    	
+			     	// 찜성공 알림창 실행 버튼 클릭 이벤트
+			        $(document).ready(function() {
+			            $("#WishSuccess").click(function() {
+			                Swal.fire({
+			                    icon: 'success',
+			                    title: '찜 목록에 추가되었습니다.',
+			                });
+			            });
+			        });
+			     	
 			    }
 			    
+			     	// 비로그인 경고창 실행 버튼 클릭 이벤트
+	            	$(document).ready(function() {
+	            	    $("#alertWish").click(function() {
+	            	        Swal.fire({
+	            	            icon: 'error',
+	            	            title: '로그인이 필요한 서비스입니다.',
+	            	            text: '',
+	            	        });
+	            	    });
+	            	});
+			    
+			    /* 평점 차트 그리기 */
+               function makeChart() {
+			    	
+            	$('#myChart').show();
+            	   
+			    var chartShopName = document.getElementById('shop_name').innerText;
+			    var chartTitle = chartShopName + ' 평점';
+				
+			 	// 기존 차트 제거
+			    if (myChart) {
+			        myChart.destroy();
+			        myChart = null;
+			    }
+			    
+			    // AJAX 요청
+			    $.ajax({
+			        type: "POST",
+			        url: "http://localhost:8081/MessageSystem/SelectReviewData",
+			        data: { shopIdx: shop_Idx }, // 요청에 필요한 데이터 전달
+			        dataType: "json",
+			        success: function (response) {
+			            var reviewData = response.data; // 가져온 데이터
+						console.log(response.Clean);
+			            var context = document.getElementById('myChart').getContext('2d');
+			            myChart = new Chart(context, {
+			                type: 'bar',
+			                data: {
+			                    labels: ['서비스 or 맛', '가성비', '청결도'],
+			                    datasets: [{
+			                        label: '평가점수',
+			                        fill: false,
+			                        data: [response.Service, response.Price, response.Clean],
+			                        backgroundColor: [
+			                            'rgba(54, 162, 235, 0.5)',
+			                            'rgba(54, 162, 235, 0.5)',
+			                            'rgba(54, 162, 235, 0.5)',
+			                        ],
+			                        borderColor: [
+			                            'rgba(54, 162, 235, 1)',
+			                            'rgba(54, 162, 235, 1)',
+			                            'rgba(54, 162, 235, 1)',
+			                        ],
+			                        borderWidth: 3
+			                    }]
+			                },
+			                options: {
+			                    title: {
+			                        display: true,
+			                        text: chartTitle,
+			                        fontSize: 24
+			                    },
+			                    scales: {
+			                        yAxes: [{
+			                            ticks: {
+			                                beginAtZero: true,
+			                                min: 0, // 최소값 설정
+			                                max: 5, // 최대값 설정
+			                                fontSize: 14
+			                            }
+			                        }],
+			                        xAxes: [{
+			                            ticks: {
+			                                fontSize: 14
+			                            },
+			                            barThickness: 70
+			                        }]
+			                    }
+			                }
+			            });
+			        },
+			        error: function (xhr, status, error) {
+			            console.log(error); // 에러 처리
+			        }
+			    });
+			}
+			    
+
                </script>
-                                       
+                                  
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">

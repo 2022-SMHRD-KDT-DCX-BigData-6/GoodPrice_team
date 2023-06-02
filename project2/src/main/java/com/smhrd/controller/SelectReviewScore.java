@@ -7,13 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.smhrd.model.tb_memberDAO;
-import com.smhrd.model.tb_memberDTO;
+import com.google.gson.JsonObject;
 import com.smhrd.model.tb_reviewDAO;
 import com.smhrd.model.tb_reviewDTO;
 
-@WebServlet("/InsertReview")
-public class InsertReview extends HttpServlet {
+@WebServlet("/SelectReviewData")
+public class SelectReviewScore extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -21,18 +20,21 @@ public class InsertReview extends HttpServlet {
 		response.setContentType("application/x-json; charset=UTF-8"); //JSON형식으로 response 타입지정
 		
 		double shopIdx = Double.parseDouble(request.getParameter("shopIdx"));
-		String userId = request.getParameter("userId");
-		double serviceRating = Double.parseDouble(request.getParameter("serviceRating"));
-		double effectiveRating = Double.parseDouble(request.getParameter("effectiveRating"));
-		double cleanRating = Double.parseDouble(request.getParameter("cleanRating"));
-		String content = request.getParameter("content");
-		String filename = request.getParameter("filename");
-		
-		tb_reviewDTO dto = new tb_reviewDTO(shopIdx, userId, serviceRating, effectiveRating, cleanRating, content, filename);
+		tb_reviewDTO dto = new tb_reviewDTO(shopIdx);
 		tb_reviewDAO dao = new tb_reviewDAO();
-		int cnt = 0;
-		cnt = dao.insertReview(dto);
 		
+		tb_reviewDTO data = dao.SelectReviewData(dto);
+		
+		JsonObject obj = new JsonObject();
+		Double Service = data.getReview_service();
+		Double Price = data.getReview_price();
+		Double Clean = data.getReview_clean();
+
+		obj.addProperty("Service", Service);
+		obj.addProperty("Price", Price);
+		obj.addProperty("Clean", Clean);
+		
+		response.getWriter().print(obj);
 	}
 
 }

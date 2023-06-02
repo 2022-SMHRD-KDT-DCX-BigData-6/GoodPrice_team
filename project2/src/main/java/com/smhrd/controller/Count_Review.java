@@ -24,7 +24,6 @@ public class Count_Review extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("application/x-json; charset=UTF-8"); //JSON형식으로 response 타입지정
 		
-		System.out.println("값 확인 : " + request.getParameter("shopIdx"));
 		double shopIdx = Double.parseDouble(request.getParameter("shopIdx"));
 		tb_reviewDTO dto = new tb_reviewDTO(shopIdx);
 		tb_reviewDAO dao = new tb_reviewDAO();
