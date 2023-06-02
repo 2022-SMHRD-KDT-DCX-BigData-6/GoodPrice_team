@@ -27,8 +27,10 @@ public class InsertReview extends HttpServlet {
 		double cleanRating = Double.parseDouble(request.getParameter("cleanRating"));
 		String content = request.getParameter("content");
 		String filename = request.getParameter("filename");
+		String userGender = request.getParameter("userGender");
+		String userAge = request.getParameter("userAge");
 		
-		tb_reviewDTO dto = new tb_reviewDTO(shopIdx, userId, serviceRating, effectiveRating, cleanRating, content, filename);
+		tb_reviewDTO dto = new tb_reviewDTO(shopIdx, userId, serviceRating, effectiveRating, cleanRating, content, filename, userGender, userAge);
 		tb_reviewDAO dao = new tb_reviewDAO();
 		int cnt = 0;
 		cnt = dao.insertReview(dto);

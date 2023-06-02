@@ -1,4 +1,3 @@
-<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="com.smhrd.model.tb_memberDTO"%>
 <%@page import="com.google.gson.Gson"%>
 <%@page import="com.smhrd.model.tb_storeDAO"%>
@@ -280,12 +279,14 @@
 			if(loginResult != null){
 				System.out.print("로그인 회원 아이디 : " + loginResult.getM_id());
 				String userId = loginResult.getM_id();
-				String userGender = loginResult.getM_gender1();
+				String userGender = loginResult.getM_gender();
+				String userAge = loginResult.getM_age();
 		%>
 			<script>
 		        // JavaScript 코드 내에서 JSP 변수를 사용
 		        userId = '<%= userId %>';
 		        userGender = '<%= userGender%>'
+		        userAGE = '<%= userAge%>'
 		        console.log(userId);
 	    	</script>
 
@@ -943,6 +944,8 @@
 					            cleanRating: cleanRating,
 					            content: content,
 					            filename: filename
+					            userGender: userGender,
+					            userAge: userAge
 					        },
 					        success: function(){
 					        	
