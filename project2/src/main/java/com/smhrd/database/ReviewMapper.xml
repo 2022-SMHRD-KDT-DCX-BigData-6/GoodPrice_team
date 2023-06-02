@@ -6,7 +6,7 @@
 	<insert id="insertReview"
 			parameterType="Review">
 	
-		insert into tb_review values(tb_review_seq.nextval, #{store_idx}, #{m_id}, #{review_service}, #{review_price}, #{review_clean}, #{review_content}, #{review_file}, sysdate, #{m_gender}, #{m_age})
+		insert into tb_review values(tb_review_seq.nextval, #{store_idx}, #{m_id}, #{review_service}, #{review_price}, #{review_clean}, #{review_content}, #{review_file}, sysdate)
 	
 	</insert>
 	
