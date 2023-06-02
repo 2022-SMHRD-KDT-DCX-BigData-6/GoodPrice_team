@@ -22,7 +22,7 @@ public class tb_reviewDTO {
     @NonNull private String review_content;
     @NonNull private String review_file;
     private Date review_dt;
-
+    
     public tb_reviewDTO(@NonNull Double store_idx) {
     	super();
     	this.store_idx = store_idx;
@@ -46,4 +46,5 @@ public class tb_reviewDTO {
 
 	
     
+	
 }

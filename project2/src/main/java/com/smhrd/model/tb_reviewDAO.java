@@ -36,6 +36,7 @@ public class tb_reviewDAO {
 		
 	}
 	
+	// 가게별 평점 평균 조회하는 메서드
 	public tb_reviewDTO SelectReviewData(tb_reviewDTO dto) {
 		
 		tb_reviewDTO data;
@@ -45,7 +46,22 @@ public class tb_reviewDAO {
 		sqlSession.close();
 		
 		return data;
+		
 	}
+	
+	// 가게별 이용자 성별 조회하는 메서드
+	public GenderCountDTO SelectGenderData(tb_reviewDTO dto) {
+		
+		GenderCountDTO data = null;
+		
+		data = sqlSession.selectOne("SelectGenderData", dto);
+		
+		sqlSession.close();
+		
+		return data;
+		
+	}
+	
 		//마이페이지 리뷰목록 메소드 - 이은화 강효석
 		public List<tb_reviewDTO> reviewList(String m_id) {
 			

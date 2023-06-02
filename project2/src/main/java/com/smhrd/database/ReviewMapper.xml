@@ -18,12 +18,23 @@
 	
 	</select>
 	
-	<!-- 리뷰등록시 포인트 업데이트 -->
+	<!-- 가게별 평점 조회 -->
 	<select id="SelectReviewData"
 			parameterType="Review"
 			resultType="Review">
 		
 		SELECT ROUND(AVG(TO_NUMBER(review_service)), 1), ROUND(AVG(TO_NUMBER(review_price)), 1), ROUND(AVG(TO_NUMBER(review_clean)), 1) FROM tb_review WHERE store_idx = #{store_idx}	
+	
+	</select>
+
+	<!-- 이용자 성별 조회 -->
+	<select id="SelectGenderData"
+			parameterType="Review"
+			resultType="Gender">
+		
+		SELECT COUNT(CASE WHEN m.m_gender = 'm' THEN 1 END) AS male, COUNT(CASE WHEN m.m_gender = 'w' THEN 1 END) AS female
+		FROM TB_REVIEW r
+		JOIN TB_MEMBER m ON r.m_id = m.m_id AND r.store_idx = #{store_idx}
 	
 	</select>
 	

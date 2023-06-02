@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.model.tb_memberDAO"%>
 <%@page import="com.smhrd.model.tb_wishlistDAO"%>
 <%@page import="com.smhrd.model.tb_wishlistDTO"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -7,7 +8,20 @@
 <%@page import="com.smhrd.model.tb_memberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<<<<<<< HEAD
 
+=======
+<style>
+.point{
+	text-align: center;
+}
+.h4 {
+	vertical-align : middle;
+}
+
+</style>
+<!DOCTYPE html>
+>>>>>>> branch 'master' of https://github.com/2022-SMHRD-KDT-DCX-BigData-6/GoodPrice_team.git
 <html>
 
 <head>
@@ -27,9 +41,14 @@
 	</head>
 	  <%tb_memberDTO member = (tb_memberDTO)session.getAttribute("loginResult");   
        
+	  
       String m_id = member.getM_id();
       System.out.print(m_id);
        
+      tb_memberDAO m_poiint = new tb_memberDAO();
+      
+      Double point = m_poiint.memPoint(m_id);
+      
        List<tb_reviewDTO> reviewList = new tb_reviewDAO().reviewList(m_id);
             session.setAttribute("reviewList", reviewList);
       // System.out.print(list.get(0).getReview_content());
@@ -46,6 +65,16 @@
 			<a href="logout.html"><span>LOGOUT</span></a>			
 			</div>
 			<!-- Wrapper-->
+=======
+            System.out.print(wishList);%> 
+	<body class="is-preload">
+	<div id="top" align="right">
+		<label class="outMyPage">
+			<a href="main.jsp">HOME</a> <a href="logout.html">LOGOUT</a>
+		</label>
+	</div>
+	<!-- Wrapper-->
+>>>>>>> branch 'master' of https://github.com/2022-SMHRD-KDT-DCX-BigData-6/GoodPrice_team.git
 			<div id="wrapper"><!-- 박스 가로 너비 -->
 
 				<!-- Nav -->
@@ -107,6 +136,7 @@
 									
 									
 									
+									<p> Point : <%= point %></p>
 									
 									<span class="arrow icon solid fa-chevron-right" vertical-align = center">
 									</span>
