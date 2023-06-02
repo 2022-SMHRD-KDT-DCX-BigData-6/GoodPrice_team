@@ -272,6 +272,7 @@
 <!-- ---------------------------로그인 세션 정보(모든 컬럼값)----------------------------- -->    
 			<script>
 				var userId;
+				console.log(userId);
 	    	</script>
 		<% tb_memberDTO loginResult = (tb_memberDTO)session.getAttribute("loginResult"); 
 			if(loginResult != null){
@@ -406,11 +407,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Tables
                             </a>
-                            <a class="nav-link" href="noticeBoard.html">
+                            <a class="nav-link" href="Board_List_check.jsp">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 게시판
                             </a>
-                            
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">

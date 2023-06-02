@@ -4,13 +4,18 @@ import java.sql.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class tb_commentDTO {
-
-	private Double cmt_idx;
-	private Double b_idx;
-	private String cmt_content;
-	private Date cmt_dt;
-	private String m_id;
+    private int cmt_idx;
+    @NonNull private int b_idx;
+    @NonNull private String cmt_content;
+    private Date cmt_dt;
+    @NonNull private String m_id;
 }
