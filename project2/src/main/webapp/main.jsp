@@ -411,11 +411,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Tables
                             </a>
-                            <a class="nav-link" href="noticeBoard.html">
+                            <a class="nav-link" href="Board_List_check.jsp">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 게시판
                             </a>
-                            
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">

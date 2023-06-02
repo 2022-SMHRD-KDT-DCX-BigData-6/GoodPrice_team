@@ -11,6 +11,8 @@ import com.smhrd.command.Command;
 import com.smhrd.controller.JoinService;
 import com.smhrd.controller.LoginService;
 import com.smhrd.controller.LogoutService;
+import com.smhrd.controller.UpdateTb_BoardService;
+import com.smhrd.controller.WriteTb_BoardService;
 import com.smhrd.controller.emailCheck;
 
 
@@ -52,6 +54,13 @@ public class Frontcontroller1 extends HttpServlet {
 		else if (result.equals("emailCheck.do")) {
 			service = new emailCheck();
 		}
+		else if(result.equals("WriteTb_BoardService.do")) {
+			service = new WriteTb_BoardService();
+		}
+		else if(result.equals("UpdateTb_BoardService.do")) {
+			service = new UpdateTb_BoardService();
+		}
+		
 //		else if(result.equals("UpdateService.do")) {
 ////			service = new UpdateService();
 //		}
@@ -64,8 +73,5 @@ public class Frontcontroller1 extends HttpServlet {
 		
 		moveURL = service.execute(request, response);
 		response.sendRedirect(moveURL);
-
-	
 	}
-
 }

@@ -53,6 +53,30 @@
   	<description></description>
   	<servlet-class>com.smhrd.controller.SelectReviewScore</servlet-class>
   </servlet>
+  
+  <servlet>
+    <servlet-name>WriteTb_BoardService</servlet-name>
+    <display-name>WriteTb_BoardService</display-name>
+    <description></description>
+    <servlet-class>com.smhrd.controller.WriteTb_BoardService</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UpdateTb_BoardService</servlet-name>
+    <display-name>UpdateTb_BoardService</display-name>
+    <description></description>
+    <servlet-class>com.smhrd.controller.UpdateTb_BoardService</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>IncreaseLikesAjax</servlet-name>
+  	<servlet-class>com.smhrd.controller.IncreaseLikesAjax</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>Comment_Write_ServiceAjax</servlet-name>
+  	<display-name>Comment_Write_ServiceAjax</display-name>
+  	<description></description>
+  	<servlet-class>com.smhrd.controller.Comment_Write_ServiceAjax</servlet-class>
+  </servlet>
+  
   <servlet-mapping>
   	<servlet-name>JoinService</servlet-name>
   	<url-pattern>/JoinService</url-pattern>
@@ -89,4 +113,22 @@
   	<servlet-name>SelectReviewScore</servlet-name>
   	<url-pattern>/SelectReviewScore</url-pattern>
   </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>WriteTb_BoardService</servlet-name>
+    <url-pattern>/WriteTb_BoardService</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+ 	<servlet-name>IncreaseLikesAjax</servlet-name>
+  	<url-pattern>/IncreaseLikesAjax</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Comment_Write_ServiceAjax</servlet-name>
+  	<url-pattern>/Comment_Write_ServiceAjax</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UpdateTb_BoardService</servlet-name>
+  	<url-pattern>/UpdateTb_BoardService</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
