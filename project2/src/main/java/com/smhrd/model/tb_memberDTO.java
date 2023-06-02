@@ -26,7 +26,7 @@ public class tb_memberDTO {
     private String m_name;
     private String m_nick;
     private String m_age;
-	private String m_gender1;
+    private String m_gender;
     private String m_addr;
     private Double m_point;
     private Date m_joindate;

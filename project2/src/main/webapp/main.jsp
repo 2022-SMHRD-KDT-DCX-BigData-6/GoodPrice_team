@@ -279,7 +279,7 @@
 			if(loginResult != null){
 				System.out.print("로그인 회원 아이디 : " + loginResult.getM_id());
 				String userId = loginResult.getM_id();
-				String userGender = loginResult.getM_gender1();
+				String userGender = loginResult.getM_gender();
 				String userAge = loginResult.getM_age();
 		%>
 			<script>
