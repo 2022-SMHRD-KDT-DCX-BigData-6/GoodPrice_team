@@ -1,3 +1,4 @@
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="com.smhrd.model.tb_memberDTO"%>
 <%@page import="com.google.gson.Gson"%>
 <%@page import="com.smhrd.model.tb_storeDAO"%>
@@ -271,22 +272,15 @@
 <!-- ---------------------------로그인 세션 정보(모든 컬럼값)----------------------------- -->    
 			<script>
 				var userId;
-				var userGender;
-				var userAge;
-				console.log(userId);
 	    	</script>
 		<% tb_memberDTO loginResult = (tb_memberDTO)session.getAttribute("loginResult"); 
 			if(loginResult != null){
 				System.out.print("로그인 회원 아이디 : " + loginResult.getM_id());
 				String userId = loginResult.getM_id();
-				String userGender = loginResult.getM_gender();
-				String userAge = loginResult.getM_age();
 		%>
 			<script>
 		        // JavaScript 코드 내에서 JSP 변수를 사용
 		        userId = '<%= userId %>';
-		        userGender = '<%= userGender%>'
-		        userAGE = '<%= userAge%>'
 		        console.log(userId);
 	    	</script>
 
@@ -613,7 +607,7 @@
 
 			   <!-- 연령대 히스토그램 -->
 			    <div class="histogram_chart">
-		            <canvas id="histogramChartCanvas" width="650px" height="650px"></canvas>
+		            <canvas id="histogramChartCanvas" width="450px" height="350px"></canvas>
 		        </div>
 			   </div>
 
@@ -950,8 +944,6 @@
 					            cleanRating: cleanRating,
 					            content: content,
 					            filename: filename
-					            userGender: userGender,
-					            userAge: userAge
 					        },
 					        success: function(){
 					        	
@@ -1169,24 +1161,104 @@
 			        }
 			    });
 			 	
-			    // 파이 차트 그리기
-			    var pieChartData = {
-			      labels: ['foo', 'bar', 'baz', 'fie', 'foe', 'fee'],
-			      datasets: [{
-			        data: [95, 12, 13, 7, 13, 10],
-			        backgroundColor: ['rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)']
-			      }]
-			    };
-
-			    var pieContext = document.getElementById('pieChartCanvas').getContext('2d');
-			    window.pieChart = new Chart(pieContext, {
-			      type: 'pie',
-			      data: pieChartData,
-			      options: {
-			        responsive: false
-			      }
+			 // AJAX 요청
+			    $.ajax({
+			        type: "POST",
+			        url: "http://localhost:8081/MessageSystem/SelectReviewData",
+			        data: { shopIdx: shop_Idx }, // 요청에 필요한 데이터 전달
+			        dataType: "json",
+			        success: function (response) {
+			            var reviewData = response.data; // 가져온 데이터
+						console.log(response.Clean);
+			            var context = document.getElementById('myChart').getContext('2d');
+			            myChart = new Chart(context, {
+			                type: 'bar',
+			                data: {
+			                    labels: ['서비스 or 맛', '가성비', '청결도'],
+			                    datasets: [{
+			                        label: '평가점수',
+			                        fill: false,
+			                        data: [response.Service, response.Price, response.Clean],
+			                        backgroundColor: [
+			                            'rgba(54, 162, 235, 0.8)',
+			                            'rgba(54, 162, 235, 0.8)',
+			                            'rgba(54, 162, 235, 0.8)',
+			                        ],
+			                        borderColor: [
+			                            'rgba(54, 162, 235, 1)',
+			                            'rgba(54, 162, 235, 1)',
+			                            'rgba(54, 162, 235, 1)',
+			                        ],
+			                        borderWidth: 3
+			                    }]
+			                },
+			                options: {
+			                    title: {
+			                        display: true,
+			                        text: chartTitle,
+			                        fontSize: 24
+			                    },
+			                    scales: {
+			                        yAxes: [{
+			                            ticks: {
+			                                beginAtZero: true,
+			                                min: 0, // 최소값 설정
+			                                max: 5, // 최대값 설정
+			                                fontSize: 14
+			                            }
+			                        }],
+			                        xAxes: [{
+			                            ticks: {
+			                                fontSize: 14
+			                            },
+			                            barThickness: 70
+			                        }]
+			                    }
+			                }
+			            });
+			        },
+			        error: function (xhr, status, error) {
+			            console.log(error); // 에러 처리
+			        }
 			    });
-			    
+			 
+				  // 파이 차트 그리기
+			      // AJAX 요청
+			      $.ajax({
+			        type: "POST",
+			        url: "http://localhost:8081/MessageSystem/SelectGenderData",
+			        data: { shopIdx: shop_Idx }, // 요청에 필요한 데이터 전달
+			        dataType: "json",
+			        success: function (response) {
+			          var genderData = response.data; // 가져온 데이터
+			          console.log(genderData);
+			          var pieChartData = {
+			            labels: ['남성', '여성'],
+			            datasets: [{
+			              data: [genderData.man, genderData.woman],
+			              backgroundColor: ['rgb(54, 162, 235)', 'rgb(255, 99, 132)']
+			            }]
+			          };
+
+			          var pieContext = document.getElementById('pieChartCanvas').getContext('2d');
+			          window.pieChart = new Chart(pieContext, {
+			            type: 'pie',
+			            data: pieChartData,
+			            options: {
+			              responsive: false
+			            }
+			          });
+			        },
+			        error: function (xhr, status, error) {
+			          console.log(error); // 에러 처리
+			        }
+			      });
+			    },
+			    error: function (xhr, status, error) {
+			      console.log(error); // 에러 처리
+			    }
+			  });
+			  
 			 	  // 히스토그램 차트 그리기
 			      var histogramData = {
 			        labels: ['A', 'B', 'C', 'D', 'E', 'F'],

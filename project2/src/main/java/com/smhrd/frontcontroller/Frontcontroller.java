@@ -17,7 +17,7 @@ import com.smhrd.controller.LoginService;
 import com.smhrd.controller.LogoutService;
 import com.smhrd.controller.UpdateService;
 import com.smhrd.controller.WriteBoardService;
-import com.smhrd.controller.findId;
+import com.smhrd.controller.FindId;
 import com.smhrd.model.WebBoardDAO;
 import com.smhrd.model.WebBoardDTO;
 import com.smhrd.model.WebMemberDAO;
@@ -65,7 +65,7 @@ public class Frontcontroller extends HttpServlet {
 			service = new WriteBoardService();
 		}
 		else if (result.equals("findId.do")) {
-			service = new findId();
+			service = new FindId();
 		}
 		moveURL = service.execute(request, response);
 		response.sendRedirect(moveURL);

@@ -36,11 +36,25 @@ public class tb_reviewDAO {
 		
 	}
 	
+	// 가게별 평점 평균 조회하는 메서드
 	public tb_reviewDTO SelectReviewData(tb_reviewDTO dto) {
 		
 		tb_reviewDTO data;
 		
 		data = sqlSession.selectOne("SelectReviewData", dto);
+		
+		sqlSession.close();
+		
+		return data;
+		
+	}
+	
+	// 가게별 이용자 성별 조회하는 메서드
+	public GenderCountDTO SelectGenderData(tb_reviewDTO dto) {
+		
+		GenderCountDTO data;
+		
+		data = sqlSession.selectOne("SelectGenderData", dto);
 		
 		sqlSession.close();
 		
