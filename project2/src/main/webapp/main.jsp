@@ -1161,67 +1161,6 @@
 			        }
 			    });
 			 	
-			 // AJAX 요청
-			    $.ajax({
-			        type: "POST",
-			        url: "http://localhost:8081/MessageSystem/SelectReviewData",
-			        data: { shopIdx: shop_Idx }, // 요청에 필요한 데이터 전달
-			        dataType: "json",
-			        success: function (response) {
-			            var reviewData = response.data; // 가져온 데이터
-						console.log(response.Clean);
-			            var context = document.getElementById('myChart').getContext('2d');
-			            myChart = new Chart(context, {
-			                type: 'bar',
-			                data: {
-			                    labels: ['서비스 or 맛', '가성비', '청결도'],
-			                    datasets: [{
-			                        label: '평가점수',
-			                        fill: false,
-			                        data: [response.Service, response.Price, response.Clean],
-			                        backgroundColor: [
-			                            'rgba(54, 162, 235, 0.8)',
-			                            'rgba(54, 162, 235, 0.8)',
-			                            'rgba(54, 162, 235, 0.8)',
-			                        ],
-			                        borderColor: [
-			                            'rgba(54, 162, 235, 1)',
-			                            'rgba(54, 162, 235, 1)',
-			                            'rgba(54, 162, 235, 1)',
-			                        ],
-			                        borderWidth: 3
-			                    }]
-			                },
-			                options: {
-			                    title: {
-			                        display: true,
-			                        text: chartTitle,
-			                        fontSize: 24
-			                    },
-			                    scales: {
-			                        yAxes: [{
-			                            ticks: {
-			                                beginAtZero: true,
-			                                min: 0, // 최소값 설정
-			                                max: 5, // 최대값 설정
-			                                fontSize: 14
-			                            }
-			                        }],
-			                        xAxes: [{
-			                            ticks: {
-			                                fontSize: 14
-			                            },
-			                            barThickness: 70
-			                        }]
-			                    }
-			                }
-			            });
-			        },
-			        error: function (xhr, status, error) {
-			            console.log(error); // 에러 처리
-			        }
-			    });
-			 
 				  // 파이 차트 그리기
 			      // AJAX 요청
 			      $.ajax({
