@@ -11,6 +11,7 @@ import com.smhrd.command.Command;
 import com.smhrd.controller.JoinService;
 import com.smhrd.controller.LoginService;
 import com.smhrd.controller.LogoutService;
+import com.smhrd.controller.UpdateMemberService;
 import com.smhrd.controller.emailCheck;
 import com.smhrd.controller.findId;
 
@@ -64,6 +65,9 @@ public class Frontcontroller1 extends HttpServlet {
 //		}
 		else if (result.equals("findId.do")) {
 			service = new findId();
+		}
+		else if (result.equals("updateMember.do")) {
+			service = new UpdateMemberService();
 		}
 		
 		moveURL = service.execute(request, response);

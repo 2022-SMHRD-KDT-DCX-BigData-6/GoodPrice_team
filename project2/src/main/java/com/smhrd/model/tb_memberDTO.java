@@ -38,6 +38,17 @@ public class tb_memberDTO {
 		this.m_name = m_name;
 	}
 
+	public tb_memberDTO(@NonNull String m_id, String m_pw, String m_name, String m_nick, String m_addr) {
+		super();
+		this.m_pw = m_pw;
+		this.m_name = m_name;
+		this.m_nick = m_nick;
+		this.m_addr = m_addr;
+		this.m_id = m_id;
+	}
+    
+    
+
     
 	
 	

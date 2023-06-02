@@ -45,13 +45,14 @@
 	</head>
 	  <%tb_memberDTO member = (tb_memberDTO)session.getAttribute("loginResult");   
        
+	  tb_memberDTO updateMember = (tb_memberDTO)session.getAttribute("updateMember");   
 	  
       String m_id = member.getM_id();
       System.out.print(m_id);
        
-      tb_memberDAO m_poiint = new tb_memberDAO();
+      tb_memberDAO m_point = new tb_memberDAO();
       
-      Double point = m_poiint.memPoint(m_id);
+      Double point = m_point.memPoint(m_id);
       
        List<tb_reviewDTO> reviewList = new tb_reviewDAO().reviewList(m_id);
       // System.out.print(list.get(0).getReview_content());
@@ -210,30 +211,59 @@
 									<!-- <h2>정보 확인</h2> -->
 								</header>
 								<form action="updateMember.do" method="post">
-									
+									<% if(updateMember != null){ %>
 									<div>
 										<div class="row">
 											<div class="col-12">
-												<input type="text" name="name" value="<%= member.getM_name()%>" placeholder="이름을 입력해주세요">
+												<input type="text" name="m_name" value="<%= updateMember.getM_name()%>" placeholder="이름을 입력해주세요">
 											</div>
 											<div class="col-12">
-												<input type="text" name="nick" value="<%= member.getM_nick()%>" placeholder="닉네임을 입력해주세요">
+												<input type="text" name="m_nick" value="<%= updateMember.getM_nick()%>" placeholder="닉네임을 입력해주세요">
 											</div>
 											<div class="col-6 col-12-medium">
-												<input type="text" name="pw" value="<%= member.getM_pw()%>"placeholder="비밀번호를 입력해주세요" />
+												<input type="text" name="m_pw" value="<%= updateMember.getM_pw()%>"placeholder="비밀번호를 입력해주세요" />
 											</div>
 											<div class="col-6 col-12-medium">
-												<input type="text" name="pwcheck" placeholder="비밀번호를 확인해주세요" />
+												<input type="text" name="m_pwcheck" placeholder="비밀번호를 확인해주세요" />
 											</div>
 											
 											<div class="col-12">
-												<input type="text" name="addr" value="<%= member.getM_addr()%>" placeholder="주소를 입력해주세요" rows="6"></textarea>
+												<input type="text" name="m_addr" value="<%= updateMember.getM_addr()%>" placeholder="주소를 입력해주세요" rows="6"></textarea>
 											</div>
 											<div class="col-12" align="right">
 												<input type="submit"  value="확인" >
 												<input type="submit"  value="회원탈퇴" onclick="outMember(this.form);"/>	
 											</div>
+										</div>
+									</div>
 									
+									
+								<% }else { %>										
+									<div>
+										<div class="row">
+											<div class="col-12">
+												<input type="text" name="m_name" value="<%= member.getM_name()%>" placeholder="이름을 입력해주세요">
+											</div>
+											<div class="col-12">
+												<input type="text" name="m_nick" value="<%= member.getM_nick()%>" placeholder="닉네임을 입력해주세요">
+											</div>
+											<div class="col-6 col-12-medium">
+												<input type="text" name="m_pw" value="<%= member.getM_pw()%>"placeholder="비밀번호를 입력해주세요" />
+											</div>
+											<div class="col-6 col-12-medium">
+												<input type="text" name="m_pwcheck" placeholder="비밀번호를 확인해주세요" />
+											</div>
+											
+											<div class="col-12">
+												<input type="text" name="m_addr" value="<%= member.getM_addr()%>" placeholder="주소를 입력해주세요" rows="6"></textarea>
+											</div>
+											<div class="col-12" align="right">
+												<input type="submit"  value="확인" >
+												<input type="submit"  value="회원탈퇴" onclick="outMember(this.form);"/>	
+											</div>
+										</div>
+									</div>
+									<% } %>
 								</form>
 											
 												

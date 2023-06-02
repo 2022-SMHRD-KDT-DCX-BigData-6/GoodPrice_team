@@ -71,7 +71,7 @@ public class tb_memberDAO {
 			return result;
 		}
 		
-	//멤버 포인트 가져오기 메소드
+	//멤버 포인트 가져오기 메소드 - 효석
 		public Double memPoint(String m_id) {
 			
 			Double result = null;
@@ -81,5 +81,18 @@ public class tb_memberDAO {
 			sqlSession.close();
 			
 			return result; 
+		}
+		
+	//마이페이지 정보 수정 - 효석
+		public int updateMember(tb_memberDTO dto) {
+			
+			int result = 0;
+			
+			result = sqlSession.update("com.smhrd.database.memberMapper.updateMember", dto);
+			
+			sqlSession.close();
+			
+			
+			return result;
 		}
 }

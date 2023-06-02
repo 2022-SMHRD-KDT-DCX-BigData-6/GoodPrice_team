@@ -41,4 +41,16 @@
 	<select id="memPoint" parameterType="String" resultType="Double">
 	SELECT m_point FROM tb_member WHERE m_id = #{m_id} 
 	</select>
+	
+	<!-- 마이페이지 회원정보 수정하기 - 효석 -->
+	<update id="updateMember" parameterType="tb_member">
+	
+	update tb_member 
+	set m_pw = #{m_pw},
+	 	m_name = #{m_name}, 
+	 	m_nick = #{m_nick}, 
+	 	m_addr = #{m_addr} 
+	where m_id = #{m_id}
+	
+	</update>
 </mapper>
