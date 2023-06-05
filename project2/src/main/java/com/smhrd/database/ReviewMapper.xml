@@ -37,6 +37,18 @@
 		JOIN TB_MEMBER m ON r.m_id = m.m_id AND r.store_idx = #{store_idx}
 	
 	</select>
+
+	<!-- 이용자 성별 조회 -->
+	<select id="SelectAgeData"
+			parameterType="Review"
+			resultType="Age">
+	<![CDATA[
+		SELECT COUNT(CASE WHEN m.m_age < 20 THEN 1 END) AS one, COUNT(CASE WHEN m.m_age >= 20 and m.m_age < 30 THEN 1 END) AS two,	
+		COUNT(CASE WHEN m.m_age >= 30 and m.m_age < 40 THEN 1 END) AS three, COUNT(CASE WHEN m.m_age >= 40 and m.m_age < 50 THEN 1 END) AS four, 
+		COUNT(CASE WHEN m.m_age >= 50 and m.m_age < 60 THEN 1 END) AS five, COUNT(CASE WHEN m.m_age >= 60 THEN 1 END) AS six
+		FROM TB_REVIEW R JOIN TB_MEMBER M ON r.m_id = m.m_id AND r.store_idx = #{store_idx}
+	]]>
+	</select>
 	
 	<!-- 마이페이지 리뷰목록 sql - 이은화 강효석 -->
 	<select id="reviewList" parameterType="String" resultType="Review">

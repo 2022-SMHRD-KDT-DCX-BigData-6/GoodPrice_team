@@ -21,6 +21,7 @@
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c21e04ab9896f84f77e9ff0564735da3&libraries=services"></script>
        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-tooltip/1.1.0/chartjs-plugin-tooltip.min.js"></script>
        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.min.css">
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0"></script>
        <title>닫기가 가능한 커스텀 오버레이</title>
@@ -528,85 +529,93 @@
                     
                     
                 <!-- 카카오 지도 생성 -->
-                <div style="width: 50%; float: left;">
-			  		<div style="border: 5px solid #009688; border-radius: 8px; overflow: hidden;">
-			    		<div id="map" style="width: 100%; height: 500px;"></div>
-			  		</div>
-				</div>
-                
-                <!-- 가게 정보 테이블 -->
-               <div id=store_table>
-	               <table>
-	               	   <tbody>
-	               	   	   <tr>
-	               	   	      <th colspan="2">가게 이미지</th>
-	               	   	      <th colspan="3">가게 정보</th>
-	               	   	   </tr>
-		                   <tr>
-		                       <td rowspan="8" colspan="2">
-		                           <img id="shop_img" alt="가게 이미지" src="">
-		                       </td>
-		                       <td>📋가게명</td>
-		                       <td colspan="2" id="shop_name"></td>
-		                   </tr>
-		                   <tr>
-		                       <td>🚩주소</td>
-		                       <td colspan="2" id="shop_addr"></td>
-		                   </tr>
-		                   <tr>
-		                       <td>📞전화번호</td>
-		                       <td colspan="2" id="shop_tel"></td>
-		                   </tr>
-		                   <tr>
-		                       <td>🛎업종</td>
-		                       <td colspan="2" id="shop_business"></td>
-		                   </tr>
-		                   <tr>
-		                       <td>✅주요품목</td>
-		                       <td colspan="2" id="shop_items"></td>
-		                   </tr>
-		                   <tr>
-		                       <td>🚘주차여부</td>
-		                       <td id="shop_parking"></td>
-		                       <td >
-			                       <button class="review" onclick="makeChart()">🔍 평점조회</button>
-		                       </td>
-		                   </tr>
-		                   <tr>
-		                       <td>✏리뷰 건수</td>
-		                       <td id="shop_review">0건</td>
-		                       <td colspan="2">
-			                       <button class="review" id="modal_btn">🖊 리뷰작성</button>
-			                       <button id="alertLogin" style="display: none;"></button>
-		                       </td>
-		                   </tr>
-		                   <tr>
-		                       <td>💕찜 수</td>
-		                       <td id="shop_like">0</td>
-		                       <td colspan="2">
-			                       <button class="like_poeple" onclick="saveWish()">💛 찜하기</button>
-			                       <button id="WishSuccess" style="display: none;"></button>
-			                       <button id="alertWish" style="display: none;"></button>
-		                       </td>
-		                   </tr>
-	                   </tbody>
-	               </table>
+                <div style="margin-bottom: 100px;">
+	                <div style="width: 50%; float: left;">
+				  		<div style="border: 5px solid #009688; border-radius: 8px; overflow: hidden;">
+				    		<div id="map" style="width: 100%; height: 500px;"></div>
+				  		</div>
+					</div>
+	                
+	                <!-- 가게 정보 테이블 -->
+	               <div id=store_table>
+		               <table>
+		               	   <tbody>
+		               	   	   <tr>
+		               	   	      <th colspan="2">가게 이미지</th>
+		               	   	      <th colspan="3">가게 정보</th>
+		               	   	   </tr>
+			                   <tr>
+			                       <td rowspan="8" colspan="2">
+			                           <img id="shop_img" alt="가게 이미지" src="">
+			                       </td>
+			                       <td>📋가게명</td>
+			                       <td colspan="2" id="shop_name"></td>
+			                   </tr>
+			                   <tr>
+			                       <td>🚩주소</td>
+			                       <td colspan="2" id="shop_addr"></td>
+			                   </tr>
+			                   <tr>
+			                       <td>📞전화번호</td>
+			                       <td colspan="2" id="shop_tel"></td>
+			                   </tr>
+			                   <tr>
+			                       <td>🛎업종</td>
+			                       <td colspan="2" id="shop_business"></td>
+			                   </tr>
+			                   <tr>
+			                       <td>✅주요품목</td>
+			                       <td colspan="2" id="shop_items"></td>
+			                   </tr>
+			                   <tr>
+			                       <td>🚘주차여부</td>
+			                       <td id="shop_parking"></td>
+			                       <td >
+				                       <button class="review" onclick="makeChart()">🔍 평점조회</button>
+			                       </td>
+			                   </tr>
+			                   <tr>
+			                       <td>✏리뷰 건수</td>
+			                       <td id="shop_review">0건</td>
+			                       <td colspan="2">
+				                       <button class="review" id="modal_btn">🖊 리뷰작성</button>
+				                       <button id="alertLogin" style="display: none;"></button>
+			                       </td>
+			                   </tr>
+			                   <tr>
+			                       <td>💕찜 수</td>
+			                       <td id="shop_like">0</td>
+			                       <td colspan="2">
+				                       <button class="like_poeple" onclick="saveWish()">💛 찜하기</button>
+				                       <button id="WishSuccess" style="display: none;"></button>
+				                       <button id="alertWish" style="display: none;"></button>
+			                       </td>
+			                   </tr>
+		                   </tbody>
+		               </table>
+	               </div>
                </div>
                
                <!-- 평점 통계 바 차트 -->
                <div style="display: flex;">
-                <div style="width: 650px; height: 900px;">
+                <div style="width: 650px; height: 900px; flex-shrink: 0;">
 					<!--차트가 그려질 부분-->
 					<canvas id="myChart"></canvas>
 				</div>
+			   
+			   <!-- 간격을 위한 추가 요소 -->
+  			   <div style="width: 40px;"></div>
 				
 			   <!-- 성별 통계 파이 차트 -->
-			    <div class="pie_chart">
+			    <div class="pie_chart flex-shrink: 0;">
 		            <canvas id="pieChartCanvas" width="350px" height="350px"></canvas>
 		        </div>
 
+			   <!-- 간격을 위한 추가 요소 -->
+  			   <div style="width: 40px;"></div>
+
 			   <!-- 연령대 히스토그램 -->
-			    <div class="histogram_chart">
+			    <div class="histogram_chart flex-shrink: 0;">
 		            <canvas id="histogramChartCanvas" width="450px" height="350px"></canvas>
 		        </div>
 			   </div>
@@ -721,6 +730,7 @@
                // 전역 변수로 차트 객체 선언
                var myChart = null;
                var pieChart = null;
+               var histogramChart = null;
                
                var storeData = <%= new Gson().toJson(store_list) %>;
                
@@ -843,6 +853,10 @@
 				                        if (pieChart) {
 				                            pieChart.destroy();
 				                            pieChart = null;
+				                        }
+				                        if (histogramChart) {
+				                        	histogramChart.destroy();
+				                        	histogramChart = null;
 				                        }
 				                    	
 				                    	// 가게 리뷰건수 AJAX 통신
@@ -1108,6 +1122,10 @@
 			        pieChart.destroy();
 			        pieChart = null;
 			    }
+			    if (histogramChart) {
+			    	histogramChart.destroy();
+			    	histogramChart = null;
+			    }
 			    
 			    // AJAX 요청
 			    $.ajax({
@@ -1141,7 +1159,7 @@
 			                options: {
 			                    title: {
 			                        display: true,
-			                        text: '이용자 리뷰 평점',
+			                        text: '이용자 평점',
 			                        fontSize: 24
 			                    },
 			                    scales: {
@@ -1177,10 +1195,11 @@
 			        dataType: "json",
 			        success: function (response) {
 			          var genderData = response; 
+			          var total = genderData.man + genderData.woman;
 			          var pieChartData = {
 			            labels: ['남성', '여성'],
 			            datasets: [{
-			              data: [genderData.man, genderData.woman],
+			              data: [genderData.man / total * 100, genderData.woman / total * 100],
 			              backgroundColor: ['rgb(54, 162, 235)', 'rgb(255, 99, 132)']
 			            }]
 			          };
@@ -1193,52 +1212,117 @@
 			              responsive: false,
 			              title: {
 			                  display: true,
-			                  text: '이용자 성별 비율', // 제목 설정
+			                  text: '이용자 성비', // 제목 설정
 			                  fontSize: 24
-			                }
-			            }
+			                },
+			                plugins: {
+		                	  tooltip: {
+		                	    enabled: true, // 툴팁 기능 활성화
+		                	    mode: 'nearest', // 항상 가장 가까운 툴팁 표시
+		                	    callbacks: {
+		                	      label: function (context) {
+		                	        var value = context.dataset.data[context.dataIndex];
+		                	        return value.toFixed(1) + '%';
+		                	      }
+		                	    }
+		                	  }
+		                	}
+			              }
 			          });
 			        },
 			        error: function (xhr, status, error) {
 			          console.log(error); // 에러 처리
 			        }
 			      });
-			   
+				  
 			 	  // 히스토그램 차트 그리기
-			      var histogramData = {
-			        labels: ['A', 'B', 'C', 'D', 'E', 'F'],
-			        datasets: [{
-			          label: '히스토그램',
-			          data: [10, 20, 30, 40, 50, 60],
-			          backgroundColor: 'rgba(75, 192, 192, 0.8)',
-			          borderColor: 'rgba(75, 192, 192, 1)',
-			          borderWidth: 3
-			        }]
-			      };
+			      // AJAX 요청
+			      $.ajax({
+			        type: "POST",
+			        url: "http://localhost:8081/MessageSystem/SelectAgeData",
+			        data: { shopIdx: shop_Idx }, // 요청에 필요한 데이터 전달
+			        dataType: "json",
+			        success: function (response) {
+			        	console.log(response);
+			        	var histogramData = {
+						        labels: ['10대', '20대', '30대', '40대', '50대', '60대'],
+						        datasets: [{
+						          label: '백분율',
+						          data: [
+						        	  response.one,
+						              response.two,
+						              response.three,
+						              response.four,
+						              response.five,
+						              response.six
+						          ],
+						          backgroundColor: 'rgba(75, 192, 192, 0.8)',
+						          borderColor: 'rgba(75, 192, 192, 1)',
+						          borderWidth: 3
+						        }]
+						      };
+			        	
+			        		  var total = response.one + response.two + response.three + response.four + response.five + response.six;
+			            	  for (var i = 0; i < histogramData.datasets[0].data.length; i++) {
+			              	   histogramData.datasets[0].data[i] = (histogramData.datasets[0].data[i] / total) * 100; // 백분율로 변환
+			            	  }
 
-			      var histogramContext = document.getElementById('histogramChartCanvas').getContext('2d');
-			      window.histogramChart = new Chart(histogramContext, {
-			        type: 'bar',
-			        data: histogramData,
-			        options: {
-			          responsive: false,
-			          scales: {
-			            yAxes: [{
-			              ticks: {
-			                beginAtZero: true,
-			                min: 0, // 최소값 설정
-			                fontSize: 14
-			              }
-			            }],
-			            xAxes: [{
-			              ticks: {
-			                fontSize: 14
-			              },
-			              barThickness: 70
-			            }]
-			          }
+						      var histogramContext = document.getElementById('histogramChartCanvas').getContext('2d');
+						      window.histogramChart = new Chart(histogramContext, {
+						        type: 'bar',
+						        data: histogramData,
+						        options: {
+						          responsive: false,
+						          title: {
+					                  display: true,
+					                  text: '연령별 비율', // 제목 설정
+					                  fontSize: 24
+					                },
+				                plugins: {
+				                	  datalabels: {
+				                	    display: true,
+				                	    anchor: 'end',
+				                	    align: 'top',
+				                	    color: 'black',
+				                	    font: {
+				                	      weight: 'bold'
+				                	    },
+				                	    formatter: function(value) {
+				                	      return value.toFixed(1) + '%';
+				                	    }
+				                	  }
+				                	},
+						          scales: {
+					        	  yAxes: [{
+					        		    ticks: {
+					        		      beginAtZero: true,
+					        		      min: 0,
+					        		      fontSize: 14,
+					        		      callback: function(value) {
+					        		        return value.toFixed(1) + '%';
+					        		      }
+					        		    },
+					        		    scaleLabel: {
+					        		      display: true,
+					        		      labelString: '백분율 (%)'
+					        		    }
+					        		  }],
+						            xAxes: [{
+						              ticks: {
+						                fontSize: 14
+						              },
+						              barThickness: 70
+						            }]
+						          }
+						        }
+						      });			          
+			        	
+			        },
+			        error: function (xhr, status, error) {
+			          console.log(error); // 에러 처리
 			        }
 			      });
+			   
 			  }
 			    
 
