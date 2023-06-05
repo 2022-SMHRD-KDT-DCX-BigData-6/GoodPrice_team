@@ -8,9 +8,8 @@
 <%@page import="com.smhrd.model.tb_memberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<<<<<<< HEAD
+<!-- <<<<<<< HEAD -->
 
-=======
 <style>
 .point{
 	text-align: center;
@@ -21,7 +20,7 @@
 
 </style>
 <!DOCTYPE html>
->>>>>>> branch 'master' of https://github.com/2022-SMHRD-KDT-DCX-BigData-6/GoodPrice_team.git
+<!-- >>>>>>> branch 'master' of https://github.com/2022-SMHRD-KDT-DCX-BigData-6/GoodPrice_team.git -->
 <html>
 
 <head>
@@ -65,16 +64,15 @@
 			<a href="logout.html"><span>LOGOUT</span></a>			
 			</div>
 			<!-- Wrapper-->
-=======
-            System.out.print(wishList);%> 
-	<body class="is-preload">
+         <!--    System.out.print(wishList);%>  -->
+	<!-- <body class="is-preload">
 	<div id="top" align="right">
 		<label class="outMyPage">
 			<a href="main.jsp">HOME</a> <a href="logout.html">LOGOUT</a>
 		</label>
-	</div>
+	</div> -->
 	<!-- Wrapper-->
->>>>>>> branch 'master' of https://github.com/2022-SMHRD-KDT-DCX-BigData-6/GoodPrice_team.git
+<!-- >>>>>>> branch 'master' of https://github.com/2022-SMHRD-KDT-DCX-BigData-6/GoodPrice_team.git -->
 			<div id="wrapper"><!-- 박스 가로 너비 -->
 
 				<!-- Nav -->
@@ -125,6 +123,47 @@
 										  <td>8000p</td>
 										</tr>
 									</table>
+									
+									 <button class="btn" id="btn1" type="button" style="padding:0px; margin:0px;"><i class="fas fa-coffee fa-3x"></i></button>
+									
+									 <script>
+  
+      const btn1 = document.getElementById("btn1");
+
+      btn1.addEventListener("click", ()=>{
+
+         console.log("btn1 clicked");
+
+         /* const page = document.getElementById("page1");
+
+         page.innerHTML = `
+         <div style="width:40%; height:50%; background-color:#FA8258">
+         <br>
+         <br> */
+
+            <h1>포인트</h1><br><br>  
+          
+            <%= member.getM_point()%> <br>
+           
+            
+            
+         </div>
+         `;
+
+      })
+      </script>
+      
+
+ <a href="?p=-2000">2000point</a>
+<?php
+
+if($p =='-2000') insert_point($member['member.getM_point()'], -2000, '클릭포인트 -2000포인트차감');
+
+?>
+									
+									
+									
+									
 										
 								
 								</span>
