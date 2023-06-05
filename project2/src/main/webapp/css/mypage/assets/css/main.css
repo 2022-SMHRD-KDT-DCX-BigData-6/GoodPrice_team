@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic");
 @import url("fontawesome-all.min.css");
+@import url('https://fonts.googleapis.com/css2?family=Geologica&display=swap');
 
 /*
 	Astral by HTML5 UP
@@ -1325,10 +1326,11 @@ input, select, textarea {
 		}
 
 	body, input, textarea, select {
-		font-family: 'Source Sans Pro', sans-serif;
+		font-family: 'Geologica', sans-serif;
+		/* font-family: 'Source Sans Pro', sans-serif; */
 		font-weight: 300;
 		color: #777777;
-		font-size: 20pt;
+		font-size: 16pt;
 		line-height: 1.75em;
 	}
 
@@ -1532,7 +1534,7 @@ input, select, textarea {
 	}
 
 		header > p {
-			margin: 0.5em 0 0 0;
+			margin: 0.3em 0 0 0;
 			color: #aaa;
 		}
 
@@ -2006,7 +2008,7 @@ input, select, textarea {
 					-webkit-flex-shrink: 0;
 					-ms-flex-shrink: 0;
 					flex-shrink: 0;
-					width: 17em;
+					width: 8em;
 					height: 100%;
 				}
 
@@ -2091,12 +2093,12 @@ input, select, textarea {
 				}
 
 					#main > .panel.intro header h1 {
-						line-height: 1.25em;
+						line-height: 1em;
 						margin-bottom: 0;
 					}
 
 					#main > .panel.intro header p {
-						letter-spacing: -0.015em;
+						letter-spacing: -0.8em;
 						font-size: 1.25em;
 						margin: 0.25em 0 0 0;
 					}
@@ -2118,7 +2120,7 @@ input, select, textarea {
 
 						#main > .panel.intro header {
 							padding: 4em;
-							text-align: center;
+							text-align: left;
 						}
 
 				}
@@ -2134,7 +2136,7 @@ input, select, textarea {
 					}
 
 						#main > .panel.intro header p {
-							font-size: 1em;
+							font-size: 0.7em;
 							margin: 0.25em 0 0 0;
 						}
 
@@ -2187,5 +2189,30 @@ input, select, textarea {
 				padding-left: 0.5em;
 				margin-left: 0.5em;
 			}
-
 		}
+		
+		
+		.table_wrap { }
+		.table_wrap h3 { font-size: 21px; font-weight: 800; margin-bottom: 20px; }
+		.table_wrap .table_box { border-top: 2px solid #333; }
+		.table_wrap .table_box table { width: 100%; font-size: 16px; }
+		.table_wrap .table_box table tr th,
+		.table_wrap .table_box table tr td { text-align: center; padding: 10px;box-sizing: border-box; }
+
+		.table_wrap .table_box table tr th { border-bottom: 1px solid #333; }
+		.table_wrap .table_box table tr td { }
+
+
+		
+	
+	@media screen and (max-width: 480px) {
+		
+		
+		.table_wrap { width: 100%; overflow: hidden; }
+		.table_wrap .table_box { overflow-x: scroll; }
+		.table_wrap .table_box table { width: 100%; min-width: 480px; }
+		
+		
+		
+
+	}		

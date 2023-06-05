@@ -1,6 +1,8 @@
 package com.smhrd.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -35,13 +37,11 @@ public class tb_memberDAO {
 		
 	}
 	
-	public tb_memberDTO emailCheck(tb_memberDTO paramEmailCheckDto) {
+	public String emailCheck(String m_id) {
 		
-		tb_memberDTO result = null;
+		String result = null;
 		
-		result = sqlSession.selectOne
-		
-		("com.smhrd.database.memberMapper.emailCheck", paramEmailCheckDto);
+		result = sqlSession.selectOne("com.smhrd.database.memberMapper.emailCheck", m_id);
 		
 		sqlSession.close();
 		
@@ -71,7 +71,7 @@ public class tb_memberDAO {
 			return result;
 		}
 		
-	//멤버 포인트 가져오기 메소드
+	//멤버 포인트 가져오기 메소드 - 효석
 		public Double memPoint(String m_id) {
 			
 			Double result = null;
@@ -81,5 +81,49 @@ public class tb_memberDAO {
 			sqlSession.close();
 			
 			return result; 
+		}
+		
+	//마이페이지 정보 수정 - 효석
+		public int updateMember(tb_memberDTO dto) {
+			
+			int result = 0;
+			
+			result = sqlSession.update("com.smhrd.database.memberMapper.updateMember", dto);
+			
+			sqlSession.close();
+			
+			
+			return result;
+		}
+		
+	//마이페이지 회원탈퇴 - 효석
+		public int outMember(String m_id) {
+			
+			int result = 0;
+			
+			result = sqlSession.delete("com.smhrd.database.memberMapper.outMember", m_id);
+			
+			sqlSession.close();
+			
+			return result;
+		}
+		
+		//마이페이지 포인트 차감
+		public int myPagePtMinus(Double m_point, String m_id) {
+			
+			int result = 0;
+			
+			Map<String,Object> params = new HashMap<>();
+			params.put("m_point", m_point);
+			params.put("m_id", m_id);
+			
+			result = sqlSession.update("com.smhrd.database.memberMapper.myPagePtMinus", params);
+			
+			sqlSession.close();
+			
+			return result;
+			
+			
+			
 		}
 }

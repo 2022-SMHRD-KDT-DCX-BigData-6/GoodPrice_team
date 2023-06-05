@@ -1,3 +1,4 @@
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="com.smhrd.model.tb_memberDTO"%>
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -12,34 +13,25 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <style type="text/css">
-	.card-header{
+	#card-header{
 		position: relative;
 		top: 0;
 	}
+	#emailDuple{
+	margin-left: 90px;
+	}
 	
-	#emailCheck{
-      width: 30%;
-      height:100%;
-      border:none;
-      font-size:1em;
-      color:#042AaC;
-      outline:none;
-      display:inline;
-      margin-left: 90px;
-      box-sizing: border-box;
-    }
-    #emailCheck:hover{
-      background-color: lightgray;
-    }
+	
 </style>
 <title>회원가입</title>
 <link href="css/styles.css" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.min.css">
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
 	crossorigin="anonymous"></script>
-
+<script src="js/emailCheck.js"></script>
 
 </head>
+
+
 <body class="bg-primary">
 	<div id="layoutAuthentication">
 		<div id="layoutAuthentication_content">
@@ -53,58 +45,73 @@
 								</div>
 								<div class="card-body">
 											
-											<!-- 중복체크 변수 -->
-											<% tb_memberDTO emailCheckResult = (tb_memberDTO)session.getAttribute("emailCheckResult"); %>
+									<% HttpSession hs = request.getSession();
+									//중복이면 null값 중복 아니면 사용자가 입력한 값 들어있음
+										String emailCheckResult = (String)hs.getAttribute("emailCheckResult");
+										
+										String[] dev = new String[2];
+										dev[0] = "";
+										dev[1] = "";
+										
+										if(emailCheckResult != null){
+											
+										//@를 기준으로 앞, 뒤를 잘라서 배열에 저장
+										//emailCheckResultDev[0] = m_id
+										//emailCheckResultDev[1] = domain
+										 dev = emailCheckResult.split("@");
+											
+										}
+											
+										%>
+										
 									<!-- --------------------------회원가입 시작---------------------------- -->
-									<script src="./js/dataCheck.js"></script>
-									<form action="JoinService.do" method="post" name="joinForm" id="formId" onsubmit="submitCheck();">
-										<div class="row mb-3">
-											<div class="col-md-6">
-												<div class="form-floating">
-													<input class="form-control" name="m_name"
-														id="inputLastName" type="text" />
-														 
-														<label for="inputLastName">이름</label> <span id="nameSpan" >한글 10자 이내/ 영문30자 이내</span>
-												</div>
-											</div>
-										</div>
+									<form action="emailCheck.do" method="post" name="joinForm" id="formId" onsubmit="emailCheck();">
 										
-										
+										<!-- -----------------------이메일----------------------- -->
 										<div class="row mb-3">
 											<div class="col-md-6">
 												<div class="form-floating mb-3 mb-md-0">
-													<input class="form-control" name="m_id" id="inputEmail" type="text" />
+													<input class="form-control" name="m_id" id="inputEmail" type="text" value="<%= dev[0] %>"  />
 													 <label for="inputEmail">이메일</label> 
-													 <span>영문 , 숫자 혼합10~30자 이내</span>
+													 <span class="dupleCheck" >영문 , 숫자 혼합10~30자 이내</span>
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-floating mb-3 mb-md-0">
-													<input class="form-control" type="text" name="inputDomain" id="inputDomain"  aria-label="readonly input example" readonly>
-													 <label for="inputDomain">도메인</label> 
+													<input class="form-control" type="text" name="inputDomain" id="inputDomain"  aria-label="readonly input example" value=" <%= dev[1] %> " readonly="readonly" >
+													<label for="inputDomain">도메인</label>
 													<select name="selectDomain" id="selectDomain" title="이메일 주소 선택" onchange="changeEmail();">
-														<option value="etc"> 선택 </option>
-														<option value="etc"> 직접입력</option>
+														<option value=""> 선택 </option>
+														<option value="etc"> 직접입력  </option>
                 										<option value="naver.com">naver.com</option>
 														<option value="nate.com">nate.com</option>
 														<option value="gmail.com">gmail.com</option>
 														<option value="yahoo.com">yahoo.com</option>
 														<option value="hanmail.net">hanmail.net</option>
 													</select>
-													<input type="button" class="btn btn-primary mb-3" id="emailCheck" name="emailCheck" value="중복체크" style="color:white">
-													<span id="checkResult"></span>
+													
+													
+													<!-- 중복체크 했나 안했나 확인용 value="unCheck" 이면 중복체크 안한거-->
+													<input type="hidden" id="dupleConfirm" name="dupleConfirm" value="unCheck">
+													 
+													 <!-- 세션 결과값 여기에 저장 - 비어있으면 중복x 값이 있으면 중복 -->
+													 <input type="hidden" id="idVal" value="" ></input> 
+													
+													 <input type="submit" class="btn btn-primary mb-3" value="중복체크" id="emailDuple" />
+													 
 												</div>
 											</div>
 										</div>
-										<!-- <script src="./js/jquery-3.6.4.js"></script>
-										 <script>
-        									$("select[name=selectDomain]").on("change",function(){
-        										if($(this).val() === "etc"){
-        											$("select[name=inputDomain]").prop("readonly",false);
-        										} 
-        									})
-    									</script> -->
+										<!-- ------------------------이메일------------------------- -->
+									</form>	<!-- 중복 체크 성공하면 hidden 인풋박스에 email값 전송 -->
+									
+									
+									<form action="JoinService.do" method="post" name="joinForm" id="joinForm" onsubmit="submitCheck();">
 										
+										<input class="form-control" name="m_id" id="hiddenEmail" type="hidden" value="<%= emailCheckResult %>" />
+										
+										
+										<!-- ---------------------비밀번호------------------------ -->
 										<div class="row mb-3">
 											<div class="col-md-6">
 												<div class="form-floating mb-3 mb-md-0">
@@ -120,48 +127,33 @@
 												</div>
 											</div>
 										</div>
+										<!-- ---------------------비밀번호----------------------- -->
+										
+										<!-- ----------------------이름---------------------- -->
+										
+												<div class="form-floating mb-3">
+													<input class="form-control" name="m_name" id="inputLastName" type="text" />
+														 
+														<label for="inputLastName">이름</label> <span id="nameSpan" >한글 10자 이내/ 영문30자 이내</span>
+												</div>
+										<!-- 이름 -->
 
+										<!-- ---------------닉넴------------------- -->
 										<div class="form-floating mb-3">
 											<input class="form-control" name="m_nick" id="inputNick" type="text"/> 
 											<label for="inputEmail">닉네임</label> <span>한글 10자 이내</span>
 										</div>
-										<div class="form-floating mb-3">
-											<input class="form-control" name="m_age" id="inputBirth" type="number" />
-											<label for="inputEmail">나이</label>
-											<!-- 연도 셀렉박스 -->
-											<%-- <select>
-											<% for(int year = 1900; year <= 2023;year++){ %>
-												<option value="<%= year %>"><%= year %></option>
-												<% } %>
-											</select>
-											
-											<!-- 월 셀렉박스 -->
-											<select>
-												<% int month = 0;
-												for(month = 1; month <= 12; month++){ %>
-													<option value="<%= month %>"><%= month %></option>
-												<% } %>
-											</select>
-											<!-- 일 셀렉박스 -->
-											
-											<!-- 31일 포함하는 달 -->
-											<select>
-											<% int day = 1;
-											if(month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12){ %>
-												<% for(day = 1; day <= 31; day++){ %>
-												<option value="<%= day %>"><%= day %></option>												
-												<% } %>
-											
-											<!-- 31일 포함 안하는 달 -->
-											<% }else{ %>
-												<% for(day = 1; day <= 30; day++){ %>
-												<option value="<%= day %>"><%= day %></option>												
-												<% } %>
-											<% } %>
-											</select> --%>
-										</div>
+										<!-- ---------------닉넴------------------- -->
 										
-										<table class="btn btn-primary mb-3"" border="1">
+										<!-- ---------------나이------------------- -->
+										<div class="form-floating mb-3">
+											<input class="form-control" name="m_age" id="inputAge" type="number" max="200"/>
+											<label for="inputAge">나이</label>
+										</div>
+										<!-- ---------------나이------------------- -->
+										
+										<!-- ---------------성별------------------- -->
+										<table class="btn btn-primary mb-3" border="1">
 											<tr>
 												<td><span >성별</span></td>
 												<td>
@@ -170,7 +162,9 @@
 												</td>
 											</tr>
 										</table>
-										<!-- ---------------------다음 주소 API----------------------- -->
+										<!-- ---------------성별------------------- -->
+										
+										<!-- ---------------------주소(다음 주소 API)----------------------- -->
 										<div class="row mb-3">
 											<div class="col-md-6">
 												<div class="form-floating mb-3 mb-md-0">
@@ -279,17 +273,24 @@
 										</script>
 								</div>
 								<!-- ----------------------다음 주소 API---------------------------- -->
+								
+								<!-- -------------------링크 관련------------------ -->
 								<div class="d-grid">
-									<input type="submit" class="btn btn-primary btn-block"
+									<input type="button" class="btn btn-primary btn-block"
 										value="회원가입" onclick="submitCheck();">
 								</div>
 								<div class="card-footer text-center py-3">
 									<span><a class="small" href="main.jsp">메인페이지</a></span> <a
 										href="login.jsp">아이디가 이미 있으신가요? 로그인 하러 가기</a>
 								</div>
+								<!-- -------------------링크 관련------------------ -->
 							</div>
 							</form>
 							<!-- --------------------------회원가입 끝---------------------------- -->
+							
+							<% 
+							//화면 바뀌면 셋
+							session.removeAttribute("emailCheckResult");  %>
 						</div>
 					</div>
 				</div>
@@ -315,12 +316,10 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 		crossorigin="anonymous"></script>
 	<script src="js/scripts.js"></script>
-	<script src="./js/dataCheck.js"></script>
 	
+
+
 	<script type="text/javascript">
-	//-------------이름 유효성검사----------------
-	
-	
 	
 	function changeEmail(){
 		var inputDomain = document.getElementById("inputDomain");
@@ -333,23 +332,98 @@
 		var val = selectDomain.options[idx].value;
 		 
 		    if (val === "etc") {
-		    	//직접입력 선택시 입력 가능 (원래 readonly 상태)
 		    	inputDomain.readOnly = false;
 		    	inputDomain.value = "";
 		    } else {
-		    	//저장한 값을 emailAdd 값으로 저장 후 추가 입력 불가
-		    	inputDomain.value = val;
-				inputDomain.readOnly = readonly;
+		    	//저장한 값을 emailAdd 값으로 저장
+				inputDomain.value = val;
+		    	inputDomain.readOnly = true;
 		    }
 		
 		
 	}
+	</script>
 	
 	
- 
- 
-</script>
+	
+	<script type="text/javascript">
+	  function submitCheck() {
+	    // hiddenEmail 필드의 값을 가져옴
+	    var hiddenEmail = document.getElementById("hiddenEmail").value;
+	    var emailRegex = /^[A-Za-z0-9]+@[A-Za-z0-9]+\.[A-Za-z]{2,4}$/;
+	    // hiddenEmail 값이 비어있으면 경고창을 띄움
+	    
+	    if (hiddenEmail === "") {
+	      alert("아이디 중복검사를 해주세요.");
+	      return false; // 폼 제출 중단
+	    }
+	    if (hiddenEmail !== emailRegex){
+	    	alert("아이디 형식이 올바르지 않습니다");
+	    	return false;
+	    }
 
-	
+	    // 비밀번호 필드 유효성 검사
+	    var inputPassword = document.getElementById("inputPassword").value;
+	    var inputPasswordConfirm = document.getElementById("inputPasswordConfirm").value;
+	    if (inputPassword === "" || inputPasswordConfirm === "") {
+	      alert("비밀번호를 입력해주세요.");
+	      return false; // 폼 제출 중단
+	    }
+	    // 비밀번호 유효성 검사 (영문, 숫자 혼합 10~30자)
+	    var passwordRegex = /^[A-Za-z0-9]{10,30}$/;
+	    if (!passwordRegex.test(inputPassword)) {
+	      alert("비밀번호는 영문과 숫자를 혼합하여 10~30자로 입력해야 합니다.");
+	      return false; // 폼 제출 중단
+	    }
+	    // 비밀번호 확인 일치 여부 확인
+	    if (inputPassword !== inputPasswordConfirm) {
+	      alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+	      return false; // 폼 제출 중단
+	    }
+
+	    // 이름 필드 유효성 검사
+	    var inputLastName = document.getElementById("inputLastName").value;
+	    if (inputLastName === "") {
+	      alert("이름을 입력해주세요.");
+	      return false; // 폼 제출 중단
+	    }
+	    // 이름 유효성 검사 (한글 10자 이내 또는 영문 30자 이내)
+	    var nameRegex = /^[가-힣]{0,10}$|^[A-Za-z]{0,30}$/;
+	    if (!nameRegex.test(inputLastName)) {
+	      alert("이름은 한글 10자 이내 또는 영문 30자 이내로 입력해야 합니다.");
+	      return false; // 폼 제출 중단
+	    }
+
+	    // 닉네임 필드 유효성 검사
+	    var inputNick = document.getElementById("inputNick").value;
+	    if (inputNick === "") {
+	      alert("닉네임을 입력해주세요.");
+	      return false; // 폼 제출 중단
+	    }
+	    // 닉네임 유효성 검사 (한글 10자 이내 또는 영문 30자 이내)
+	    var nickRegex = /^[가-힣]{0,10}$|^[A-Za-z]{0,30}$/;
+	    if (!nickRegex.test(inputNick)) {
+	      alert("닉네임은 한글 10자 이내 또는 영문 30자 이내로 입력해야 합니다.");
+	      return false; // 폼 제출 중단
+	    }
+
+	   
+	    // 나이 필드 유효성 검사
+	    var inputAge = document.getElementById("inputAge").value;
+	    if (inputAge === "") {
+	      alert("나이를 입력해주세요.");
+	      return false; // 폼 제출 중단
+	    }
+	    // 나이 유효성 검사 (숫자만 입력)
+	    var ageRegex = /^[0-9]+$/;
+	    if (!ageRegex.test(inputAge)) {
+	      alert("나이는 숫자만 입력해야 합니다.");
+	      return false; // 폼 제출 중단
+	    }
+
+	    // 폼이 유효하므로 서버로 제출
+	    document.getElementById("joinForm").submit();
+	  }
+	</script>
 </body>
 </html>

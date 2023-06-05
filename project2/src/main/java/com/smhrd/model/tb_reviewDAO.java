@@ -52,7 +52,7 @@ public class tb_reviewDAO {
 	// 가게별 이용자 성별 조회하는 메서드
 	public GenderCountDTO SelectGenderData(tb_reviewDTO dto) {
 		
-		GenderCountDTO data;
+		GenderCountDTO data = null;
 		
 		data = sqlSession.selectOne("SelectGenderData", dto);
 		
@@ -61,28 +61,68 @@ public class tb_reviewDAO {
 		return data;
 		
 	}
-	
-		//마이페이지 리뷰목록 메소드 - 이은화 강효석
-		public List<tb_reviewDTO> reviewList(String m_id) {
-			
-			List<tb_reviewDTO> result = null;
-			
-			result = sqlSession.selectList("reviewList", m_id);
-			
-			sqlSession.close();
-			
-			return result;
-		}
-		
-		//마이페이지 리뷰 날짜 메소드- 이은화 강효석
-		public List<tb_reviewDTO> dateToChar(String m_id) {
-		
-		List<tb_reviewDTO> result = null;
 
-		result = sqlSession.selectList("dateToChar", m_id);
+	// 가게별 이용자 연령 조회하는 메서드
+	public AgeCountDTO SelectAgeData(tb_reviewDTO dto) {
+		
+		AgeCountDTO data = null;
+		
+		data = sqlSession.selectOne("SelectAgeData", dto);
 		
 		sqlSession.close();
+		
+		return data;
+		
+	}
+
+	// 가게별 리뷰 조회
+	public List<ReviewListDTO> SelectReview(tb_reviewDTO dto) {
+		
+		List<ReviewListDTO> data = null;
+		
+		data = sqlSession.selectList("SelectReview", dto);
+		
+		sqlSession.close();
+		
+		return data;
+		
+	}
+	
+	//마이페이지 리뷰목록 메소드 - 이은화 강효석
+	public List<tb_reviewDTO> reviewList(String m_id) {
+		
+		List<tb_reviewDTO> result = null;
+		
+		result = sqlSession.selectList("reviewList", m_id);
+		
+		sqlSession.close();
+		
 		return result;
-		}
+	}
+	
+	//마이페이지 리뷰 날짜 메소드- 이은화 강효석
+	public List<tb_reviewDTO> dateToChar(String m_id) {
+	
+	List<tb_reviewDTO> result = null;
+
+	result = sqlSession.selectList("dateToChar", m_id);
+	
+	sqlSession.close();
+	return result;
+	}
+	
+	// 마이페이지 리뷰 삭제 메소드 - 이은화, 강효석
+	
+	public int reviewListDelete(int Review_idx) {
+	
+	int result = 0;
+	
+	result = sqlSession.delete("reviewListDelete", Review_idx);
+	
+	sqlSession.close();
+	
+	return result;
+	}
+			
 	
 }

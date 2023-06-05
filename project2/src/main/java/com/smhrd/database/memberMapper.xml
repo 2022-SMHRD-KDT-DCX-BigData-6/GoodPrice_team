@@ -17,7 +17,7 @@
 	
 	<!-- 회원가입 중복체크 -->
 	
-	<select id="emailCheck" parameterType="tb_member">
+	<select id="emailCheck" parameterType="String" resultType="String">
 	
 		select m_id from TB_MEMBER where m_id = #{m_id} 
 		 
@@ -41,4 +41,29 @@
 	<select id="memPoint" parameterType="String" resultType="Double">
 	SELECT m_point FROM tb_member WHERE m_id = #{m_id} 
 	</select>
+	
+	<!-- 마이페이지 회원정보 수정하기 - 효석 -->
+	<update id="updateMember" parameterType="tb_member">
+	
+	update tb_member 
+	set m_pw = #{m_pw},
+	 	m_name = #{m_name}, 
+	 	m_nick = #{m_nick}, 
+	 	m_addr = #{m_addr} 
+	where m_id = #{m_id}
+	
+	</update>
+	
+	<!-- 마이페이지 회원 탈퇴 -->
+	
+	<delete id="outMember" parameterType="String">
+	
+	delete from TB_MEMBER where m_id = #{m_id}
+	
+	</delete>
+	
+	<update id="myPagePtMinus" parameterType="map">
+	   update tb_member set m_point = m_point-#{m_point}	 	
+	   where m_id = #{m_id}
+	</update>
 </mapper>
