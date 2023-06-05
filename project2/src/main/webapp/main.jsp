@@ -18,256 +18,19 @@
         <title>혜자탐구대</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
+        <link href="css/mainpage.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c21e04ab9896f84f77e9ff0564735da3&libraries=services"></script>
-       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/tooltip@1.6.1/dist/Tooltip.min.js"></script>
        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.min.css">
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0"></script>
        <title>닫기가 가능한 커스텀 오버레이</title>
-       <style>
-       .wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
-       .wrap * {padding: 0;margin: 0;}
-       .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
-       .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
-       .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
-       .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
-       .info .close:hover {cursor: pointer;}
-       .info .body {position: relative;overflow: hidden;}
-       .info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
-       .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
-       .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
-       .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
-       .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
-       .info .link {color: #5085BB;}
-      	
-      	/* 가게 정보 테이블 스타일 */
-       #store_table {
-           display: none;
-       }
-	   table {
-		   width: 700px;
-		   text-align: center;
-		   border: 1px solid #fff;
-		   border-spacing: 1px;
-		   font-family: 'Cairo', sans-serif;
-		   margin: auto;
-		   border-radius: 8px;
-  		   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	   }
-		
-		caption {
-		    font-weight: bold;
-		}
-		table td {
-		    padding: 10px;
-		    background-color: #eee;
-		    border: 1px solid #fff;
-		    font-weight: bold;
-		    border-radius: 8px;
-		}
-		
-		table th {
-		    background-color: #333;
-		    color: #fff;
-		    padding: 10px;
-		    border: 1px solid #fff;
-		    font-weight: bold;
-		    border-radius: 8px;
-		}
-		
-		img {
-		    width: 300px;
-		    height: 350px;
-		}
-		
-		.review,
-		.like_poeple,
-		.register {
-		    border: none;
-		    padding: 5px 10px;
-		    color: #fff;
-		    font-weight: bold;
-		    border-radius: 4px;
-    		transition: background-color 0.3s ease;
-		}
-		
-		.review {
-		    background-color: #03A9F4;
-		}
-		
-		.like_poeple,
-		.register {
-		    background-color: #E91E63;
-		}
-		
-		
-		 /* 셀렉트 박스 스타일 */
-		.bo_w_select {
-		    width: 6%; /* 가로 사이즈 */
-		    padding: 10px; /* 내부여백 */
-		    padding-left: 12px;
-		    border: 1px solid #ddd;
-		    background: url(./arrow_down_18dp.png) no-repeat right 50%; /* 화살표 위치 */
-		    background-size: 30px; /* 화살표 크기 */
-		    border-radius: 4px;
-		    box-sizing: border-box;
-		    -webkit-appearance: none;
-		    -moz-appearance: none;
-		    appearance: none;
-		    font-size: 12px;
-		    color: #000;
-		    outline:none;
-		}
-		.bo_w_select:hover {border: 1px solid #aaa;} /* 마우스오버 */
-		
-		/* 리뷰작성 팝업창 스타일 */
-		#review_store{
-		  background-color: #333;
-		  color: #fff;
-		  padding: 10px;
-		  font-size: 30px;
-		  border: 1px solid #fff;
-		  font-weight: bold;
-		  border-radius: 8px;
-		}
-		
-		.modal_wrap {
-		  display: none;
-		  width: 700px;
-		  height: 500px;
-		  position: absolute;
-		  top: 50%;
-		  left: 50%;
-		  transform: translate(-50%, -50%);
-		  background: #eee;
-		  z-index: 2;
-		  border-radius: 10px;
-		  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-		}
-		
-		.black_bg {
-		  display: none;
-		  position: fixed;
-		  top: 0;
-		  left: 0;
-		  width: 100%;
-		  height: 100%;
-		  background-color: rgba(0, 0, 0, 0.5);
-		  z-index: 1;
-		}
-		
-		.modal_close {
-		  width: 40px;
-		  height: 40px;
-		  position: absolute;
-		  top: 10px;
-		  right: 10px;
-		}
-		
-		.modal_close > a {
-/* 		  display: block; */
-		  width: 100%;
-		  height: 100%;
-		  font-size: 28px;
-/* 		  background: url(https://img.icons8.com/metro/26/000000/close-window.png); */
-		  text-indent: -9999px;
-		}
-		
-		/* 별점 스타일 */
-		.star-rating {
-		  display: flex;
-		  flex-direction: row-reverse;
-		  font-size: 2.25rem;
-		  line-height: 2.5rem;
-		  justify-content: space-around;
-		  padding: 0 0.2em;
-		  text-align: center;
-		  width: 5em;
-		}
-		
-		.star-rating input {
-		  display: none;
-		}
-		
-		.star-rating label {
-		  color: #e8e2dc;
-		  cursor: pointer;
-		}
-		
-		.star-rating :checked ~ label {
-		  color: gold;
-		}
-		
-		.star-rating label:hover,
-		.star-rating label:hover ~ label {
-		  color: #fff58c;
-		}
-		
-		/* 영수증 파일 첨부 스타일 */
-		.filebox .upload-name {
-		  display: inline-block;
-		  height: 40px;
-		  padding: 0 10px;
-		  vertical-align: middle;
-		  border: 1px solid #dddddd;
-		  width: 78%;
-		  color: #999999;
-		}
-		
-		.filebox label {
-		  display: inline-block;
-		  padding: 10px 20px;
-		  color: #fff;
-		  vertical-align: middle;
-		  background-color: #999999;
-		  cursor: pointer;
-		  height: 40px;
-		  margin-left: 10px;
-		}
-		
-		.filebox input[type="file"] {
-		  position: absolute;
-		  width: 0;
-		  height: 0;
-		  padding: 0;
-		  overflow: hidden;
-		  border: 0;
-		}
-		
-		/* 등록 버튼 스타일 */
-		.register {
-		  display: inline-block;
-		  padding: 10px 20px;
-		  background-color: #81c147;
-		  color: #fff;
-		  border: none;
-		  cursor: pointer;
-		  transition: background-color 0.2s ease-in-out;
-		}
-		
-		.register:hover {
-		  background-color: #ff9800;
-		}
-		
-		/* 텍스트 에리어 스타일 */
-		textarea {
-		  width: 100%;
-		  padding: 10px;
-		  border: 1px solid #ddd;
-		  border-radius: 5px;
-		  transition: border-color 0.2s ease-in-out;
-		}
-		
-		textarea:focus {
-		  border-color: #777;
-		}
-      
-      </style>
-      
     </head>
     
     <body class="sb-nav-fixed">
-            <!-- -----------------------------------마이페이지, 로그아웃------------------------------------- -->
+    
+<!-- -----------------------------------마이페이지, 로그아웃------------------------------------- -->
     
 <!-- ---------------------------로그인 세션 정보(모든 컬럼값)----------------------------- -->    
 			<script>
@@ -528,102 +291,110 @@
                     
                     
                 <!-- 카카오 지도 생성 -->
-                <div style="width: 50%; float: left;">
-			  		<div style="border: 5px solid #009688; border-radius: 8px; overflow: hidden;">
-			    		<div id="map" style="width: 100%; height: 500px;"></div>
-			  		</div>
-				</div>
-                
-                <!-- 가게 정보 테이블 -->
-               <div id=store_table>
-	               <table>
-	               	   <tbody>
-	               	   	   <tr>
-	               	   	      <th colspan="2">가게 이미지</th>
-	               	   	      <th colspan="3">가게 정보</th>
-	               	   	   </tr>
-		                   <tr>
-		                       <td rowspan="8" colspan="2">
-		                           <img id="shop_img" alt="가게 이미지" src="">
-		                       </td>
-		                       <td>📋가게명</td>
-		                       <td colspan="2" id="shop_name"></td>
-		                   </tr>
-		                   <tr>
-		                       <td>🚩주소</td>
-		                       <td colspan="2" id="shop_addr"></td>
-		                   </tr>
-		                   <tr>
-		                       <td>📞전화번호</td>
-		                       <td colspan="2" id="shop_tel"></td>
-		                   </tr>
-		                   <tr>
-		                       <td>🛎업종</td>
-		                       <td colspan="2" id="shop_business"></td>
-		                   </tr>
-		                   <tr>
-		                       <td>✅주요품목</td>
-		                       <td colspan="2" id="shop_items"></td>
-		                   </tr>
-		                   <tr>
-		                       <td>🚘주차여부</td>
-		                       <td id="shop_parking"></td>
-		                       <td >
-			                       <button class="review" onclick="makeChart()">🔍 평점조회</button>
-		                       </td>
-		                   </tr>
-		                   <tr>
-		                       <td>✏리뷰 건수</td>
-		                       <td id="shop_review">0건</td>
-		                       <td colspan="2">
-			                       <button class="review" id="modal_btn">🖊 리뷰작성</button>
-			                       <button id="alertLogin" style="display: none;"></button>
-		                       </td>
-		                   </tr>
-		                   <tr>
-		                       <td>💕찜 수</td>
-		                       <td id="shop_like">0</td>
-		                       <td colspan="2">
-			                       <button class="like_poeple" onclick="saveWish()">💛 찜하기</button>
-			                       <button id="WishSuccess" style="display: none;"></button>
-			                       <button id="alertWish" style="display: none;"></button>
-		                       </td>
-		                   </tr>
-	                   </tbody>
-	               </table>
+                <div style="margin-bottom: 100px;">
+	                <div style="width: 50%; float: left;">
+				  		<div style="border: 5px solid #009688; border-radius: 8px; overflow: hidden;">
+				    		<div id="map" style="width: 100%; height: 500px;"></div>
+				  		</div>
+					</div>
+	                
+	                <!-- 가게 정보 테이블 -->
+	               <div id=store_table>
+		               <table>
+		               	   <tbody>
+		               	   	   <tr>
+		               	   	      <th colspan="2">가게 이미지</th>
+		               	   	      <th colspan="3">가게 정보</th>
+		               	   	   </tr>
+			                   <tr>
+			                       <td rowspan="8" colspan="2">
+			                           <img id="shop_img" alt="가게 이미지" src="">
+			                       </td>
+			                       <td>📋가게명</td>
+			                       <td colspan="2" id="shop_name"></td>
+			                   </tr>
+			                   <tr>
+			                       <td>🚩주소</td>
+			                       <td colspan="2" id="shop_addr"></td>
+			                   </tr>
+			                   <tr>
+			                       <td>📞전화번호</td>
+			                       <td colspan="2" id="shop_tel"></td>
+			                   </tr>
+			                   <tr>
+			                       <td>🛎업종</td>
+			                       <td colspan="2" id="shop_business"></td>
+			                   </tr>
+			                   <tr>
+			                       <td style= "width: 120px;">✅주요품목</td>
+			                       <td colspan="2" id="shop_items"></td>
+			                   </tr>
+			                   <tr>
+			                       <td>🚘주차여부</td>
+			                       <td id="shop_parking"></td>
+			                       <td >
+				                       <button class="review" onclick="makeChart()">🔍 평점조회</button>
+			                       </td>
+			                   </tr>
+			                   <tr>
+			                       <td>✏리뷰 건수</td>
+			                       <td id="shop_review" class="review-count">0건</td>
+			                       <td colspan="2">
+				                       <button class="review" id="modal_btn">🖊 리뷰작성</button>
+				                       <button id="alertLogin" style="display: none;"></button>
+			                       </td>
+			                   </tr>
+			                   <tr>
+			                       <td>💕찜 수</td>
+			                       <td id="shop_like">0</td>
+			                       <td colspan="2">
+				                       <button class="like_poeple" onclick="saveWish()">💛 찜하기</button>
+				                       <button id="WishSuccess" style="display: none;"></button>
+				                       <button id="alertWish" style="display: none;"></button>
+			                       </td>
+			                   </tr>
+		                   </tbody>
+		               </table>
+	               </div>
                </div>
                
                <!-- 평점 통계 바 차트 -->
                <div style="display: flex;">
-                <div style="width: 650px; height: 900px;">
+                <div style="width: 650px; height: 900px; flex-shrink: 0;">
 					<!--차트가 그려질 부분-->
 					<canvas id="myChart"></canvas>
 				</div>
+			   
+			   <!-- 간격을 위한 추가 요소 -->
+  			   <div style="width: 40px;"></div>
 				
 			   <!-- 성별 통계 파이 차트 -->
-			    <div class="pie_chart">
+			    <div class="pie_chart flex-shrink: 0;">
 		            <canvas id="pieChartCanvas" width="350px" height="350px"></canvas>
 		        </div>
 
+			   <!-- 간격을 위한 추가 요소 -->
+  			   <div style="width: 40px;"></div>
+
 			   <!-- 연령대 히스토그램 -->
-			    <div class="histogram_chart">
+			    <div class="histogram_chart flex-shrink: 0;">
 		            <canvas id="histogramChartCanvas" width="450px" height="350px"></canvas>
 		        </div>
 			   </div>
 
-				<!-- 리뷰 작성 팝업창 -->
+			   <!-- 리뷰 작성 팝업창 -->
 			   <div class="black_bg"></div>
 			   <div class="modal_wrap">
 			       <div class="modal_close"><a href="#" onclick="resetForm();">❎</a></div>
 			       <div>
-			       <table>
+			       <table class="review-write">
 			       
 			          <tr>
 			          <th colspan="2" id="review_store">가게이름</th>
 			          </tr>
 			          
 			          <tr>
-			          <td>서비스 or 맛 점수는 ?</td>
+			          <td height="50">서비스 or 맛 점수는 ?</td>
 				      <td>
 				      <div>
 					      <div class="star-rating space-x-4 mx-auto">
@@ -643,7 +414,7 @@
 			          </tr>
 			          
 			          <tr>
-			          <td>가성비 점수는 ?</td>
+			          <td height="50">가성비 점수는 ?</td>
 				      <td>
 				      <div>
 					      <div class="star-rating space-x-4 mx-auto">
@@ -663,7 +434,7 @@
 			          </tr>
 			          
 			          <tr>
-			          <td>청결도 점수는 ?</td>
+			          <td height="50">청결도 점수는 ?</td>
 				      <td>
 				      <div>
 					      <div class="star-rating space-x-4 mx-auto">
@@ -721,6 +492,7 @@
                // 전역 변수로 차트 객체 선언
                var myChart = null;
                var pieChart = null;
+               var histogramChart = null;
                
                var storeData = <%= new Gson().toJson(store_list) %>;
                
@@ -830,10 +602,12 @@
 				                   // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
 				                   kakao.maps.event.addListener(marker[i], 'click', (function(marker, overlay, store) {
 				                       return function() {
+				                    	shop_Idx = store.shop_idx;   
 				                    	
 				                    	// 차트 숨기기
 				                    	$('#myChart').hide();
-				                    	shop_Idx = store.shop_idx;   
+				                    	$('#pieChartCanvas').hide();
+				                    	$('#histogramChartCanvas').hide();
 				                    	
 				                    	// 기존 차트 제거
 				                        if (myChart) {
@@ -843,6 +617,10 @@
 				                        if (pieChart) {
 				                            pieChart.destroy();
 				                            pieChart = null;
+				                        }
+				                        if (histogramChart) {
+				                        	histogramChart.destroy();
+				                        	histogramChart = null;
 				                        }
 				                    	
 				                    	// 가게 리뷰건수 AJAX 통신
@@ -919,6 +697,102 @@
 					    });
 					});
 				}
+				
+				 // 가게 리뷰 출력
+			    document.getElementById("shop_review").addEventListener("click", function() {
+			        // 팝업 창을 생성하고 스타일을 적용
+			        var modalOverlay = document.createElement("div");
+			        modalOverlay.classList.add("modal-overlay");
+			        
+			        var modalContent = document.createElement("div");
+			        modalContent.classList.add("modal-content");
+			        
+			        var modalClose = document.createElement("span");
+			        modalClose.classList.add("modal-close");
+			        modalClose.textContent = "✖";
+			        
+			        var modalTitle = document.createElement("h2");
+			        modalTitle.textContent = "리뷰 내역";
+			        
+			        var modalTable = document.createElement("table");
+			        modalTable.classList.add("review-table");
+			        
+			     	// 첫 번째 행에 컬럼명 추가
+			        var columnNames = ["번호", "닉네임", "내용", "평점", "날짜"];
+			        var headerRow = document.createElement("tr");
+			        for (var j = 0; j < columnNames.length; j++) {
+			            var headerCell = document.createElement("th");
+			            headerCell.textContent = columnNames[j];
+			            headerRow.appendChild(headerCell);
+			        }
+			        modalTable.appendChild(headerRow);
+			        
+			        // 모달 창에 리뷰 내역을 동적으로 로드하여 표시하는 코드를 작성
+			        // 예시로 임의의 데이터로 테이블을 구성합니다.
+		            // AJAX 비동기 통신으로 리뷰 데이터 가져오기
+				    $.ajax({
+				        type: "POST",
+				        url: "http://localhost:8081/MessageSystem/SelectReview",
+				        dataType: "json",
+				        data : {
+				        	shopIdx: shop_Idx,
+				        },
+				        success: function(reviewData) {
+				        	console.log(reviewData);
+				            for (var i = 0; i < reviewData.length; i++) {
+				                var row = document.createElement("tr");
+				                
+				                var cellId = document.createElement("td");
+				                cellId.textContent = i+1;
+				                
+				                var cellUser = document.createElement("td");
+				                cellUser.textContent = reviewData[i].m_nick;
+				                
+				                var cellContent = document.createElement("td");
+				                cellContent.textContent = reviewData[i].review_content;
+
+				                var cellScore = document.createElement("td");
+				                cellScore.textContent = reviewData[i].review_score;
+				                
+				                var cellDate = document.createElement("td");
+				                cellDate.textContent = reviewData[i].review_dt;
+				                
+				                row.appendChild(cellId);
+				                row.appendChild(cellUser);
+				                row.appendChild(cellContent);
+				                row.appendChild(cellScore);
+				                row.appendChild(cellDate);
+				                
+				                modalTable.appendChild(row);
+				            }
+				        },
+				        error: function(xhr, status, error) {
+				            console.log(error);
+				        }
+				    });
+			        
+			        modalContent.appendChild(modalClose);
+			        modalContent.appendChild(modalTitle);
+			        modalContent.appendChild(modalTable);
+			        
+			        modalOverlay.appendChild(modalContent);
+			        document.body.appendChild(modalOverlay);
+			        
+			        // 팝업 창 닫기 이벤트 핸들러
+			        modalClose.addEventListener("click", function() {
+			            document.body.removeChild(modalOverlay);
+			        });
+			        
+			        // 팝업 창 외부를 클릭해도 창이 닫히지 않도록 이벤트 전파 차단
+			        modalOverlay.addEventListener("click", function(event) {
+			            if (event.target === modalOverlay) {
+			                event.stopPropagation();
+			            }
+			        });
+			        
+			        // 팝업 창 표시
+			        modalOverlay.style.display = "block";
+			    });
 				
 				<!-- 리뷰 데이터 전송 -->
 			    function saveReview() {
@@ -1108,6 +982,10 @@
 			        pieChart.destroy();
 			        pieChart = null;
 			    }
+			    if (histogramChart) {
+			    	histogramChart.destroy();
+			    	histogramChart = null;
+			    }
 			    
 			    // AJAX 요청
 			    $.ajax({
@@ -1141,7 +1019,7 @@
 			                options: {
 			                    title: {
 			                        display: true,
-			                        text: '이용자 리뷰 평점',
+			                        text: '이용자 평점',
 			                        fontSize: 24
 			                    },
 			                    scales: {
@@ -1177,68 +1055,134 @@
 			        dataType: "json",
 			        success: function (response) {
 			          var genderData = response; 
+			          var total = genderData.man + genderData.woman;
 			          var pieChartData = {
 			            labels: ['남성', '여성'],
 			            datasets: [{
-			              data: [genderData.man, genderData.woman],
+			              data: [genderData.man / total * 100, genderData.woman / total * 100],
 			              backgroundColor: ['rgb(54, 162, 235)', 'rgb(255, 99, 132)']
 			            }]
 			          };
 
 			          var pieContext = document.getElementById('pieChartCanvas').getContext('2d');
-			          window.pieChart = new Chart(pieContext, {
+			          pieChart = new Chart(pieContext, {
 			            type: 'pie',
 			            data: pieChartData,
 			            options: {
 			              responsive: false,
 			              title: {
 			                  display: true,
-			                  text: '이용자 성별 비율', // 제목 설정
+			                  text: '이용자 성비', // 제목 설정
 			                  fontSize: 24
-			                }
-			            }
+			                },
+			                plugins: {
+		                	  tooltip: {
+		                	    enabled: true, // 툴팁 기능 활성화
+		                	    mode: 'nearest', // 항상 가장 가까운 툴팁 표시
+		                	    callbacks: {
+		                	      label: function (context) {
+		                	        var value = context.dataset.data[context.dataIndex];
+		                	        return value.toFixed(1) + '%';
+		                	      }
+		                	    }
+		                	  }
+		                	}
+			              }
 			          });
 			        },
 			        error: function (xhr, status, error) {
 			          console.log(error); // 에러 처리
 			        }
 			      });
-			   
+				  
 			 	  // 히스토그램 차트 그리기
-			      var histogramData = {
-			        labels: ['A', 'B', 'C', 'D', 'E', 'F'],
-			        datasets: [{
-			          label: '히스토그램',
-			          data: [10, 20, 30, 40, 50, 60],
-			          backgroundColor: 'rgba(75, 192, 192, 0.8)',
-			          borderColor: 'rgba(75, 192, 192, 1)',
-			          borderWidth: 3
-			        }]
-			      };
+			      // AJAX 요청
+			      $.ajax({
+			        type: "POST",
+			        url: "http://localhost:8081/MessageSystem/SelectAgeData",
+			        data: { shopIdx: shop_Idx }, // 요청에 필요한 데이터 전달
+			        dataType: "json",
+			        success: function (response) {
+			        	console.log(response);
+			        	var histogramData = {
+						        labels: ['10대', '20대', '30대', '40대', '50대', '60대'],
+						        datasets: [{
+						          label: '백분율',
+						          data: [
+						        	  response.one,
+						              response.two,
+						              response.three,
+						              response.four,
+						              response.five,
+						              response.six
+						          ],
+						          backgroundColor: 'rgba(75, 192, 192, 0.8)',
+						          borderColor: 'rgba(75, 192, 192, 1)',
+						          borderWidth: 3
+						        }]
+						      };
+			        	
+			        		  var total = response.one + response.two + response.three + response.four + response.five + response.six;
+			            	  for (var i = 0; i < histogramData.datasets[0].data.length; i++) {
+			              	   histogramData.datasets[0].data[i] = (histogramData.datasets[0].data[i] / total) * 100; // 백분율로 변환
+			            	  }
 
-			      var histogramContext = document.getElementById('histogramChartCanvas').getContext('2d');
-			      window.histogramChart = new Chart(histogramContext, {
-			        type: 'bar',
-			        data: histogramData,
-			        options: {
-			          responsive: false,
-			          scales: {
-			            yAxes: [{
-			              ticks: {
-			                beginAtZero: true,
-			                min: 0, // 최소값 설정
-			                fontSize: 14
-			              }
-			            }],
-			            xAxes: [{
-			              ticks: {
-			                fontSize: 14
-			              },
-			              barThickness: 70
-			            }]
-			          }
+						      var histogramContext = document.getElementById('histogramChartCanvas').getContext('2d');
+						      histogramChart = new Chart(histogramContext, {
+						        type: 'bar',
+						        data: histogramData,
+						        options: {
+						          responsive: false,
+						          title: {
+					                  display: true,
+					                  text: '연령별 비율', // 제목 설정
+					                  fontSize: 24
+					                },
+				                plugins: {
+				                	  datalabels: {
+				                	    display: true,
+				                	    anchor: 'end',
+				                	    align: 'top',
+				                	    color: 'black',
+				                	    font: {
+				                	      weight: 'bold'
+				                	    },
+				                	    formatter: function(value) {
+				                	      return value.toFixed(1) + '%';
+				                	    }
+				                	  }
+				                	},
+						          scales: {
+					        	  yAxes: [{
+					        		    ticks: {
+					        		      beginAtZero: true,
+					        		      min: 0,
+					        		      fontSize: 14,
+					        		      callback: function(value) {
+					        		        return value.toFixed(1) + '%';
+					        		      }
+					        		    },
+					        		    scaleLabel: {
+					        		      display: true,
+					        		      labelString: '백분율 (%)'
+					        		    }
+					        		  }],
+						            xAxes: [{
+						              ticks: {
+						                fontSize: 14
+						              },
+						              barThickness: 70
+						            }]
+						          }
+						        }
+						      });			          
+			        	
+			        },
+			        error: function (xhr, status, error) {
+			          console.log(error); // 에러 처리
 			        }
 			      });
+			   
 			  }
 			    
 
@@ -1262,8 +1206,6 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
     </body>

@@ -82,6 +82,18 @@
   	<description></description>
   	<servlet-class>com.smhrd.controller.Comment_Write_ServiceAjax</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>SelectAgeData</servlet-name>
+  	<display-name>SelectAgeData</display-name>
+  	<description></description>
+  	<servlet-class>com.smhrd.controller.SelectAgeData</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>SelectReview</servlet-name>
+  	<display-name>SelectReview</display-name>
+  	<description></description>
+  	<servlet-class>com.smhrd.controller.SelectReview</servlet-class>
+  </servlet>
   
   <servlet-mapping>
   	<servlet-name>JoinService</servlet-name>
@@ -139,6 +151,14 @@
   <servlet-mapping>
   	<servlet-name>UpdateTb_BoardService</servlet-name>
   	<url-pattern>/UpdateTb_BoardService</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SelectAgeData</servlet-name>
+  	<url-pattern>/SelectAgeData</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SelectReview</servlet-name>
+  	<url-pattern>/SelectReview</url-pattern>
   </servlet-mapping>
   
 </web-app>
