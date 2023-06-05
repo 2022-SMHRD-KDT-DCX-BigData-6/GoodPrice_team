@@ -130,19 +130,11 @@
   	<servlet-name>SelectReviewScore</servlet-name>
   	<url-pattern>/SelectReviewScore</url-pattern>
   </servlet-mapping>
-<<<<<<< HEAD
-<!--   <servlet-mapping>
-  	<servlet-name>SelectGenderData</servlet-name>
-  	<url-pattern>/SelectGenderData</url-pattern>
-  </servlet-mapping>
-   -->
-=======
 <!--   <servlet-mapping> -->
 <!--   	<servlet-name>SelectGenderData</servlet-name> -->
 <!--   	<url-pattern>/SelectGenderData</url-pattern> -->
 <!--   </servlet-mapping> -->
   
->>>>>>> branch 'master' of https://github.com/2022-SMHRD-KDT-DCX-BigData-6/GoodPrice_team.git
   <servlet-mapping>
     <servlet-name>WriteTb_BoardService</servlet-name>
     <url-pattern>/WriteTb_BoardService</url-pattern>
@@ -159,8 +151,6 @@
   	<servlet-name>UpdateTb_BoardService</servlet-name>
   	<url-pattern>/UpdateTb_BoardService</url-pattern>
   </servlet-mapping>
-<<<<<<< HEAD
-=======
   <servlet-mapping>
   	<servlet-name>SelectAgeData</servlet-name>
   	<url-pattern>/SelectAgeData</url-pattern>
@@ -170,5 +160,4 @@
   	<url-pattern>/SelectReview</url-pattern>
   </servlet-mapping>
   
->>>>>>> branch 'master' of https://github.com/2022-SMHRD-KDT-DCX-BigData-6/GoodPrice_team.git
 </web-app>
