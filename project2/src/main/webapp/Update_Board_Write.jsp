@@ -116,9 +116,13 @@ body {
 </head>
 <body>
 	<% 
-		tb_memberDTO loginResult = (tb_memberDTO)session.getAttribute("loginResult");
-		String m_id = loginResult.getM_id();
-		int b_idx = Integer.parseInt(request.getParameter("b_idx"));
+	
+	    // 로그인 상태 확인
+	    boolean isLoggedIn = false;
+	    tb_memberDTO loginResult = (tb_memberDTO)session.getAttribute("loginResult");
+	    
+		String m_id = loginResult.getM_id();;
+		int	b_idx = Integer.parseInt(request.getParameter("b_idx"));
 	%>  
     <div class="container">
         <caption>게시판 글쓰기</caption>
@@ -127,7 +131,7 @@ body {
             <table class="form-table">
                 <tr>
 				    <th style="vertical-align: middle;">작성자</th>
-				    <td><input type="text" name="m_id" id="m_id" value="<%=m_id%>" readonly></td>
+				    <td><input type="text" name="m_id" id="m_id" value="<%=m_id%>" readonly></td>	
 				</tr>
                 <tr>
                     <th style="vertical-align: middle;">제목</th>
@@ -146,7 +150,7 @@ body {
                 </tr>
                 <tr>
                     <td colspan="2" align="center">
-                        <input type="submit" value="수정" class="button">
+					    <input type="submit" value="수정" class="button">
                         <input type="button" value="뒤로" onclick="move('Board_List.jsp');" class="button">
                     </td>
                 </tr>

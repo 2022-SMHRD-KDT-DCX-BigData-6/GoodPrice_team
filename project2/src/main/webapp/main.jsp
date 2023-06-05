@@ -407,7 +407,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Tables
                             </a>
-                            <a class="nav-link" href="Board_List_check.jsp">
+                            <a class="nav-link" href="Board_List.jsp">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 게시판
                             </a>
