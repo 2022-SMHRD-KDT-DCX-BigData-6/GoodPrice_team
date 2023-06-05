@@ -17,7 +17,7 @@
 	
 	<!-- 회원가입 중복체크 -->
 	
-	<select id="emailCheck" parameterType="tb_member">
+	<select id="emailCheck" parameterType="String" resultType="String">
 	
 		select m_id from TB_MEMBER where m_id = #{m_id} 
 		 
@@ -61,4 +61,9 @@
 	delete from TB_MEMBER where m_id = #{m_id}
 	
 	</delete>
+	
+	<update id="myPagePtMinus" parameterType="map">
+	   update tb_member set m_point = m_point-#{m_point}	 	
+	   where m_id = #{m_id}
+	</update>
 </mapper>
