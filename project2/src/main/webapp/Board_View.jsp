@@ -199,6 +199,7 @@ h3 {
             type: "post",
             data: { "b_idx": b_idx },
             success: function () {
+            	alert("좋아요 +1");
                 location.href = "Board_View.jsp?b_idx=" + b_idx;
             },
             error: function () {
@@ -227,7 +228,7 @@ h3 {
             type: "post",
             data: { "b_idx": b_idx },
             success: function () {
-                location.href = "Board_List_check.jsp?b_idx=" + b_idx;
+                location.href = "Board_List.jsp?b_idx=" + b_idx;
             },
             error: function () { alert("게시글 삭제 오류 입니다."); }
         });
@@ -280,7 +281,11 @@ h3 {
 		<% } else { %>
 		    <button class="button-spacing" onclick="alert('로그인이 필요합니다.')">수정</button>
 		<% } %>
-        <button class="button-spacing" onclick="deleteBoard(<%=b_idx%>)">삭제</button>
+		<% if (isLoggedIn) { %>
+			<button class="button-spacing" onclick="deleteBoard(<%=b_idx%>)">삭제</button>
+		<% } else { %>
+		    <button class="button-spacing" onclick="alert('로그인이 필요합니다.')">삭제</button>
+		<% } %>
     </div>
 </div>
 <div class="container">
