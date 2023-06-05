@@ -20,8 +20,8 @@
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c21e04ab9896f84f77e9ff0564735da3&libraries=services"></script>
-       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-       <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-tooltip/1.1.0/chartjs-plugin-tooltip.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/tooltip@1.6.1/dist/Tooltip.min.js"></script>
        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.min.css">
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0"></script>
        <title>닫기가 가능한 커스텀 오버레이</title>
@@ -42,6 +42,12 @@
        .info .link {color: #5085BB;}
       	
       	/* 가게 정보 테이블 스타일 */
+      	.review-count:hover {
+		  color: blue; 
+		  text-decoration: underline;
+		  cursor: pointer;
+	   }
+		
        #store_table {
            display: none;
        }
@@ -564,7 +570,7 @@
 			                       <td colspan="2" id="shop_business"></td>
 			                   </tr>
 			                   <tr>
-			                       <td>✅주요품목</td>
+			                       <td style= "width: 120px;">✅주요품목</td>
 			                       <td colspan="2" id="shop_items"></td>
 			                   </tr>
 			                   <tr>
@@ -576,7 +582,7 @@
 			                   </tr>
 			                   <tr>
 			                       <td>✏리뷰 건수</td>
-			                       <td id="shop_review">0건</td>
+			                       <td id="shop_review" class="review-count">0건</td>
 			                       <td colspan="2">
 				                       <button class="review" id="modal_btn">🖊 리뷰작성</button>
 				                       <button id="alertLogin" style="display: none;"></button>
@@ -840,10 +846,12 @@
 				                   // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
 				                   kakao.maps.event.addListener(marker[i], 'click', (function(marker, overlay, store) {
 				                       return function() {
+				                    	shop_Idx = store.shop_idx;   
 				                    	
 				                    	// 차트 숨기기
 				                    	$('#myChart').hide();
-				                    	shop_Idx = store.shop_idx;   
+				                    	$('#pieChartCanvas').hide();
+				                    	$('#histogramChartCanvas').hide();
 				                    	
 				                    	// 기존 차트 제거
 				                        if (myChart) {
@@ -1205,7 +1213,7 @@
 			          };
 
 			          var pieContext = document.getElementById('pieChartCanvas').getContext('2d');
-			          window.pieChart = new Chart(pieContext, {
+			          pieChart = new Chart(pieContext, {
 			            type: 'pie',
 			            data: pieChartData,
 			            options: {
@@ -1268,7 +1276,7 @@
 			            	  }
 
 						      var histogramContext = document.getElementById('histogramChartCanvas').getContext('2d');
-						      window.histogramChart = new Chart(histogramContext, {
+						      histogramChart = new Chart(histogramContext, {
 						        type: 'bar',
 						        data: histogramData,
 						        options: {
@@ -1346,8 +1354,6 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
     </body>
