@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.controller.Count_Review"%>
 <%@page import="com.smhrd.model.tb_memberDAO"%>
 <%@page import="com.smhrd.model.tb_wishlistDAO"%>
 <%@page import="com.smhrd.model.tb_wishlistDTO"%>
@@ -8,8 +9,6 @@
 <%@page import="com.smhrd.model.tb_memberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!-- <<<<<<< HEAD -->
-
 <style>
 .point{
 	text-align: center;
@@ -18,9 +17,15 @@
 	vertical-align : middle;
 }
 
+.textAlgins{
+	text-align: left;
+}
+#heartIcon{
+	color: red;
+}
+
 </style>
 <!DOCTYPE html>
-<!-- >>>>>>> branch 'master' of https://github.com/2022-SMHRD-KDT-DCX-BigData-6/GoodPrice_team.git -->
 <html>
 
 <head>
@@ -38,16 +43,20 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0//css/all.min.css">
 		<title>MYPAGE</title>
 	</head>
-	  <%tb_memberDTO member = (tb_memberDTO)session.getAttribute("loginResult");   
+	  <%
+	  //로그인 후 세션 정보 (모든컬럼 포함)
+	  tb_memberDTO member = (tb_memberDTO)session.getAttribute("loginResult");   
        
+	  // 회원정보 수정용
+	  tb_memberDTO updateMember = (tb_memberDTO)session.getAttribute("updateMember");   
 	  
       String m_id = member.getM_id();
       System.out.print(m_id);
        
-      tb_memberDAO m_poiint = new tb_memberDAO();
+      tb_memberDAO m_point = new tb_memberDAO();
       
-      Double point = m_poiint.memPoint(m_id);
-      
+      Double point = m_point.memPoint(m_id);
+      //리뷰 목록(모든 컬럼 포함)
        List<tb_reviewDTO> reviewList = new tb_reviewDAO().reviewList(m_id);
             session.setAttribute("reviewList", reviewList);
       // System.out.print(list.get(0).getReview_content());
@@ -55,24 +64,30 @@
       /* List<tb_reviewDTO> dateList = new tb_reviewDAO().dateToChar(m_id);
       System.out.print(dateList.get(0).getReview_dt()); */
       
-      List<tb_wishlistDTO> wishList = new tb_wishlistDAO().wishList(m_id);
-            System.out.print(wishList);
+      //가게 이름 목록(가게이름만 담김) 
+      List<tb_wishlistDTO> shopNameList = new tb_wishlistDAO().wishList(m_id);
+      
+      //찜 테이블 모든 컬럼
+      List<tb_wishlistDTO> selectAllWish = new tb_wishlistDAO().selectAllWish(m_id);
+      
             %> 
-		<body class="is-preload">
+	<!-- 	<!-- <body class="is-preload">
 			<div id = "top" align="right">
 			<a href="main.jsp"><span>HOME</span></a>
 			<a href="logout.html"><span>LOGOUT</span></a>			
 			</div>
+			Wrapper
+            System.out.print(wishList);%> 
+	<body class="is-preload"> -->
+		
 			<!-- Wrapper-->
-         <!--    System.out.print(wishList);%>  -->
-	<!-- <body class="is-preload">
+	<body class="is-preload">
 	<div id="top" align="right">
 		<label class="outMyPage">
-			<a href="main.jsp">HOME</a> <a href="logout.html">LOGOUT</a>
+			<a href="main.jsp">HOME</a> <a href="LogoutService.do">LOGOUT</a>
 		</label>
 	</div> -->
 	<!-- Wrapper-->
-<!-- >>>>>>> branch 'master' of https://github.com/2022-SMHRD-KDT-DCX-BigData-6/GoodPrice_team.git -->
 			<div id="wrapper"><!-- 박스 가로 너비 -->
 
 				<!-- Nav -->
@@ -103,30 +118,30 @@
 									
 									    <th><span=3>포인트 사용 항목</span></th>
 										<tr>									
-										  <td><i class="fas fa-coffee fa-3x"></i></td>
+										  <td><i class="fas fa-coffee fa-2x"></i></td>
 										  <td></td>
-										  <td><i class="fas fa-umbrella fa-3x"></i></td>
+										  <td><i class="fas fa-umbrella fa-2x"></i></td>
 										</tr> 
-										<tr> 
-										  <td>2000p</td>
+										<tr>
+										  <td><a href="myPagePtMinus.do?m_point2000=2000">2000point</a></td>
 										  <td></td>
-										  <td>4000p</td>
+										  <td><a href="myPagePtMinus.do?m_point4000=4000">4000point</a></td>
 										</tr>
 										<tr> 
-										  <td><i class="fas fa-gift fa-3x"></i></td>
+										  <td><i class="fas fa-gift fa-2x"></i></td>
 										  <td></td>
-										  <td><i class="fas fa-camera fa-3x"></i></td>
+										  <td><i class="fas fa-camera fa-2x"></i></td>
 										</tr> 
 										<tr> 
-										  <td>6000p</td>
+										  <td><a href="myPagePtMinus.do?m_point6000=6000">6000point</a></td>
 										  <td></td>
-										  <td>8000p</td>
+										  <td><a href="myPagePtMinus.do?m_point8000=8000">8000point</a></td>
 										</tr>
 									</table>
 									
-									 <button class="btn" id="btn1" type="button" style="padding:0px; margin:0px;"><i class="fas fa-coffee fa-3x"></i></button>
-									
-									 <script>
+									<!--  <button class="btn" id="btn1" type="button" style="padding:0px; margin:0px;"><i class="fas fa-coffee fa-3x"></i></button>
+									 -->
+									<%--  <script>
   
       const btn1 = document.getElementById("btn1");
 
@@ -134,15 +149,7 @@
 
          console.log("btn1 clicked");
 
-         /* const page = document.getElementById("page1");
-
-         page.innerHTML = `
-         <div style="width:40%; height:50%; background-color:#FA8258">
-         <br>
-         <br> */
-
-            <h1>포인트</h1><br><br>  
-          
+                  
             <%= member.getM_point()%> <br>
            
             
@@ -151,15 +158,10 @@
          `;
 
       })
-      </script>
+      </script> --%>
       
 
- <a href="?p=-2000">2000point</a>
-<?php
 
-if($p =='-2000') insert_point($member['member.getM_point()'], -2000, '클릭포인트 -2000포인트차감');
-
-?>
 									
 									
 									
@@ -175,7 +177,7 @@ if($p =='-2000') insert_point($member['member.getM_point()'], -2000, '클릭포�
 									
 									
 									
-									<p> Point : <%= point %></p>
+									<%-- <p> Point : <%= point %></p> --%>
 									
 									<span class="arrow icon solid fa-chevron-right" vertical-align = center">
 									</span>
@@ -196,21 +198,22 @@ if($p =='-2000') insert_point($member['member.getM_point()'], -2000, '클릭포�
 				<div class="table_box">							
 				<table>
 				<tbody>
-					<tr>
+					<tr class = "textAlgins">
 					    <th>번호</th>
 						<th>내용</th>
 					    <th>날짜</th>
 						<th>삭제</th>								
 					</tr>				
-					<% for(int i = 0; i < reviewList.size();i++){%>
+					 <% for(int i = 0; i < reviewList.size();i++){%>
 					<tr>
 					     <td><%= i + 1%></td>
 						 <td><%= reviewList.get(i).getReview_content()%></td>
 						 <td><%= reviewList.get(i).getReview_dt()%></td>
-						 <td><a href = "#">삭제</a></td>
-						 <%-- <td><a href = "ReviewDelete.do<%=reviewList.get(i).getReview_idx()%>">삭제</a></td> --%>
+						 <td><a href = "ReviewDelete.do?Review_idx=<%=reviewList.get(i).getReview_idx()%>">삭제</a></td>
 						 </tr>
-						 <%}%>
+						 <%}%> 
+						 		
+						 
 					</tbody>
 					</table>
 				</div>
@@ -248,20 +251,20 @@ if($p =='-2000') insert_point($member['member.getM_point()'], -2000, '클릭포�
 				<div class="table_box">							
 				<table>
 				<tbody>
-					<tr>
+					<tr class="textAlgins">
 					    <th>번호</th>
 						<th>찜</th>
 						<th>삭제</th>								
 					</tr>
 					
 					</tr>				
-					<% for(int i = 0; i < wishList.size();i++){%>
+					<% for(int i = 0; i < shopNameList.size();i++){%>
 					<tr>
 					     <td><%= i + 1%></td>
-						 <td><%= wishList.get(i)%></td>	
-						 <td>삭제</td>
-						 </tr>
-						 <%}%>
+						 <td><%= shopNameList.get(i)%></td>	
+						 <td ><a href="myDelWisilist.do?Wish_idx=<%=selectAllWish.get(i).getWish_idx()%>"><i id ="heartIcon" class="icon solid fa-heart"></i></a></td>
+					</tr>
+					<%}%>
 					</tbody>
 					</table>
 				</div>
@@ -283,30 +286,59 @@ if($p =='-2000') insert_point($member['member.getM_point()'], -2000, '클릭포�
 									<!-- <h2>정보 확인</h2> -->
 								</header>
 								<form action="updateMember.do" method="post">
-									
+									<% if(updateMember != null){ %>
 									<div>
 										<div class="row">
 											<div class="col-12">
-												<input type="text" name="name" value="<%= member.getM_name()%>" placeholder="이름을 입력해주세요">
+												<input type="text" name="m_name" value="<%= updateMember.getM_name()%>" placeholder="이름을 입력해주세요">
 											</div>
 											<div class="col-12">
-												<input type="text" name="nick" value="<%= member.getM_nick()%>" placeholder="닉네임을 입력해주세요">
+												<input type="text" name="m_nick" value="<%= updateMember.getM_nick()%>" placeholder="닉네임을 입력해주세요">
 											</div>
 											<div class="col-6 col-12-medium">
-												<input type="text" name="pw" value="<%= member.getM_pw()%>"placeholder="비밀번호를 입력해주세요" />
+												<input type="text" name="m_pw" value="<%= updateMember.getM_pw()%>"placeholder="비밀번호를 입력해주세요" />
 											</div>
 											<div class="col-6 col-12-medium">
-												<input type="text" name="pwcheck" placeholder="비밀번호를 확인해주세요" />
+												<input type="text" name="m_pwCheck" placeholder="비밀번호를 확인해주세요" />
 											</div>
 											
 											<div class="col-12">
-												<input type="text" name="addr" value="<%= member.getM_addr()%>" placeholder="주소를 입력해주세요" rows="6"></textarea>
+												<input type="text" name="m_addr" value="<%= updateMember.getM_addr()%>" placeholder="주소를 입력해주세요" rows="6"></textarea>
 											</div>
 											<div class="col-12" align="right">
 												<input type="submit"  value="확인" >
 												<input type="submit"  value="회원탈퇴" onclick="outMember(this.form);"/>	
 											</div>
+										</div>
+									</div>
 									
+									
+								<% }else { %>										
+									<div>
+										<div class="row">
+											<div class="col-12">
+												<input type="text" name="m_name" value="<%= member.getM_name()%>" placeholder="이름을 입력해주세요">
+											</div>
+											<div class="col-12">
+												<input type="text" name="m_nick" value="<%= member.getM_nick()%>" placeholder="닉네임을 입력해주세요">
+											</div>
+											<div class="col-6 col-12-medium">
+												<input type="text" name="m_pw" value="<%= member.getM_pw()%>"placeholder="비밀번호를 입력해주세요" />
+											</div>
+											<div class="col-6 col-12-medium">
+												<input type="text" name="m_pwcheck" placeholder="비밀번호를 확인해주세요" />
+											</div>
+											
+											<div class="col-12">
+												<input type="text" name="m_addr" value="<%= member.getM_addr()%>" placeholder="주소를 입력해주세요" rows="6"></textarea>
+											</div>
+											<div class="col-12" align="right">
+												<input type="submit"  value="확인" >
+												<input type="submit"  value="회원탈퇴" onclick="outMember(this.form);"/>	
+											</div>
+										</div>
+									</div>
+									<% } %>
 								</form>
 											
 												
@@ -336,7 +368,7 @@ if($p =='-2000') insert_point($member['member.getM_point()'], -2000, '클릭포�
 	<script> 
     //회원탈퇴 하고 뒤로가기 하고 확인 누르면 회원 수정 되야하는데 회원 탈퇴가 되는 버그 존재
   	function outMember(frm) { 
-    frm.action="outMember.do";
+    frm.action="outMemberService.do";
     frm.submit(); 
     return true; 
   	} 

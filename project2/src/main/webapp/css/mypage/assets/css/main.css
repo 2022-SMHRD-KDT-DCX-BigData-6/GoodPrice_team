@@ -2008,7 +2008,7 @@ input, select, textarea {
 					-webkit-flex-shrink: 0;
 					-ms-flex-shrink: 0;
 					flex-shrink: 0;
-					width: 8em;
+					width: 4em;
 					height: 100%;
 				}
 
@@ -2047,8 +2047,8 @@ input, select, textarea {
 						right: 0;
 						top: 50%;
 						margin-top: -1.375em;
-						width: 2.75em;
-						height: 2.75em;
+						width: 1em;
+						height: 1em;
 						background: #000;
 						background: rgba(0, 0, 0, 0.75);
 						color: #ffffff;
@@ -2074,8 +2074,8 @@ input, select, textarea {
 						}
 
 					#main > .panel.intro .pic:hover .arrow {
-						width: 3em;
-						padding-right: 0.25em;
+						width: 1em;
+						padding-right: 0.1em;
 					}
 
 				#main > .panel.intro header {

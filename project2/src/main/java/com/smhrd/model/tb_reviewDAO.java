@@ -85,13 +85,13 @@ public class tb_reviewDAO {
 		return result;
 		}
 		
-		// 마이페이지 리뷰 삭제 메소드 - 이은화
+		// 마이페이지 리뷰 삭제 메소드 - 이은화, 강효석
 		
-		public Double reviewListDelete(Double Review_idx) {
+		public int reviewListDelete(int Review_idx) {
 		
-		Double result = 0.0;
+		int result = 0;
 		
-		result = (double)sqlSession.delete("reviewListDelete", Review_idx);
+		result = sqlSession.delete("reviewListDelete", Review_idx);
 		
 		sqlSession.close();
 		

@@ -11,10 +11,14 @@ import com.smhrd.command.Command;
 import com.smhrd.controller.JoinService;
 import com.smhrd.controller.LoginService;
 import com.smhrd.controller.LogoutService;
+import com.smhrd.controller.UpdateMemberService;
 import com.smhrd.controller.ReviewDelete;
 import com.smhrd.controller.UpdateTb_BoardService;
 import com.smhrd.controller.WriteTb_BoardService;
 import com.smhrd.controller.emailCheck;
+import com.smhrd.controller.myDelWisilist;
+import com.smhrd.controller.myPagePtMinus;
+import com.smhrd.controller.outMemberService;
 import com.smhrd.controller.FindId;
 
 
@@ -75,7 +79,18 @@ public class Frontcontroller1 extends HttpServlet {
 		else if (result.equals("findId.do")) {
 			service = new FindId();
 		}
-		
+		else if (result.equals("updateMember.do")) {
+			service = new UpdateMemberService();
+		}
+		else if (result.equals("outMemberService.do")) {
+			service = new outMemberService();
+		}
+		else if (result.equals("myDelWisilist.do")) {
+			service = new myDelWisilist();
+		}
+		else if (result.equals("myPagePtMinus.do")) {
+			service = new myPagePtMinus();
+		}			
 		moveURL = service.execute(request, response);
 		response.sendRedirect(moveURL);
 	}

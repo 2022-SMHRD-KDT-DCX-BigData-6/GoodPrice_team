@@ -16,25 +16,14 @@
 		position: relative;
 		top: 0;
 	}
+	.emailCheck{
+	margin-left: 90px;
+	}
 	
-	#emailCheck{
-      width: 30%;
-      height:100%;
-      border:none;
-      font-size:1em;
-      color:#042AaC;
-      outline:none;
-      display:inline;
-      margin-left: 90px;
-      box-sizing: border-box;
-    }
-    #emailCheck:hover{
-      background-color: lightgray;
-    }
+	
 </style>
 <title>회원가입</title>
 <link href="css/styles.css" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.min.css">
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
 	crossorigin="anonymous"></script>
 
@@ -81,18 +70,17 @@
 											<div class="col-md-6">
 												<div class="form-floating mb-3 mb-md-0">
 													<input class="form-control" type="text" name="inputDomain" id="inputDomain"  aria-label="readonly input example" readonly>
-													 <label for="inputDomain">도메인</label> 
+													<label for="inputDomain">도메인</label>
 													<select name="selectDomain" id="selectDomain" title="이메일 주소 선택" onchange="changeEmail();">
-														<option value="etc"> 선택 </option>
-														<option value="etc"> 직접입력</option>
+														<option value=""> 선택 </option>
+														<option value="etc"> 직접입력  </option>
                 										<option value="naver.com">naver.com</option>
 														<option value="nate.com">nate.com</option>
 														<option value="gmail.com">gmail.com</option>
 														<option value="yahoo.com">yahoo.com</option>
 														<option value="hanmail.net">hanmail.net</option>
 													</select>
-													<input type="button" class="btn btn-primary mb-3" id="emailCheck" name="emailCheck" value="중복체크" style="color:white">
-													<span id="checkResult"></span>
+													<input type="button" id="emailCheck" class="btn btn-primary mb-3" value="중복검사" style="float: right;">
 												</div>
 											</div>
 										</div>
@@ -126,8 +114,8 @@
 											<label for="inputEmail">닉네임</label> <span>한글 10자 이내</span>
 										</div>
 										<div class="form-floating mb-3">
-											<input class="form-control" name="m_age" id="inputBirth" type="number" />
-											<label for="inputEmail">나이</label>
+											<input class="form-control" name="m_age" id="inputAge" type="number" max="200"/>
+											<label for="inputAge">나이</label>
 											<!-- 연도 셀렉박스 -->
 											<%-- <select>
 											<% for(int year = 1900; year <= 2023;year++){ %>
@@ -161,7 +149,7 @@
 											</select> --%>
 										</div>
 										
-										<table class="btn btn-primary mb-3"" border="1">
+										<table class="btn btn-primary mb-3" border="1">
 											<tr>
 												<td><span >성별</span></td>
 												<td>
@@ -280,7 +268,7 @@
 								</div>
 								<!-- ----------------------다음 주소 API---------------------------- -->
 								<div class="d-grid">
-									<input type="submit" class="btn btn-primary btn-block"
+									<input type="button" class="btn btn-primary btn-block"
 										value="회원가입" onclick="submitCheck();">
 								</div>
 								<div class="card-footer text-center py-3">
@@ -316,9 +304,9 @@
 		crossorigin="anonymous"></script>
 	<script src="js/scripts.js"></script>
 	<script src="./js/dataCheck.js"></script>
-	
 	<script type="text/javascript">
 	//-------------이름 유효성검사----------------
+	
 	
 	
 	
@@ -333,23 +321,16 @@
 		var val = selectDomain.options[idx].value;
 		 
 		    if (val === "etc") {
-		    	//직접입력 선택시 입력 가능 (원래 readonly 상태)
 		    	inputDomain.readOnly = false;
 		    	inputDomain.value = "";
 		    } else {
-		    	//저장한 값을 emailAdd 값으로 저장 후 추가 입력 불가
-		    	inputDomain.value = val;
-				inputDomain.readOnly = readonly;
+		    	//저장한 값을 emailAdd 값으로 저장
+				inputDomain.value = val;
+		    	inputDomain.readOnly = true;
 		    }
 		
 		
 	}
-	
-	
- 
- 
-</script>
-
-	
+	</script>
 </body>
 </html>

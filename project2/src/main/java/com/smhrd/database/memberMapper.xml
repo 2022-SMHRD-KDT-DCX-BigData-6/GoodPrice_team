@@ -41,4 +41,32 @@
 	<select id="memPoint" parameterType="String" resultType="Double">
 	SELECT m_point FROM tb_member WHERE m_id = #{m_id} 
 	</select>
+	
+	<!-- 마이페이지 회원정보 수정하기 - 효석 -->
+	<update id="updateMember" parameterType="tb_member">
+	
+	update tb_member 
+	set m_pw = #{m_pw},
+	 	m_name = #{m_name}, 
+	 	m_nick = #{m_nick}, 
+	 	m_addr = #{m_addr} 
+	where m_id = #{m_id}
+	
+	</update>
+	
+	<!-- 마이페이지 회원 탈퇴 -->
+	
+	<delete id="outMember" parameterType="String">
+	
+	delete from TB_MEMBER where m_id = #{m_id}
+	
+	</delete>
+	
+	<!-- 마이페이지 포인트 차감 -->
+	<update id="updatePoint" parameterType="map">
+	
+	UPDATE tb_member SET m_point = m_point - #{param1} WHERE m_id = #{param2}
+	
+	</update>
+	
 </mapper>
