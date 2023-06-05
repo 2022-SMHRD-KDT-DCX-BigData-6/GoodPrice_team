@@ -9,6 +9,7 @@
 		<typeAlias type="com.smhrd.model.WebBoardDTO" alias="WebBoard"/>
 		<typeAlias type="com.smhrd.model.tb_storeDTO" alias="Store"/>
 		<typeAlias type="com.smhrd.model.tb_reviewDTO" alias="Review"/>
+		<typeAlias type="com.smhrd.model.ReviewListDTO" alias="ReviewList"/>
 		<typeAlias type="com.smhrd.model.GenderCountDTO" alias="Gender"/>
 		<typeAlias type="com.smhrd.model.AgeCountDTO" alias="Age"/>
 		<typeAlias type="com.smhrd.model.tb_wishlistDTO" alias="Wish"/>

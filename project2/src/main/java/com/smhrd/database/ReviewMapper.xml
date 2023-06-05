@@ -50,6 +50,18 @@
 	]]>
 	</select>
 	
+	<!-- 가게별 리뷰 조회 -->
+	<select id="SelectReview"
+			parameterType="Review"
+			resultType="ReviewList">
+	
+		SELECT m.m_nick, r.review_content, r.review_dt, ROUND((r.review_service+r.review_price+r.review_clean)/3, 1) as review_score
+		FROM TB_REVIEW R
+		JOIN TB_MEMBER M ON r.m_id = m.m_id AND r.store_idx = #{store_idx}
+	
+	</select>
+	
+	
 	<!-- 마이페이지 리뷰목록 sql - 이은화 강효석 -->
 	<select id="reviewList" parameterType="String" resultType="Review">
 		

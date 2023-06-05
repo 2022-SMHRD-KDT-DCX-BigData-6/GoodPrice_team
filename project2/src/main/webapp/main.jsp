@@ -18,6 +18,7 @@
         <title>혜자탐구대</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
+        <link href="css/mainpage.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c21e04ab9896f84f77e9ff0564735da3&libraries=services"></script>
 		<script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
@@ -25,256 +26,11 @@
        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.min.css">
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0"></script>
        <title>닫기가 가능한 커스텀 오버레이</title>
-       <style>
-       .wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
-       .wrap * {padding: 0;margin: 0;}
-       .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
-       .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
-       .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
-       .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
-       .info .close:hover {cursor: pointer;}
-       .info .body {position: relative;overflow: hidden;}
-       .info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
-       .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
-       .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
-       .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
-       .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
-       .info .link {color: #5085BB;}
-      	
-      	/* 가게 정보 테이블 스타일 */
-      	.review-count:hover {
-		  color: blue; 
-		  text-decoration: underline;
-		  cursor: pointer;
-	   }
-		
-       #store_table {
-           display: none;
-       }
-	   table {
-		   width: 700px;
-		   text-align: center;
-		   border: 1px solid #fff;
-		   border-spacing: 1px;
-		   font-family: 'Cairo', sans-serif;
-		   margin: auto;
-		   border-radius: 8px;
-  		   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	   }
-		
-		caption {
-		    font-weight: bold;
-		}
-		table td {
-		    padding: 10px;
-		    background-color: #eee;
-		    border: 1px solid #fff;
-		    font-weight: bold;
-		    border-radius: 8px;
-		}
-		
-		table th {
-		    background-color: #333;
-		    color: #fff;
-		    padding: 10px;
-		    border: 1px solid #fff;
-		    font-weight: bold;
-		    border-radius: 8px;
-		}
-		
-		img {
-		    width: 300px;
-		    height: 350px;
-		}
-		
-		.review,
-		.like_poeple,
-		.register {
-		    border: none;
-		    padding: 5px 10px;
-		    color: #fff;
-		    font-weight: bold;
-		    border-radius: 4px;
-    		transition: background-color 0.3s ease;
-		}
-		
-		.review {
-		    background-color: #03A9F4;
-		}
-		
-		.like_poeple,
-		.register {
-		    background-color: #E91E63;
-		}
-		
-		
-		 /* 셀렉트 박스 스타일 */
-		.bo_w_select {
-		    width: 6%; /* 가로 사이즈 */
-		    padding: 10px; /* 내부여백 */
-		    padding-left: 12px;
-		    border: 1px solid #ddd;
-		    background: url(./arrow_down_18dp.png) no-repeat right 50%; /* 화살표 위치 */
-		    background-size: 30px; /* 화살표 크기 */
-		    border-radius: 4px;
-		    box-sizing: border-box;
-		    -webkit-appearance: none;
-		    -moz-appearance: none;
-		    appearance: none;
-		    font-size: 12px;
-		    color: #000;
-		    outline:none;
-		}
-		.bo_w_select:hover {border: 1px solid #aaa;} /* 마우스오버 */
-		
-		/* 리뷰작성 팝업창 스타일 */
-		#review_store{
-		  background-color: #333;
-		  color: #fff;
-		  padding: 10px;
-		  font-size: 30px;
-		  border: 1px solid #fff;
-		  font-weight: bold;
-		  border-radius: 8px;
-		}
-		
-		.modal_wrap {
-		  display: none;
-		  width: 700px;
-		  height: 500px;
-		  position: absolute;
-		  top: 50%;
-		  left: 50%;
-		  transform: translate(-50%, -50%);
-		  background: #eee;
-		  z-index: 2;
-		  border-radius: 10px;
-		  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-		}
-		
-		.black_bg {
-		  display: none;
-		  position: fixed;
-		  top: 0;
-		  left: 0;
-		  width: 100%;
-		  height: 100%;
-		  background-color: rgba(0, 0, 0, 0.5);
-		  z-index: 1;
-		}
-		
-		.modal_close {
-		  width: 40px;
-		  height: 40px;
-		  position: absolute;
-		  top: 10px;
-		  right: 10px;
-		}
-		
-		.modal_close > a {
-/* 		  display: block; */
-		  width: 100%;
-		  height: 100%;
-		  font-size: 28px;
-/* 		  background: url(https://img.icons8.com/metro/26/000000/close-window.png); */
-		  text-indent: -9999px;
-		}
-		
-		/* 별점 스타일 */
-		.star-rating {
-		  display: flex;
-		  flex-direction: row-reverse;
-		  font-size: 2.25rem;
-		  line-height: 2.5rem;
-		  justify-content: space-around;
-		  padding: 0 0.2em;
-		  text-align: center;
-		  width: 5em;
-		}
-		
-		.star-rating input {
-		  display: none;
-		}
-		
-		.star-rating label {
-		  color: #e8e2dc;
-		  cursor: pointer;
-		}
-		
-		.star-rating :checked ~ label {
-		  color: gold;
-		}
-		
-		.star-rating label:hover,
-		.star-rating label:hover ~ label {
-		  color: #fff58c;
-		}
-		
-		/* 영수증 파일 첨부 스타일 */
-		.filebox .upload-name {
-		  display: inline-block;
-		  height: 40px;
-		  padding: 0 10px;
-		  vertical-align: middle;
-		  border: 1px solid #dddddd;
-		  width: 78%;
-		  color: #999999;
-		}
-		
-		.filebox label {
-		  display: inline-block;
-		  padding: 10px 20px;
-		  color: #fff;
-		  vertical-align: middle;
-		  background-color: #999999;
-		  cursor: pointer;
-		  height: 40px;
-		  margin-left: 10px;
-		}
-		
-		.filebox input[type="file"] {
-		  position: absolute;
-		  width: 0;
-		  height: 0;
-		  padding: 0;
-		  overflow: hidden;
-		  border: 0;
-		}
-		
-		/* 등록 버튼 스타일 */
-		.register {
-		  display: inline-block;
-		  padding: 10px 20px;
-		  background-color: #81c147;
-		  color: #fff;
-		  border: none;
-		  cursor: pointer;
-		  transition: background-color 0.2s ease-in-out;
-		}
-		
-		.register:hover {
-		  background-color: #ff9800;
-		}
-		
-		/* 텍스트 에리어 스타일 */
-		textarea {
-		  width: 100%;
-		  padding: 10px;
-		  border: 1px solid #ddd;
-		  border-radius: 5px;
-		  transition: border-color 0.2s ease-in-out;
-		}
-		
-		textarea:focus {
-		  border-color: #777;
-		}
-      
-      </style>
-      
     </head>
     
     <body class="sb-nav-fixed">
-            <!-- -----------------------------------마이페이지, 로그아웃------------------------------------- -->
+    
+<!-- -----------------------------------마이페이지, 로그아웃------------------------------------- -->
     
 <!-- ---------------------------로그인 세션 정보(모든 컬럼값)----------------------------- -->    
 			<script>
@@ -626,19 +382,19 @@
 		        </div>
 			   </div>
 
-				<!-- 리뷰 작성 팝업창 -->
+			   <!-- 리뷰 작성 팝업창 -->
 			   <div class="black_bg"></div>
 			   <div class="modal_wrap">
 			       <div class="modal_close"><a href="#" onclick="resetForm();">❎</a></div>
 			       <div>
-			       <table>
+			       <table class="review-write">
 			       
 			          <tr>
 			          <th colspan="2" id="review_store">가게이름</th>
 			          </tr>
 			          
 			          <tr>
-			          <td>서비스 or 맛 점수는 ?</td>
+			          <td height="50">서비스 or 맛 점수는 ?</td>
 				      <td>
 				      <div>
 					      <div class="star-rating space-x-4 mx-auto">
@@ -658,7 +414,7 @@
 			          </tr>
 			          
 			          <tr>
-			          <td>가성비 점수는 ?</td>
+			          <td height="50">가성비 점수는 ?</td>
 				      <td>
 				      <div>
 					      <div class="star-rating space-x-4 mx-auto">
@@ -678,7 +434,7 @@
 			          </tr>
 			          
 			          <tr>
-			          <td>청결도 점수는 ?</td>
+			          <td height="50">청결도 점수는 ?</td>
 				      <td>
 				      <div>
 					      <div class="star-rating space-x-4 mx-auto">
@@ -941,6 +697,102 @@
 					    });
 					});
 				}
+				
+				 // 가게 리뷰 출력
+			    document.getElementById("shop_review").addEventListener("click", function() {
+			        // 팝업 창을 생성하고 스타일을 적용
+			        var modalOverlay = document.createElement("div");
+			        modalOverlay.classList.add("modal-overlay");
+			        
+			        var modalContent = document.createElement("div");
+			        modalContent.classList.add("modal-content");
+			        
+			        var modalClose = document.createElement("span");
+			        modalClose.classList.add("modal-close");
+			        modalClose.textContent = "✖";
+			        
+			        var modalTitle = document.createElement("h2");
+			        modalTitle.textContent = "리뷰 내역";
+			        
+			        var modalTable = document.createElement("table");
+			        modalTable.classList.add("review-table");
+			        
+			     	// 첫 번째 행에 컬럼명 추가
+			        var columnNames = ["번호", "닉네임", "내용", "평점", "날짜"];
+			        var headerRow = document.createElement("tr");
+			        for (var j = 0; j < columnNames.length; j++) {
+			            var headerCell = document.createElement("th");
+			            headerCell.textContent = columnNames[j];
+			            headerRow.appendChild(headerCell);
+			        }
+			        modalTable.appendChild(headerRow);
+			        
+			        // 모달 창에 리뷰 내역을 동적으로 로드하여 표시하는 코드를 작성
+			        // 예시로 임의의 데이터로 테이블을 구성합니다.
+		            // AJAX 비동기 통신으로 리뷰 데이터 가져오기
+				    $.ajax({
+				        type: "POST",
+				        url: "http://localhost:8081/MessageSystem/SelectReview",
+				        dataType: "json",
+				        data : {
+				        	shopIdx: shop_Idx,
+				        },
+				        success: function(reviewData) {
+				        	console.log(reviewData);
+				            for (var i = 0; i < reviewData.length; i++) {
+				                var row = document.createElement("tr");
+				                
+				                var cellId = document.createElement("td");
+				                cellId.textContent = i+1;
+				                
+				                var cellUser = document.createElement("td");
+				                cellUser.textContent = reviewData[i].m_nick;
+				                
+				                var cellContent = document.createElement("td");
+				                cellContent.textContent = reviewData[i].review_content;
+
+				                var cellScore = document.createElement("td");
+				                cellScore.textContent = reviewData[i].review_score;
+				                
+				                var cellDate = document.createElement("td");
+				                cellDate.textContent = reviewData[i].review_dt;
+				                
+				                row.appendChild(cellId);
+				                row.appendChild(cellUser);
+				                row.appendChild(cellContent);
+				                row.appendChild(cellScore);
+				                row.appendChild(cellDate);
+				                
+				                modalTable.appendChild(row);
+				            }
+				        },
+				        error: function(xhr, status, error) {
+				            console.log(error);
+				        }
+				    });
+			        
+			        modalContent.appendChild(modalClose);
+			        modalContent.appendChild(modalTitle);
+			        modalContent.appendChild(modalTable);
+			        
+			        modalOverlay.appendChild(modalContent);
+			        document.body.appendChild(modalOverlay);
+			        
+			        // 팝업 창 닫기 이벤트 핸들러
+			        modalClose.addEventListener("click", function() {
+			            document.body.removeChild(modalOverlay);
+			        });
+			        
+			        // 팝업 창 외부를 클릭해도 창이 닫히지 않도록 이벤트 전파 차단
+			        modalOverlay.addEventListener("click", function(event) {
+			            if (event.target === modalOverlay) {
+			                event.stopPropagation();
+			            }
+			        });
+			        
+			        // 팝업 창 표시
+			        modalOverlay.style.display = "block";
+			    });
 				
 				<!-- 리뷰 데이터 전송 -->
 			    function saveReview() {

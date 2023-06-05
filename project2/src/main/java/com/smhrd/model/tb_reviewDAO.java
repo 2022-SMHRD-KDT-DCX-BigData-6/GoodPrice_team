@@ -74,6 +74,19 @@ public class tb_reviewDAO {
 		return data;
 		
 	}
+
+	// 가게별 리뷰 조회
+	public List<ReviewListDTO> SelectReview(tb_reviewDTO dto) {
+		
+		List<ReviewListDTO> data = null;
+		
+		data = sqlSession.selectList("SelectReview", dto);
+		
+		sqlSession.close();
+		
+		return data;
+		
+	}
 	
 	//마이페이지 리뷰목록 메소드 - 이은화 강효석
 	public List<tb_reviewDTO> reviewList(String m_id) {
