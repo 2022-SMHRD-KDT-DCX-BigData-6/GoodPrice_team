@@ -127,11 +127,6 @@
     height: 100vh;
   }
   
-  h4 {
-    color: #3366FF; /* 파란색 */
-    border-radius: 10px;
-  }
-  
   .container {
     max-width: 1000px;
     margin: 0 auto;
@@ -246,8 +241,7 @@
     <div class="container">
 		<div class="user-info" header>
 		    <div style="display: flex; align-items: center;">
-		        <img src="img_file/img1.png" alt="착한가게 업소 이미지" style="width: 50px; height: 50px; margin-right: 10px;">
-		        <h4>착한가게 업소</h4>
+		        <a href="main.jsp"><img src="images/Light Gray and Blue Modern Grocery Store Logo (1).png" alt="착한가게 업소 이미지" style="width: 150px; height: 150px; margin-right: 10px;"></a>
 		    </div>
 		    <% if (isLoggedIn == true) { %>
 		        <div style="display: flex; align-items: center;">

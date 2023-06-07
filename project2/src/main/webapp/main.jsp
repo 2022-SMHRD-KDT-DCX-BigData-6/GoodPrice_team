@@ -7,33 +7,85 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-    	<script type="text/javascript" src="js/jquery-3.6.4.js"></script>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>혜자탐구대</title>
-        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-        <link href="css/styles.css" rel="stylesheet" />
-        <link href="css/mainpage.css" rel="stylesheet" />
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c21e04ab9896f84f77e9ff0564735da3&libraries=services"></script>
-		<script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/tooltip@1.6.1/dist/Tooltip.min.js"></script>
-       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.min.css">
-		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0"></script>
-       <title>닫기가 가능한 커스텀 오버레이</title>
-    </head>
+<html lang="en" style="overflow: hidden;"><head>
+	<script type="text/javascript" src="js/jquery-3.6.4.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <body class="sb-nav-fixed">
-    
-<!-- -----------------------------------마이페이지, 로그아웃------------------------------------- -->
-    
-<!-- ---------------------------로그인 세션 정보(모든 컬럼값)----------------------------- -->    
-			<script>
+    <title>혜자특공대</title>
+    <!-- Google Font -->
+    <link href="http://fonts.googleapis.com/css?family=Dosis:300,400,500,600,700,800" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+
+    <!-- Font Awesome -->
+
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+     <!-- Preloader -->
+    <link rel="stylesheet" href="css/preloader.css" type="text/css" media="screen, print">
+
+    <!-- Icon Font-->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/owl.theme.default.css">
+    <!-- Animate CSS-->
+    <link rel="stylesheet" href="css/animate.css">
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+
+
+    <!-- Style -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/mainpage.css" rel="stylesheet">
+
+    <!-- Responsive CSS -->
+    <link href="css/responsive.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="js/lte-ie7.js"></script>
+	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+	
+	<!-- 06.05  수정 -->
+<script type="text/javascript" src="js/jquery-3.6.4.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c21e04ab9896f84f77e9ff0564735da3&amp;libraries=services"></script><script charset="UTF-8" src="http://t1.daumcdn.net/mapjsapi/js/main/4.4.8/kakao.js"></script><script charset="UTF-8" src="http://t1.daumcdn.net/mapjsapi/js/libs/services/1.0.2/services.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0"></script><style>.swal2-popup.swal2-toast{flex-direction:row;align-items:center;width:auto;padding:.625em;overflow-y:hidden;background:#fff;box-shadow:0 0 .625em #d9d9d9}.swal2-popup.swal2-toast .swal2-header{flex-direction:row;padding:0}.swal2-popup.swal2-toast .swal2-title{flex-grow:1;justify-content:flex-start;margin:0 .6em;font-size:1em}.swal2-popup.swal2-toast .swal2-footer{margin:.5em 0 0;padding:.5em 0 0;font-size:.8em}.swal2-popup.swal2-toast .swal2-close{position:static;width:.8em;height:.8em;line-height:.8}.swal2-popup.swal2-toast .swal2-content{justify-content:flex-start;padding:0;font-size:1em}.swal2-popup.swal2-toast .swal2-icon{width:2em;min-width:2em;height:2em;margin:0}.swal2-popup.swal2-toast .swal2-icon .swal2-icon-content{display:flex;align-items:center;font-size:1.8em;font-weight:700}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){.swal2-popup.swal2-toast .swal2-icon .swal2-icon-content{font-size:.25em}}.swal2-popup.swal2-toast .swal2-icon.swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line]{top:.875em;width:1.375em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:.3125em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:.3125em}.swal2-popup.swal2-toast .swal2-actions{flex-basis:auto!important;width:auto;height:auto;margin:0 .3125em;padding:0}.swal2-popup.swal2-toast .swal2-styled{margin:.125em .3125em;padding:.3125em .625em;font-size:1em}.swal2-popup.swal2-toast .swal2-styled:focus{box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(100,150,200,.5)}.swal2-popup.swal2-toast .swal2-success{border-color:#a5dc86}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line]{position:absolute;width:1.6em;height:3em;transform:rotate(45deg);border-radius:50%}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=left]{top:-.8em;left:-.5em;transform:rotate(-45deg);transform-origin:2em 2em;border-radius:4em 0 0 4em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=right]{top:-.25em;left:.9375em;transform-origin:0 1.5em;border-radius:0 4em 4em 0}.swal2-popup.swal2-toast .swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-success .swal2-success-fix{top:0;left:.4375em;width:.4375em;height:2.6875em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line]{height:.3125em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=tip]{top:1.125em;left:.1875em;width:.75em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=long]{top:.9375em;right:.1875em;width:1.375em}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-tip{-webkit-animation:swal2-toast-animate-success-line-tip .75s;animation:swal2-toast-animate-success-line-tip .75s}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-long{-webkit-animation:swal2-toast-animate-success-line-long .75s;animation:swal2-toast-animate-success-line-long .75s}.swal2-popup.swal2-toast.swal2-show{-webkit-animation:swal2-toast-show .5s;animation:swal2-toast-show .5s}.swal2-popup.swal2-toast.swal2-hide{-webkit-animation:swal2-toast-hide .1s forwards;animation:swal2-toast-hide .1s forwards}.swal2-container{display:flex;position:fixed;z-index:1060;top:0;right:0;bottom:0;left:0;flex-direction:row;align-items:center;justify-content:center;padding:.625em;overflow-x:hidden;transition:background-color .1s;-webkit-overflow-scrolling:touch}.swal2-container.swal2-backdrop-show,.swal2-container.swal2-noanimation{background:rgba(0,0,0,.4)}.swal2-container.swal2-backdrop-hide{background:0 0!important}.swal2-container.swal2-top{align-items:flex-start}.swal2-container.swal2-top-left,.swal2-container.swal2-top-start{align-items:flex-start;justify-content:flex-start}.swal2-container.swal2-top-end,.swal2-container.swal2-top-right{align-items:flex-start;justify-content:flex-end}.swal2-container.swal2-center{align-items:center}.swal2-container.swal2-center-left,.swal2-container.swal2-center-start{align-items:center;justify-content:flex-start}.swal2-container.swal2-center-end,.swal2-container.swal2-center-right{align-items:center;justify-content:flex-end}.swal2-container.swal2-bottom{align-items:flex-end}.swal2-container.swal2-bottom-left,.swal2-container.swal2-bottom-start{align-items:flex-end;justify-content:flex-start}.swal2-container.swal2-bottom-end,.swal2-container.swal2-bottom-right{align-items:flex-end;justify-content:flex-end}.swal2-container.swal2-bottom-end>:first-child,.swal2-container.swal2-bottom-left>:first-child,.swal2-container.swal2-bottom-right>:first-child,.swal2-container.swal2-bottom-start>:first-child,.swal2-container.swal2-bottom>:first-child{margin-top:auto}.swal2-container.swal2-grow-fullscreen>.swal2-modal{display:flex!important;flex:1;align-self:stretch;justify-content:center}.swal2-container.swal2-grow-row>.swal2-modal{display:flex!important;flex:1;align-content:center;justify-content:center}.swal2-container.swal2-grow-column{flex:1;flex-direction:column}.swal2-container.swal2-grow-column.swal2-bottom,.swal2-container.swal2-grow-column.swal2-center,.swal2-container.swal2-grow-column.swal2-top{align-items:center}.swal2-container.swal2-grow-column.swal2-bottom-left,.swal2-container.swal2-grow-column.swal2-bottom-start,.swal2-container.swal2-grow-column.swal2-center-left,.swal2-container.swal2-grow-column.swal2-center-start,.swal2-container.swal2-grow-column.swal2-top-left,.swal2-container.swal2-grow-column.swal2-top-start{align-items:flex-start}.swal2-container.swal2-grow-column.swal2-bottom-end,.swal2-container.swal2-grow-column.swal2-bottom-right,.swal2-container.swal2-grow-column.swal2-center-end,.swal2-container.swal2-grow-column.swal2-center-right,.swal2-container.swal2-grow-column.swal2-top-end,.swal2-container.swal2-grow-column.swal2-top-right{align-items:flex-end}.swal2-container.swal2-grow-column>.swal2-modal{display:flex!important;flex:1;align-content:center;justify-content:center}.swal2-container.swal2-no-transition{transition:none!important}.swal2-container:not(.swal2-top):not(.swal2-top-start):not(.swal2-top-end):not(.swal2-top-left):not(.swal2-top-right):not(.swal2-center-start):not(.swal2-center-end):not(.swal2-center-left):not(.swal2-center-right):not(.swal2-bottom):not(.swal2-bottom-start):not(.swal2-bottom-end):not(.swal2-bottom-left):not(.swal2-bottom-right):not(.swal2-grow-fullscreen)>.swal2-modal{margin:auto}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){.swal2-container .swal2-modal{margin:0!important}}.swal2-popup{display:none;position:relative;box-sizing:border-box;flex-direction:column;justify-content:center;width:32em;max-width:100%;padding:1.25em;border:none;border-radius:5px;background:#fff;font-family:inherit;font-size:1rem}.swal2-popup:focus{outline:0}.swal2-popup.swal2-loading{overflow-y:hidden}.swal2-header{display:flex;flex-direction:column;align-items:center;padding:0 1.8em}.swal2-title{position:relative;max-width:100%;margin:0 0 .4em;padding:0;color:#595959;font-size:1.875em;font-weight:600;text-align:center;text-transform:none;word-wrap:break-word}.swal2-actions{display:flex;z-index:1;box-sizing:border-box;flex-wrap:wrap;align-items:center;justify-content:center;width:100%;margin:1.25em auto 0;padding:0 1.6em}.swal2-actions:not(.swal2-loading) .swal2-styled[disabled]{opacity:.4}.swal2-actions:not(.swal2-loading) .swal2-styled:hover{background-image:linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1))}.swal2-actions:not(.swal2-loading) .swal2-styled:active{background-image:linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.2))}.swal2-loader{display:none;align-items:center;justify-content:center;width:2.2em;height:2.2em;margin:0 1.875em;-webkit-animation:swal2-rotate-loading 1.5s linear 0s infinite normal;animation:swal2-rotate-loading 1.5s linear 0s infinite normal;border-width:.25em;border-style:solid;border-radius:100%;border-color:#2778c4 transparent #2778c4 transparent}.swal2-styled{margin:.3125em;padding:.625em 1.1em;box-shadow:none;font-weight:500}.swal2-styled:not([disabled]){cursor:pointer}.swal2-styled.swal2-confirm{border:0;border-radius:.25em;background:initial;background-color:#2778c4;color:#fff;font-size:1.0625em}.swal2-styled.swal2-deny{border:0;border-radius:.25em;background:initial;background-color:#d14529;color:#fff;font-size:1.0625em}.swal2-styled.swal2-cancel{border:0;border-radius:.25em;background:initial;background-color:#757575;color:#fff;font-size:1.0625em}.swal2-styled:focus{outline:0;box-shadow:0 0 0 3px rgba(100,150,200,.5)}.swal2-styled::-moz-focus-inner{border:0}.swal2-footer{justify-content:center;margin:1.25em 0 0;padding:1em 0 0;border-top:1px solid #eee;color:#545454;font-size:1em}.swal2-timer-progress-bar-container{position:absolute;right:0;bottom:0;left:0;height:.25em;overflow:hidden;border-bottom-right-radius:5px;border-bottom-left-radius:5px}.swal2-timer-progress-bar{width:100%;height:.25em;background:rgba(0,0,0,.2)}.swal2-image{max-width:100%;margin:1.25em auto}.swal2-close{position:absolute;z-index:2;top:0;right:0;align-items:center;justify-content:center;width:1.2em;height:1.2em;padding:0;overflow:hidden;transition:color .1s ease-out;border:none;border-radius:5px;background:0 0;color:#ccc;font-family:serif;font-size:2.5em;line-height:1.2;cursor:pointer}.swal2-close:hover{transform:none;background:0 0;color:#f27474}.swal2-close:focus{outline:0;box-shadow:inset 0 0 0 3px rgba(100,150,200,.5)}.swal2-close::-moz-focus-inner{border:0}.swal2-content{z-index:1;justify-content:center;margin:0;padding:0 1.6em;color:#545454;font-size:1.125em;font-weight:400;line-height:normal;text-align:center;word-wrap:break-word}.swal2-checkbox,.swal2-file,.swal2-input,.swal2-radio,.swal2-select,.swal2-textarea{margin:1em auto}.swal2-file,.swal2-input,.swal2-textarea{box-sizing:border-box;width:100%;transition:border-color .3s,box-shadow .3s;border:1px solid #d9d9d9;border-radius:.1875em;background:inherit;box-shadow:inset 0 1px 1px rgba(0,0,0,.06);color:inherit;font-size:1.125em}.swal2-file.swal2-inputerror,.swal2-input.swal2-inputerror,.swal2-textarea.swal2-inputerror{border-color:#f27474!important;box-shadow:0 0 2px #f27474!important}.swal2-file:focus,.swal2-input:focus,.swal2-textarea:focus{border:1px solid #b4dbed;outline:0;box-shadow:0 0 0 3px rgba(100,150,200,.5)}.swal2-file::-moz-placeholder,.swal2-input::-moz-placeholder,.swal2-textarea::-moz-placeholder{color:#ccc}.swal2-file:-ms-input-placeholder,.swal2-input:-ms-input-placeholder,.swal2-textarea:-ms-input-placeholder{color:#ccc}.swal2-file::placeholder,.swal2-input::placeholder,.swal2-textarea::placeholder{color:#ccc}.swal2-range{margin:1em auto;background:#fff}.swal2-range input{width:80%}.swal2-range output{width:20%;color:inherit;font-weight:600;text-align:center}.swal2-range input,.swal2-range output{height:2.625em;padding:0;font-size:1.125em;line-height:2.625em}.swal2-input{height:2.625em;padding:0 .75em}.swal2-input[type=number]{max-width:10em}.swal2-file{background:inherit;font-size:1.125em}.swal2-textarea{height:6.75em;padding:.75em}.swal2-select{min-width:50%;max-width:100%;padding:.375em .625em;background:inherit;color:inherit;font-size:1.125em}.swal2-checkbox,.swal2-radio{align-items:center;justify-content:center;background:#fff;color:inherit}.swal2-checkbox label,.swal2-radio label{margin:0 .6em;font-size:1.125em}.swal2-checkbox input,.swal2-radio input{margin:0 .4em}.swal2-input-label{display:flex;justify-content:center;margin:1em auto}.swal2-validation-message{align-items:center;justify-content:center;margin:0 -2.7em;padding:.625em;overflow:hidden;background:#f0f0f0;color:#666;font-size:1em;font-weight:300}.swal2-validation-message::before{content:"!";display:inline-block;width:1.5em;min-width:1.5em;height:1.5em;margin:0 .625em;border-radius:50%;background-color:#f27474;color:#fff;font-weight:600;line-height:1.5em;text-align:center}.swal2-icon{position:relative;box-sizing:content-box;justify-content:center;width:5em;height:5em;margin:1.25em auto 1.875em;border:.25em solid transparent;border-radius:50%;border-color:#000;font-family:inherit;line-height:5em;cursor:default;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.swal2-icon .swal2-icon-content{display:flex;align-items:center;font-size:3.75em}.swal2-icon.swal2-error{border-color:#f27474;color:#f27474}.swal2-icon.swal2-error .swal2-x-mark{position:relative;flex-grow:1}.swal2-icon.swal2-error [class^=swal2-x-mark-line]{display:block;position:absolute;top:2.3125em;width:2.9375em;height:.3125em;border-radius:.125em;background-color:#f27474}.swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:1.0625em;transform:rotate(45deg)}.swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:1em;transform:rotate(-45deg)}.swal2-icon.swal2-error.swal2-icon-show{-webkit-animation:swal2-animate-error-icon .5s;animation:swal2-animate-error-icon .5s}.swal2-icon.swal2-error.swal2-icon-show .swal2-x-mark{-webkit-animation:swal2-animate-error-x-mark .5s;animation:swal2-animate-error-x-mark .5s}.swal2-icon.swal2-warning{border-color:#facea8;color:#f8bb86}.swal2-icon.swal2-info{border-color:#9de0f6;color:#3fc3ee}.swal2-icon.swal2-question{border-color:#c9dae1;color:#87adbd}.swal2-icon.swal2-success{border-color:#a5dc86;color:#a5dc86}.swal2-icon.swal2-success [class^=swal2-success-circular-line]{position:absolute;width:3.75em;height:7.5em;transform:rotate(45deg);border-radius:50%}.swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=left]{top:-.4375em;left:-2.0635em;transform:rotate(-45deg);transform-origin:3.75em 3.75em;border-radius:7.5em 0 0 7.5em}.swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=right]{top:-.6875em;left:1.875em;transform:rotate(-45deg);transform-origin:0 3.75em;border-radius:0 7.5em 7.5em 0}.swal2-icon.swal2-success .swal2-success-ring{position:absolute;z-index:2;top:-.25em;left:-.25em;box-sizing:content-box;width:100%;height:100%;border:.25em solid rgba(165,220,134,.3);border-radius:50%}.swal2-icon.swal2-success .swal2-success-fix{position:absolute;z-index:1;top:.5em;left:1.625em;width:.4375em;height:5.625em;transform:rotate(-45deg)}.swal2-icon.swal2-success [class^=swal2-success-line]{display:block;position:absolute;z-index:2;height:.3125em;border-radius:.125em;background-color:#a5dc86}.swal2-icon.swal2-success [class^=swal2-success-line][class$=tip]{top:2.875em;left:.8125em;width:1.5625em;transform:rotate(45deg)}.swal2-icon.swal2-success [class^=swal2-success-line][class$=long]{top:2.375em;right:.5em;width:2.9375em;transform:rotate(-45deg)}.swal2-icon.swal2-success.swal2-icon-show .swal2-success-line-tip{-webkit-animation:swal2-animate-success-line-tip .75s;animation:swal2-animate-success-line-tip .75s}.swal2-icon.swal2-success.swal2-icon-show .swal2-success-line-long{-webkit-animation:swal2-animate-success-line-long .75s;animation:swal2-animate-success-line-long .75s}.swal2-icon.swal2-success.swal2-icon-show .swal2-success-circular-line-right{-webkit-animation:swal2-rotate-success-circular-line 4.25s ease-in;animation:swal2-rotate-success-circular-line 4.25s ease-in}.swal2-progress-steps{flex-wrap:wrap;align-items:center;max-width:100%;margin:0 0 1.25em;padding:0;background:inherit;font-weight:600}.swal2-progress-steps li{display:inline-block;position:relative}.swal2-progress-steps .swal2-progress-step{z-index:20;flex-shrink:0;width:2em;height:2em;border-radius:2em;background:#2778c4;color:#fff;line-height:2em;text-align:center}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step{background:#2778c4}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step{background:#add8e6;color:#fff}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step-line{background:#add8e6}.swal2-progress-steps .swal2-progress-step-line{z-index:10;flex-shrink:0;width:2.5em;height:.4em;margin:0 -1px;background:#2778c4}[class^=swal2]{-webkit-tap-highlight-color:transparent}.swal2-show{-webkit-animation:swal2-show .3s;animation:swal2-show .3s}.swal2-hide{-webkit-animation:swal2-hide .15s forwards;animation:swal2-hide .15s forwards}.swal2-noanimation{transition:none}.swal2-scrollbar-measure{position:absolute;top:-9999px;width:50px;height:50px;overflow:scroll}.swal2-rtl .swal2-close{right:auto;left:0}.swal2-rtl .swal2-timer-progress-bar{right:0;left:auto}@supports (-ms-accelerator:true){.swal2-range input{width:100%!important}.swal2-range output{display:none}}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){.swal2-range input{width:100%!important}.swal2-range output{display:none}}@-webkit-keyframes swal2-toast-show{0%{transform:translateY(-.625em) rotateZ(2deg)}33%{transform:translateY(0) rotateZ(-2deg)}66%{transform:translateY(.3125em) rotateZ(2deg)}100%{transform:translateY(0) rotateZ(0)}}@keyframes swal2-toast-show{0%{transform:translateY(-.625em) rotateZ(2deg)}33%{transform:translateY(0) rotateZ(-2deg)}66%{transform:translateY(.3125em) rotateZ(2deg)}100%{transform:translateY(0) rotateZ(0)}}@-webkit-keyframes swal2-toast-hide{100%{transform:rotateZ(1deg);opacity:0}}@keyframes swal2-toast-hide{100%{transform:rotateZ(1deg);opacity:0}}@-webkit-keyframes swal2-toast-animate-success-line-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@keyframes swal2-toast-animate-success-line-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@-webkit-keyframes swal2-toast-animate-success-line-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}@keyframes swal2-toast-animate-success-line-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}@-webkit-keyframes swal2-show{0%{transform:scale(.7)}45%{transform:scale(1.05)}80%{transform:scale(.95)}100%{transform:scale(1)}}@keyframes swal2-show{0%{transform:scale(.7)}45%{transform:scale(1.05)}80%{transform:scale(.95)}100%{transform:scale(1)}}@-webkit-keyframes swal2-hide{0%{transform:scale(1);opacity:1}100%{transform:scale(.5);opacity:0}}@keyframes swal2-hide{0%{transform:scale(1);opacity:1}100%{transform:scale(.5);opacity:0}}@-webkit-keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.8125em;width:1.5625em}}@keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.8125em;width:1.5625em}}@-webkit-keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@-webkit-keyframes swal2-rotate-success-circular-line{0%{transform:rotate(-45deg)}5%{transform:rotate(-45deg)}12%{transform:rotate(-405deg)}100%{transform:rotate(-405deg)}}@keyframes swal2-rotate-success-circular-line{0%{transform:rotate(-45deg)}5%{transform:rotate(-45deg)}12%{transform:rotate(-405deg)}100%{transform:rotate(-405deg)}}@-webkit-keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;transform:scale(.4);opacity:0}50%{margin-top:1.625em;transform:scale(.4);opacity:0}80%{margin-top:-.375em;transform:scale(1.15)}100%{margin-top:0;transform:scale(1);opacity:1}}@keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;transform:scale(.4);opacity:0}50%{margin-top:1.625em;transform:scale(.4);opacity:0}80%{margin-top:-.375em;transform:scale(1.15)}100%{margin-top:0;transform:scale(1);opacity:1}}@-webkit-keyframes swal2-animate-error-icon{0%{transform:rotateX(100deg);opacity:0}100%{transform:rotateX(0);opacity:1}}@keyframes swal2-animate-error-icon{0%{transform:rotateX(100deg);opacity:0}100%{transform:rotateX(0);opacity:1}}@-webkit-keyframes swal2-rotate-loading{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}@keyframes swal2-rotate-loading{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow:hidden}body.swal2-height-auto{height:auto!important}body.swal2-no-backdrop .swal2-container{top:auto;right:auto;bottom:auto;left:auto;max-width:calc(100% - .625em * 2);background-color:transparent!important}body.swal2-no-backdrop .swal2-container>.swal2-modal{box-shadow:0 0 10px rgba(0,0,0,.4)}body.swal2-no-backdrop .swal2-container.swal2-top{top:0;left:50%;transform:translateX(-50%)}body.swal2-no-backdrop .swal2-container.swal2-top-left,body.swal2-no-backdrop .swal2-container.swal2-top-start{top:0;left:0}body.swal2-no-backdrop .swal2-container.swal2-top-end,body.swal2-no-backdrop .swal2-container.swal2-top-right{top:0;right:0}body.swal2-no-backdrop .swal2-container.swal2-center{top:50%;left:50%;transform:translate(-50%,-50%)}body.swal2-no-backdrop .swal2-container.swal2-center-left,body.swal2-no-backdrop .swal2-container.swal2-center-start{top:50%;left:0;transform:translateY(-50%)}body.swal2-no-backdrop .swal2-container.swal2-center-end,body.swal2-no-backdrop .swal2-container.swal2-center-right{top:50%;right:0;transform:translateY(-50%)}body.swal2-no-backdrop .swal2-container.swal2-bottom{bottom:0;left:50%;transform:translateX(-50%)}body.swal2-no-backdrop .swal2-container.swal2-bottom-left,body.swal2-no-backdrop .swal2-container.swal2-bottom-start{bottom:0;left:0}body.swal2-no-backdrop .swal2-container.swal2-bottom-end,body.swal2-no-backdrop .swal2-container.swal2-bottom-right{right:0;bottom:0}@media print{body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow-y:scroll!important}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown)>[aria-hidden=true]{display:none}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) .swal2-container{position:static!important}}body.swal2-toast-shown .swal2-container{background-color:transparent}body.swal2-toast-shown .swal2-container.swal2-top{top:0;right:auto;bottom:auto;left:50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-top-end,body.swal2-toast-shown .swal2-container.swal2-top-right{top:0;right:0;bottom:auto;left:auto}body.swal2-toast-shown .swal2-container.swal2-top-left,body.swal2-toast-shown .swal2-container.swal2-top-start{top:0;right:auto;bottom:auto;left:0}body.swal2-toast-shown .swal2-container.swal2-center-left,body.swal2-toast-shown .swal2-container.swal2-center-start{top:50%;right:auto;bottom:auto;left:0;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-center{top:50%;right:auto;bottom:auto;left:50%;transform:translate(-50%,-50%)}body.swal2-toast-shown .swal2-container.swal2-center-end,body.swal2-toast-shown .swal2-container.swal2-center-right{top:50%;right:0;bottom:auto;left:auto;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-left,body.swal2-toast-shown .swal2-container.swal2-bottom-start{top:auto;right:auto;bottom:0;left:0}body.swal2-toast-shown .swal2-container.swal2-bottom{top:auto;right:auto;bottom:0;left:50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-end,body.swal2-toast-shown .swal2-container.swal2-bottom-right{top:auto;right:0;bottom:0;left:auto}body.swal2-toast-column .swal2-toast{flex-direction:column;align-items:stretch}body.swal2-toast-column .swal2-toast .swal2-actions{flex:1;align-self:stretch;height:2.2em;margin-top:.3125em}body.swal2-toast-column .swal2-toast .swal2-loading{justify-content:center}body.swal2-toast-column .swal2-toast .swal2-input{height:2em;margin:.3125em auto;font-size:1em}body.swal2-toast-column .swal2-toast .swal2-validation-message{font-size:1em}</style>
+
+<style type="text/css">
+
+.textAliMain{
+
+	margin-top: -325px;
+
+}
+#LoginMargin{
+	margin-right: -10px;
+}
+.scroll_down{
+	margin-top:  -350px;
+	margin-right: -1200px;
+}
+.col-md-12.text-center{
+	height: 250px;
+}
+#ascrail2000, #ascrail2000-hr {
+    display: none !important;
+}
+</style>
+</head>
+
+<body class="sb-nav-fixed" style="overflow: visible;">
+
+	<!-- --------------------------로그인 유저 세션(모든 컬럼)-------------------------------- -->
+   <script>
 				var userId;
 				console.log(userId);
 	    	</script>
@@ -51,254 +103,106 @@
     	<% 
 			}
 		%>    
-<!-- ---------------------------로그인 세션 정보(모든 컬럼값)----------------------------- -->    
-    
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.html"></a>
-            <!-- Sidebar Toggle-->
-            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-            <!-- Navbar Search-->
-            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-                <div class="input-group">
+   
+                <!-- Preloader -->
+                <div id="preloader" style="display: none;">
+                    <div id="status" style="display: none;">&nbsp;</div>
                 </div>
-            </form>
-            
-            <!-- -------------------로그인 했을 때----------------------------------- -->
-            <% if(loginResult != null){ %>
-            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                <li class="nav-item dropdown"> 
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <!-- -----------로그인 했는데 관리자일 때-------------------- -->
-                    <% if(loginResult.getAdmin_yn().equals("Y")){ %>	
-                    관리자
-                    <!-- -----------로그인 했는데 관리자일 때-------------------- -->
-                    <% }else{ %>
-                    <%= loginResult.getM_nick()%>
-                    <% } %>
-                    님<i class="fas fa-user fa-fw"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="myPage.jsp">마이페이지</a></li>
-                        <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="LogoutService.do">로그아웃</a></li>
-                    </ul>
-                </li>
-            </ul>
-             
-            <!-- -------------------로그인 했을 때----------------------------------- -->
-            
-            <!-- -------------------로그인 안했을 때----------------------------------- -->
-            <% }else{ %>
-            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                <li class="nav-item dropdown">
-                    	<a class="nav-link" href="login.jsp">
-                        로그인<i class="fas fa-user fa-fw"></i>
-                        </a>
-                </li>
-            </ul>
-            <% } %>
-            <!-- -------------------로그인 안했을 때----------------------------------- -->
-        </nav>
-            <!-- -----------------------------------마이페이지, 로그아웃------------------------------------- -->
-       
-		
-		<!-- -----------------------------------사이드 바------------------------------------- -->
-		<div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                    <div class="sb-sidenav-menu">
-                        <div class="nav">
-                            <div class="sb-sidenav-menu-heading">메인</div>
-                            <a class="nav-link" href="main.jsp">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                대시보드
-                            </a>
-                            <!-- ---------------로그인---------------- -->
-                             <!-- <a class="nav-link" href="login.jsp">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                로그인
-                            </a> -->
-                            <!-- ---------------로그인---------------- -->
-                            
-                            <!-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Layouts
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="layout-static.html">Static Navigation</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
-                                </nav>
-                            </div> -->
-                           
-                           <!--  <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                        Authentication
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a> 
-                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="login.jsp">로그인</a>
-                                            <a class="nav-link" href="register.jsp">회원가입</a>
-                                            <a class="nav-link" href="password.jsp">비밀번호 찾기</a>
-                                        </nav>
-                                    </div>
-                                    
-                                    -----------------------에러페이지(반응형 안사라짐)----------------------
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                        Error
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="401.html">401 Page</a>
-                                            <a class="nav-link" href="404.html">404 Page</a>
-                                            <a class="nav-link" href="500.html">500 Page</a>
-                                        </nav>
-                                    </div>
-                                    -----------------------에러페이지----------------------
-                                
-                                </nav>
-                            </div> -->
-                            <a class="nav-link" href="charts.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                Charts
-                            </a>
-                            <a class="nav-link" href="tables.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Tables
-                            </a>
-                            <a class="nav-link" href="Board_List.jsp">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                게시판
-                            </a>
-                        </div>
-                    </div>
-                    <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        Start Bootstrap
-                    </div>
-                </nav>
-            </div>
-            <div id="layoutSidenav_content">
-                <main>
-                    <div class="container-fluid px-4">
-                        <h1 class="mt-4" style="font-family: Arial, sans-serif; font-size: 28px; font-weight: bold;">착한가격 업소</h1>
-                  <ol class="breadcrumb mb-4">
-                      <li class="breadcrumb-item active" style="font-family: Arial, sans-serif; font-size: 16px;">착한가격 기분좋은 서비스</li>
-                  </ol>
-                    </div>
-                   
-                    
-                 <script>
-                    
-                    <!-- 리뷰 작성 창 띄우기 -->
-                    window.onload = function() {
- 	            	   
-	            	    function onClick() {
-	            	    	 // userId 값 확인
-	    			        if (!userId) {
-	    			        	// 경고창
-	    			        	$("#alertLogin").click();
-	    			            return; // 등록 중단
-	    			        }
-	            	        document.querySelector('.modal_wrap').style.display ='block';
-	            	        document.querySelector('.black_bg').style.display ='block';
-	            	    }   
-	            	    function offClick() {
-	            	        document.querySelector('.modal_wrap').style.display ='none';
-	            	        document.querySelector('.black_bg').style.display ='none';
-	            	    }
-	            	 
-	            	    document.getElementById('modal_btn').addEventListener('click', onClick);
-	            	    document.querySelector('.modal_close').addEventListener('click', offClick);
-	            	 
-	            	};
-	            	
-	            	// 비로그인 에러 알림창 실행 버튼 클릭 이벤트
-	            	$(document).ready(function() {
-	            	    $("#alertLogin").click(function() {
-	            	        Swal.fire({
-	            	            icon: 'error',
-	            	            title: '로그인이 필요한 서비스입니다.',
-	            	            text: '',
-	            	        });
-	            	    });
-	            	});
-	            	
-	            	<!-- 셀렉트박스 생성 -->
-                    var cnt = new Array();
-                    cnt[0] = new Array('전체');
-                    cnt[1] = new Array('전체','강남구','강동구','강북구','강서구','관악구','광진구','구로구','금천구','노원구','도봉구','동대문구','동작구','마포구','서대문구','서초구','성동구','성북구','송파구','양천구','영등포구','용산구','은평구','종로구','중구','중랑구');
-                    cnt[2] = new Array('전체','강서구','금정구','남구','동구','동래구','부산진구','북구','사상구','사하구','서구','수영구','연제구','영도구','중구','해운대구','기장군');
-                    cnt[3] = new Array('전체','남구','달서구','동구','북구','서구','수성구','중구','달성군');
-                    cnt[4] = new Array('전체','계양구','남구','남동구','동구','부평구','서구','연수구','중구','강화군','옹진군');
-                    cnt[5] = new Array('전체','광산구','남구','동구','북구','서구');
-                    cnt[6] = new Array('전체','대덕구','동구','서구','유성구','중구');
-                    cnt[7] = new Array('전체','남구','동구','북구','중구','울주군');
-                    cnt[8] = new Array('전체','고양시','과천시','광명시','구리시','군포시','남양주시','동두천시','부천시','성남시','수원시','시흥시','안산시','안양시','오산시','의왕시','의정부시','평택시','하남시','가평군','광주시','김포시','안성시','양주군','양평군','여주군','연천군','용인시','이천군','파주시','포천시','화성시');
-                    cnt[9] = new Array('전체','강릉시','동해시','삼척시','속초시','원주시','춘천시','태백시','고성군','양구군','양양군','영월군','인제군','정선군','철원군','평창군','홍천군','화천군','황성군');
-                    cnt[10] = new Array('전체','제천시','청주시','충주시','괴산군','단양군','보은군','영동군','옥천군','음성군','진천군','청원군');
-                    cnt[11] = new Array('전체','공주시','보령시','서산시','아산시','천안시','금산군','논산군','당진군','부여군','서천군','연기군','예산군','청양군','태안군','홍성군');
-                    cnt[12] = new Array('전체','군산시','김제시','남원시','익산시','전주시','정읍시','고창군','무주군','부안군','순창군','완주군','임실군','장수군','진안군');
-                    cnt[13] = new Array('전체','광양시','나주시','목포시','순천시','여수시','여천시','강진군','고흥군','곡성군','구례군','담양군','무안군','보성군','신안군','여천군','영광군','영암군','완도군','장성군','장흥군','진도군','함평군','해남군','화순군');
-                    cnt[14] = new Array('전체','경산시','경주시','구미시','김천시','문겅시','상주시','안동시','영주시','영천시','포항시','고령군','군위군','봉화군','성주군','영덕군','영양군','예천군','울릉군','울진군','의성군','청도군','청송군','칠곡군');
-                    cnt[15] = new Array('전체','거제시','김해시','마산시','밀양시','사천시','울산시','진주시','진해시','창원시','통영시','거창군','고성군','남해군','산청군','양산시','의령군','창녕군','하동군','함안군','함양군','합천군');
-                    cnt[16] = new Array('전체','서귀포시','제주시','남제주군','북제주군');
-                    
-                    
-                    function change(add) {
-   				     sel=document.form.county
-   				       /* 옵션메뉴삭제 */
-   				       for (i=sel.length-1; i>=0; i--){
-   				         sel.options[i] = null
-   				         }
-   				       /* 옵션박스추가 */
-   				       for (i=0; i < cnt[add].length;i++){                     
-   				                         sel.options[i] = new Option(cnt[add][i], cnt[add][i]);
-   				         }         
-   				     }
-               </script>
-                    
-               <form name=form method=post action=$PHP_SELF>
-                   <span style="font-weight: bold; font-size: 14px; color: #333;">시/도:</span> 
-                   <select name='city' id="city" onchange="change(this.selectedIndex);"  class="bo_w_select" >
-                       <option value='전체'>전체</option>
-                       <option value='서울'>서울특별시</option>
-                       <option value='부산'>부산광역시</option>
-                       <option value='대구'>대구광역시</option>
-                       <option value='인천'>인천광역시</option>
-                       <option value='광주'>광주광역시</option>
-                       <option value='대전'>대전광역시</option>
-                       <option value='울산'>울산광역시</option>
-                       <option value='경기'>경기도</option>
-                       <option value='강원'>강원도</option>
-                       <option value='충북'>충청북도</option>
-                       <option value='충남'>충청남도</option>
-                       <option value='전북'>전라북도</option>
-                       <option value='전남'>전라남도</option>
-                       <option value='경북'>경상북도</option>
-                       <option value='경남'>경상남도</option>
-                       <option value='제주'>제주도</option>
+
+
+
+	
+    <header id="HOME" style="background-position: 50% -125px;">
+	        <div class="section_overlay">
+	            <nav class="navbar navbar-default">
+	              <div class="container">
+	                <!-- Brand and toggle get grouped for better mobile display -->
+	                <div class="navbar-header">
+	                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	                    <span class="sr-only">Toggle navigation</span>
+	                    <span class="icon-bar"></span>
+	                    <span class="icon-bar"></span>
+	                    <span class="icon-bar"></span>
+	                  </button>
+	                  <a  href="realmain.jsp"><img  src="images/Light Gray and Blue Modern Grocery Store Logo (1).png" style="width: 150px; height: 150px;"></a>
+	                </div>
+
+	                <!-- Collect the nav links, forms, and other content for toggling -->
+	                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	                  <ul class="nav navbar-nav navbar-right">
+	                    <li><a href="main.jsp">Home</a></li>
+	                    <li><a href="#">|</a></li>
+	                    
+	                    <!-- 로그인 했을 때 바뀌는 메뉴 -->
+	                    <% if(loginResult != null){ %>
+	                    <li><a href="Board_List.jsp">COMMUNITY</a></li>
+	                    <li><a href="#">|</a></li>
+	                    <li><a href="LogoutService.do" id="LoginMargin">Logout</a></li>
+	                    <li><a href="#">|</a></li>
+	                    <li><a href="myPage.jsp" >mypage</a></li>
+	                    <!-- 로그인 안했을 때 바뀌는 메뉴 -->
+	                    <% }else{ %>
+	                     <li><a href="Board_List.jsp">COMMUNITY</a></li>
+	                    <li><a href="#">|</a></li>
+	                    <li><a href="login.jsp" id="LoginMargin">Login</a></li>
+	                    <% } %>
+	                  </ul>
+	                </div><!-- /.navbar-collapse -->
+	               </div><!-- /.container -->
+	            </nav> 
+            	<div class="container">
+	                <div class="row">
+	                        <div class="home_text wow fadeInUp animated animated" style="visibility: visible; animation-name: fadeInUp;">
+	                        </div>
+	                </div>
+	            </div>
+	            
+	            <div class="container">
+	                <div class="row">
+	                </div>
+	            </div> 
+	            
+	        </div> 
+    </header>
+    
+     
+	<section>
+		<form name="form" method="post" action="$PHP_SELF" id="formMapper" style="margin-top: 15px;margin-bottom: 10px;">
+                   <span style="font-weight: bold;font-size: 14px;color: #333;margin-left: 100px;">시/도:</span> 
+                   <select name="city" id="city" onchange="change(this.selectedIndex);" class="bo_w_select">
+                       <option value="전체">전체</option>
+                       <option value="서울">서울특별시</option>
+                       <option value="부산">부산광역시</option>
+                       <option value="대구">대구광역시</option>
+                       <option value="인천">인천광역시</option>
+                       <option value="광주">광주광역시</option>
+                       <option value="대전">대전광역시</option>
+                       <option value="울산">울산광역시</option>
+                       <option value="경기">경기도</option>
+                       <option value="강원">강원도</option>
+                       <option value="충북">충청북도</option>
+                       <option value="충남">충청남도</option>
+                       <option value="전북">전라북도</option>
+                       <option value="전남">전라남도</option>
+                       <option value="경북">경상북도</option>
+                       <option value="경남">경상남도</option>
+                       <option value="제주">제주도</option>
                    </select>                                                  
                    <span style="font-weight: bold; font-size: 14px; color: #333;">구/군:</span> 
-                   <select name='county' id="country" class="bo_w_select">
-                       <option value=''>전체</option>
+                   <select name="county" id="country" class="bo_w_select">
+                       <option value="">전체</option>
                    </select>
 				</form> 
-                    
-                    
-                <!-- 카카오 지도 생성 -->
-                <div style="margin-bottom: 100px;">
-	                <div style="width: 50%; float: left;">
-				  		<div style="border: 5px solid #009688; border-radius: 8px; overflow: hidden;">
-				    		<div id="map" style="width: 100%; height: 500px;"></div>
-				  		</div>
-					</div>
-	                
-	                <!-- 가게 정보 테이블 -->
+		</section>
+		
+			 <!-- 카카오 지도 생성 -->
+                <div style="width: 40%; float: left;" >
+			  		<div style="border: 5px solid #009688; border-radius: 8px; overflow: hidden; margin-left: 100px;">
+			    		<div id="map" style="width: 100%; height: 450px;"></div>
+			  		</div>
+				</div>		
+				
+				 <!-- 가게 정보 테이블 -->
 	               <div id=store_table>
 		               <table>
 		               	   <tbody>
@@ -308,7 +212,7 @@
 		               	   	   </tr>
 			                   <tr>
 			                       <td rowspan="8" colspan="2">
-			                           <img id="shop_img" alt="가게 이미지" src="">
+			                           <img id="shop_img" alt="가게 이미지" src="" style="width: 300px; height: 300px;">
 			                       </td>
 			                       <td>📋가게명</td>
 			                       <td colspan="2" id="shop_name"></td>
@@ -357,40 +261,47 @@
 		               </table>
 	               </div>
                </div>
+				 <!-- 가게 정보 테이블 -->
                
                <!-- 평점 통계 바 차트 -->
-               <div style="display: flex;">
-                <div style="width: 650px; height: 900px; flex-shrink: 0;">
+               <div style="display: flex; margin-top: 120px; margin-left: 110px">
+                <div>
 					<!--차트가 그려질 부분-->
-					<canvas id="myChart"></canvas>
+					<canvas id="myChart" width="400px" height="300px"></canvas>
 				</div>
+               <!-- 평점 통계 바 차트 -->
+			   
 			   
 			   <!-- 간격을 위한 추가 요소 -->
-  			   <div style="width: 40px;"></div>
+  			   <div style="width: 70px;"></div>
+				
 				
 			   <!-- 성별 통계 파이 차트 -->
 			    <div class="pie_chart flex-shrink: 0;">
-		            <canvas id="pieChartCanvas" width="350px" height="350px"></canvas>
+		            <canvas id="pieChartCanvas" width="300px" height="300px"></canvas>
 		        </div>
+			   <!-- 성별 통계 파이 차트 -->
+
 
 			   <!-- 간격을 위한 추가 요소 -->
-  			   <div style="width: 40px;"></div>
+  			   <div style="width: 70px;"></div>
+
 
 			   <!-- 연령대 히스토그램 -->
 			    <div class="histogram_chart flex-shrink: 0;">
-		            <canvas id="histogramChartCanvas" width="450px" height="350px"></canvas>
+		            <canvas id="histogramChartCanvas" width="400px" height="300px"></canvas>
 		        </div>
 			   </div>
 
 			   <!-- 리뷰 작성 팝업창 -->
 			   <div class="black_bg"></div>
 			   <div class="modal_wrap">
-			       <div class="modal_close"><a href="#" onclick="resetForm();">❎</a></div>
+			       <div class="modal_close"><a onclick="resetForm();">❎</a></div>
 			       <div>
 			       <table class="review-write">
 			       
 			          <tr>
-			          <th colspan="2" id="review_store">가게이름</th>
+			          <th colspan="2" id="review_store" style="text-align: center">가게이름</th>
 			          </tr>
 			          
 			          <tr>
@@ -472,6 +383,7 @@
 			          <tr>
 			          	<td colspan="2">
 			          	<button class="register" onclick="saveReview()" type="button">등록</button>
+					  
 					    <!-- 리뷰등록 성공시 알림창 -->
 						<button id="ReviewSuccess" style="display: none;"></button>
 						<button id="alertReceipt" style="display: none;"></button>
@@ -481,732 +393,82 @@
 			         </table>
 			       </div>
 			    </div>
-                    
-                    
-<!--             지도 마커에 찍는 부분 -->
-               <% 
-	               tb_storeDTO dto = new tb_storeDTO(35.1520445, 126.888729);	
-	          	   List<tb_storeDTO> store_list = new tb_storeDAO().selectStore(dto);   
-          	   %>
-               <script>
-               // 전역 변수로 차트 객체 선언
-               var myChart = null;
-               var pieChart = null;
-               var histogramChart = null;
-               
-               var storeData = <%= new Gson().toJson(store_list) %>;
-               
-               var mapContainer = document.getElementById('map');
-               var mapOption = {
-                   center: new kakao.maps.LatLng(35.1520445, 126.888729),
-                   level: 5
-               };
-               
-               var map = new kakao.maps.Map(mapContainer, mapOption);
-               
-               var marker = [];
-               
-               for (var i = 0; i < storeData.length; i++) {
-                   var lat = storeData[i].lat;
-                   var lng = storeData[i].lng;
-               
-                   marker[i] = new kakao.maps.Marker({
-                       map: map,
-                       position: new kakao.maps.LatLng(lat, lng)
-                   });
-               
-               
-               var overlay = new kakao.maps.CustomOverlay({
-                   map: map,
-                   position: marker[i].getPosition()       
-               });
-               
-               // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-               kakao.maps.event.addListener(marker[i], 'click', function() {
-            	   
-                   overlay.setMap(map);
-               });
-               	   overlay.setMap(null)
-               }
-               // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
-               function closeOverlay() {
-                   overlay.setMap(null);     
-               }
-               
-			   document.addEventListener("DOMContentLoaded", function(){
-            	   
-            	   const country = document.getElementById('country');
-            	   
-            	   console.log(country)
-                   
-                   country.addEventListener('change', CityChange)
-                  
-					
-               });
-			   
-			   var CityChange = function(){
-            	   console.log('changed')
-					var a = $("#city option:selected").val();
-					var b = this.value;
-					console.log("시/도 : " + a + " 구/군 : " + b);
-					// 키워드로 장소를 검색합니다
-					
-					// 장소 검색 객체를 생성합니다
-					var ps = new kakao.maps.services.Places(); 
-					ps.keywordSearch(a + ' ' + b+'청', placesSearchCB); 
 
-				}
-			    var shop_Idx;
-				var shop_cnt;
-				var wish_cnt;
-				
-				function placesSearchCB (data, status, pagination) {
-					if (status === kakao.maps.services.Status.OK) {
 
-				        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
-				        // LatLngBounds 객체에 좌표를 추가합니다
-				        var bounds = new kakao.maps.LatLngBounds();
-
-			            bounds.extend(new kakao.maps.LatLng(data[0].y, data[0].x));
-				        // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-				        map.setBounds(bounds);
-			            map.setLevel(5);
-				    } 
-					
-					/* 현재 좌표에서 마커 찍는 코드 */
-					$( document ).ready(function() { //페이지가 로딩되면 바로 실행한다.
-						$.ajax({
-					        type:"POST",             //POST방식통신
-					        url:"http://localhost:8081/MessageSystem/SelectLatLng",     // Servlet과 mapping할 URL
-					        dataType : "json",       //dataType은  JSON형식으로 지정한다.
-					        data : {lat: data[0].y, lng : data[0].x},
-					        success: function(store_data){
-					            console.log(store_data);   //통신에 성공하면 콘솔에 출력한다. 
-					            var marker = [];
-					               
-				                for (var i = 0; i < store_data.length; i++) {
-				                   var lat = store_data[i].lat;
-				                   var lng = store_data[i].lng;
-				               
-				                   marker[i] = new kakao.maps.Marker({
-				                       map: map,
-				                       position: new kakao.maps.LatLng(lat, lng)
-				                   });
-				                   
-				                   
-				                   var overlay = new kakao.maps.CustomOverlay({
-				                       map: map,
-				                       position: marker[i].getPosition()       
-				                   });
-				                   
-				                   // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-				                   kakao.maps.event.addListener(marker[i], 'click', (function(marker, overlay, store) {
-				                       return function() {
-				                    	shop_Idx = store.shop_idx;   
-				                    	
-				                    	// 차트 숨기기
-				                    	$('#myChart').hide();
-				                    	$('#pieChartCanvas').hide();
-				                    	$('#histogramChartCanvas').hide();
-				                    	
-				                    	// 기존 차트 제거
-				                        if (myChart) {
-				                            myChart.destroy();
-				                            myChart = null;
-				                        }
-				                        if (pieChart) {
-				                            pieChart.destroy();
-				                            pieChart = null;
-				                        }
-				                        if (histogramChart) {
-				                        	histogramChart.destroy();
-				                        	histogramChart = null;
-				                        }
-				                    	
-				                    	// 가게 리뷰건수 AJAX 통신
-				       			        $.ajax({
-				       					        type:"POST",             //POST방식통신
-				       					        url:"http://localhost:8081/MessageSystem/Count_Review",     // Servlet과 mapping할 URL
-				       					        dataType : "json",       //dataType은  JSON형식으로 지정한다.
-				       					        data : {
-				       					        	shopIdx: shop_Idx
-				       					        },
-				       					        success: function(data){
-				       					            console.log(data);
-													shop_cnt = data.cnt;
-													document.getElementById("shop_review").innerText = shop_cnt+"건";
-				       					        },
-				       					        error: function(xhr, status, error) {
-				       					        	console.log(error);
-				       					        }  
-				       					    });
-				                    	
-				       			  		// 가게 찜수 AJAX 통신
-				       			        $.ajax({
-				       					        type:"POST",             //POST방식통신
-				       					        url:"http://localhost:8081/MessageSystem/CountWish",     // Servlet과 mapping할 URL
-				       					        dataType : "json",       //dataType은  JSON형식으로 지정한다.
-				       					        data : {
-				       					        	shopIdx: shop_Idx
-				       					        },
-				       					        success: function(data){
-				       					            console.log(data);
-													wish_cnt = data.cnt;
-													document.getElementById("shop_like").innerText = wish_cnt;
-				       					        },
-				       					        error: function(xhr, status, error) {
-				       					        	console.log(error);
-				       					        }  
-				       					    });
-				                    	
-				                    	
-				                    	   // 가게정보 테이블 출력
-				                    	   
-				                    	   $("#store_table").show();
-				                    	   
-										   document.getElementById("shop_img").src = store.shop_img;
-										   document.getElementById("shop_img").src = store.shop_img;
-										   document.getElementById("shop_name").innerText = store.shop_name;
-										   document.getElementById("shop_addr").innerText = store.shop_addr;
-										   document.getElementById("shop_tel").innerText = store.shop_tel;
-										   document.getElementById("shop_business").innerText = store.shop_business;
-										   document.getElementById("shop_items").innerText = store.shop_items;
-										   document.getElementById("shop_parking").innerText = store.shop_parking;
-										   
-										   // 첫 번째 테이블의 shop_name 값을 가져와서 변수에 저장
-										   const shopName = document.getElementById('shop_name').textContent;
-										   
-										   // 두 번째 테이블의 review_store 요소를 선택하여 내용 변경
-										   const reviewStoreElement = document.getElementById('review_store');
-										   reviewStoreElement.textContent = shopName;
-
-										   overlay.setMap(map);
-				                       };
-				                   })(marker[i], overlay, store_data[i]));
-				                   
-				                   function closeOverlay() {
-				                	    overlay.setMap(null);     
-				               		}
-				               }
-				            
-					            
-					        },
-					        error: function(xhr, status, error) {
-					        	console.log(error);
-					        }  
-					    });
-					});
-				}
-				
-				 // 가게 리뷰 출력
-			    document.getElementById("shop_review").addEventListener("click", function() {
-			        // 팝업 창을 생성하고 스타일을 적용
-			        var modalOverlay = document.createElement("div");
-			        modalOverlay.classList.add("modal-overlay");
-			        
-			        var modalContent = document.createElement("div");
-			        modalContent.classList.add("modal-content");
-			        
-			        var modalClose = document.createElement("span");
-			        modalClose.classList.add("modal-close");
-			        modalClose.textContent = "✖";
-			        
-			        var modalTitle = document.createElement("h2");
-			        modalTitle.textContent = "리뷰 내역";
-			        
-			        var modalTable = document.createElement("table");
-			        modalTable.classList.add("review-table");
-			        
-			     	// 첫 번째 행에 컬럼명 추가
-			        var columnNames = ["번호", "닉네임", "내용", "평점", "날짜"];
-			        var headerRow = document.createElement("tr");
-			        for (var j = 0; j < columnNames.length; j++) {
-			            var headerCell = document.createElement("th");
-			            headerCell.textContent = columnNames[j];
-			            headerRow.appendChild(headerCell);
-			        }
-			        modalTable.appendChild(headerRow);
-			        
-			        // 모달 창에 리뷰 내역을 동적으로 로드하여 표시하는 코드를 작성
-			        // 예시로 임의의 데이터로 테이블을 구성합니다.
-		            // AJAX 비동기 통신으로 리뷰 데이터 가져오기
-				    $.ajax({
-				        type: "POST",
-				        url: "http://localhost:8081/MessageSystem/SelectReview",
-				        dataType: "json",
-				        data : {
-				        	shopIdx: shop_Idx,
-				        },
-				        success: function(reviewData) {
-				        	console.log(reviewData);
-				            for (var i = 0; i < reviewData.length; i++) {
-				                var row = document.createElement("tr");
-				                
-				                var cellId = document.createElement("td");
-				                cellId.textContent = i+1;
-				                
-				                var cellUser = document.createElement("td");
-				                cellUser.textContent = reviewData[i].m_nick;
-				                
-				                var cellContent = document.createElement("td");
-				                cellContent.textContent = reviewData[i].review_content;
-
-				                var cellScore = document.createElement("td");
-				                cellScore.textContent = reviewData[i].review_score;
-				                
-				                var cellDate = document.createElement("td");
-				                cellDate.textContent = reviewData[i].review_dt;
-				                
-				                row.appendChild(cellId);
-				                row.appendChild(cellUser);
-				                row.appendChild(cellContent);
-				                row.appendChild(cellScore);
-				                row.appendChild(cellDate);
-				                
-				                modalTable.appendChild(row);
-				            }
-				        },
-				        error: function(xhr, status, error) {
-				            console.log(error);
-				        }
-				    });
-			        
-			        modalContent.appendChild(modalClose);
-			        modalContent.appendChild(modalTitle);
-			        modalContent.appendChild(modalTable);
-			        
-			        modalOverlay.appendChild(modalContent);
-			        document.body.appendChild(modalOverlay);
-			        
-			        // 팝업 창 닫기 이벤트 핸들러
-			        modalClose.addEventListener("click", function() {
-			            document.body.removeChild(modalOverlay);
-			        });
-			        
-			        // 팝업 창 외부를 클릭해도 창이 닫히지 않도록 이벤트 전파 차단
-			        modalOverlay.addEventListener("click", function(event) {
-			            if (event.target === modalOverlay) {
-			                event.stopPropagation();
-			            }
-			        });
-			        
-			        // 팝업 창 표시
-			        modalOverlay.style.display = "block";
-			    });
-				
-				<!-- 리뷰 데이터 전송 -->
-			    function saveReview() {
-			        // 데이터 추출
-			        var serviceRating = document.querySelector('input[name="service"]:checked').value;
-			        var effectiveRating = document.querySelector('input[name="effective"]:checked').value;
-			        var cleanRating = document.querySelector('input[name="clean"]:checked').value;
-			        var content = document.querySelector('textarea[name="content"]').value;
-			        var filename = document.querySelector('#file').value;
-			
-			        if (!filename) {
-			        	// 경고창 표시
-			        	$("#alertReceipt").click(); 
-			            return; // 등록 중단
-			        }
-
-			        
-			        // AJAX 통신
-			        $.ajax({
-					        type:"POST",             //POST방식통신
-					        url:"http://localhost:8081/MessageSystem/InsertReview",     // Servlet과 mapping할 URL	
-					        dataType : "text",
-					        data : {
-					        	userId: userId,
-					        	shopIdx: shop_Idx,
-					            serviceRating: serviceRating,
-					            effectiveRating: effectiveRating,
-					            cleanRating: cleanRating,
-					            content: content,
-					            filename: filename
-					        },
-					        success: function(){
-					        	
-					         // 리뷰등록 성공시 회원 포인트정보 업데이트 AJAX 통신
-					        	$.ajax({
-					        	    type: "POST",
-					        	    url: "http://localhost:8081/MessageSystem/UpdatePoint",
-					        	    dataType: "text",
-					        	    data: {
-					        	        user_Id: userId // 업데이트할 회원의 userId
-					        	    },
-					        	    success: function(response) {
-					        	        console.log("회원 정보 업데이트 성공");
-					        	        // 추가적인 처리 로직 작성
-					        	    },
-					        	    error: function(xhr, status, error) {
-					        	        console.log("회원 정보 업데이트 실패");
-					        	        console.log(error);
-					        	        // 에러 처리 로직 작성
-					        	    }
-					        	}); 
-					        	
-					        	// 리뷰등록 성공시 알림창
-					        	$("#ReviewSuccess").click();
-					        	
-					            // 등록 성공시 창을 닫는 함수
-					        	$(".modal_wrap").hide();
-					            $(".black_bg").hide();
-					         	
-					            // 폼 필드 초기화 함수 호출
-					            resetForm();
-					          	
-					         	// 리뷰 건수 업데이트
-					            var currentReviewCount = parseInt($("#shop_review").text().replace("건", ""));
-					            $("#shop_review").text((currentReviewCount + 1) + "건");
-					            
-					        },
-					        error: function(xhr, status, error) {
-					        	console.log(error);
-					        }  
-					    });
-			        
-			     	// 리뷰등록성공시 알림창 실행 버튼 클릭 이벤트
-			        $(document).ready(function() {
-			            $("#ReviewSuccess").click(function() {
-			                Swal.fire({
-			                    icon: 'success',
-			                    title: '리뷰 등록 완료!',
-			                    text: '500P 적립되었습니다.',
-			                });
-			            });
-			        });
-			    }
-			    
-			 	// 영수증 미첨부시 경고창 실행 버튼 클릭 이벤트
-			    $(document).ready(function() {
-			        $("#alertReceipt").click(function() {
-			            Swal.fire({
-			                icon: 'warning',
-			                title: '영수증 파일을 첨부해주세요!',
-			            });
-			        });
-			    });
-              
-			 	// 폼 필드 초기화 함수
-			    function resetForm() {
-			        // 폼 필드 초기화
-			        $("input[name='service']").prop("checked", false);
-			        $("input[name='effective']").prop("checked", false);
-			        $("input[name='clean']").prop("checked", false);
-			        $("textarea[name='content']").val("");
-			        $(".upload-name").val("");
-			        $("#file").val("");
-			    }
-			    
-			    /* 파일 첨부시 파일이름 변경 */
-			    $("#file").on('change',function(){
-			    	  var fileName = $("#file").val();
-			    	  $(".upload-name").val(fileName);
-			    	});
-			    
-			    <!-- 찜 데이터 전송 -->
-			    function saveWish(){
-			    	
-			    	 // userId 값 확인
-			        if (!userId) {
-			        	// 경고 알림창
-			        	$("#alertWish").click();
-			            return; // 등록 중단
-			        }
-			    	
-			    	// AJAX 통신
-			        $.ajax({
-					        type:"POST",             //POST방식통신
-					        url:"http://localhost:8081/MessageSystem/InsertWish",     // Servlet과 mapping할 URL
-					        dataType : "text",       //dataType은  JSON형식으로 지정한다.
-					        data : {
-					        	userId: userId,
-					        	shopIdx: shop_Idx
-					        },
-					        success: function(data){
-					        	console.log(data);
-					        	
-					        	// 찜 성공 알림창
-					        	$("#WishSuccess").click();
-					        	
-					        	// 찜수 업데이트
-					            var currentWishCount = parseInt($("#shop_like").text());
-					            $("#shop_like").text((currentWishCount + 1));
-					        },
-					        error: function(xhr, status, error) {
-					        	console.log(error);
-					        }  
-					    });
-			    	
-			     	// 찜성공 알림창 실행 버튼 클릭 이벤트
-			        $(document).ready(function() {
-			            $("#WishSuccess").click(function() {
-			                Swal.fire({
-			                    icon: 'success',
-			                    title: '찜 목록에 추가되었습니다.',
-			                });
-			            });
-			        });
-			     	
-			    }
-			    
-			     	// 비로그인 경고창 실행 버튼 클릭 이벤트
-	            	$(document).ready(function() {
-	            	    $("#alertWish").click(function() {
-	            	        Swal.fire({
-	            	            icon: 'error',
-	            	            title: '로그인이 필요한 서비스입니다.',
-	            	            text: '',
-	            	        });
-	            	    });
-	            	});
-			    
-			    /* 평점 차트 그리기 */
-               function makeChart() {
-            	// 막대 차트를 표시	
-            	$('#myChart').show();
-            	// 파이 차트를 표시
-            	$('#pieChartCanvas').show();
-            	// 히스토그램 표시
-            	$('#histogramChartCanvas').show();
-            	
-			    var chartShopName = document.getElementById('shop_name').innerText;
-// 			    var chartTitle = '리뷰 평점';
-				
-			 	// 기존 차트 제거
-			    if (myChart) {
-			        myChart.destroy();
-			        myChart = null;
-			    }
-			    if (pieChart) {
-			        pieChart.destroy();
-			        pieChart = null;
-			    }
-			    if (histogramChart) {
-			    	histogramChart.destroy();
-			    	histogramChart = null;
-			    }
-			    
-			    // AJAX 요청
-			    $.ajax({
-			        type: "POST",
-			        url: "http://localhost:8081/MessageSystem/SelectReviewData",
-			        data: { shopIdx: shop_Idx }, // 요청에 필요한 데이터 전달
-			        dataType: "json",
-			        success: function (response) {
-			            var context = document.getElementById('myChart').getContext('2d');
-			            myChart = new Chart(context, {
-			                type: 'bar',
-			                data: {
-			                    labels: ['서비스 or 맛', '가성비', '청결도'],
-			                    datasets: [{
-			                        label: '평가점수',
-			                        fill: false,
-			                        data: [response.Service, response.Price, response.Clean],
-			                        backgroundColor: [
-			                            'rgba(54, 162, 235, 0.8)',
-			                            'rgba(54, 162, 235, 0.8)',
-			                            'rgba(54, 162, 235, 0.8)',
-			                        ],
-			                        borderColor: [
-			                            'rgba(54, 162, 235, 1)',
-			                            'rgba(54, 162, 235, 1)',
-			                            'rgba(54, 162, 235, 1)',
-			                        ],
-			                        borderWidth: 3
-			                    }]
-			                },
-			                options: {
-			                    title: {
-			                        display: true,
-			                        text: '이용자 평점',
-			                        fontSize: 24
-			                    },
-			                    scales: {
-			                        yAxes: [{
-			                            ticks: {
-			                                beginAtZero: true,
-			                                min: 0, // 최소값 설정
-			                                max: 5, // 최대값 설정
-			                                fontSize: 14
-			                            }
-			                        }],
-			                        xAxes: [{
-			                            ticks: {
-			                                fontSize: 14
-			                            },
-			                            barThickness: 70
-			                        }]
-			                    }
-			                }
-			            });
-			        },
-			        error: function (xhr, status, error) {
-			            console.log(error); // 에러 처리
-			        }
-			    });
-			 	
-				  // 파이 차트 그리기
-			      // AJAX 요청
-			      $.ajax({
-			        type: "POST",
-			        url: "http://localhost:8081/MessageSystem/SelectGenderData",
-			        data: { shopIdx: shop_Idx }, // 요청에 필요한 데이터 전달
-			        dataType: "json",
-			        success: function (response) {
-			          var genderData = response; 
-			          var total = genderData.man + genderData.woman;
-			          var pieChartData = {
-			            labels: ['남성', '여성'],
-			            datasets: [{
-			              data: [genderData.man / total * 100, genderData.woman / total * 100],
-			              backgroundColor: ['rgb(54, 162, 235)', 'rgb(255, 99, 132)']
-			            }]
-			          };
-
-			          var pieContext = document.getElementById('pieChartCanvas').getContext('2d');
-			          pieChart = new Chart(pieContext, {
-			            type: 'pie',
-			            data: pieChartData,
-			            options: {
-			              responsive: false,
-			              title: {
-			                  display: true,
-			                  text: '이용자 성비', // 제목 설정
-			                  fontSize: 24
-			                },
-			                plugins: {
-		                	  tooltip: {
-		                	    enabled: true, // 툴팁 기능 활성화
-		                	    mode: 'nearest', // 항상 가장 가까운 툴팁 표시
-		                	    callbacks: {
-		                	      label: function (context) {
-		                	        var value = context.dataset.data[context.dataIndex];
-		                	        return value.toFixed(1) + '%';
-		                	      }
-		                	    }
-		                	  }
-		                	}
-			              }
-			          });
-			        },
-			        error: function (xhr, status, error) {
-			          console.log(error); // 에러 처리
-			        }
-			      });
-				  
-			 	  // 히스토그램 차트 그리기
-			      // AJAX 요청
-			      $.ajax({
-			        type: "POST",
-			        url: "http://localhost:8081/MessageSystem/SelectAgeData",
-			        data: { shopIdx: shop_Idx }, // 요청에 필요한 데이터 전달
-			        dataType: "json",
-			        success: function (response) {
-			        	console.log(response);
-			        	var histogramData = {
-						        labels: ['10대', '20대', '30대', '40대', '50대', '60대'],
-						        datasets: [{
-						          label: '백분율',
-						          data: [
-						        	  response.one,
-						              response.two,
-						              response.three,
-						              response.four,
-						              response.five,
-						              response.six
-						          ],
-						          backgroundColor: 'rgba(75, 192, 192, 0.8)',
-						          borderColor: 'rgba(75, 192, 192, 1)',
-						          borderWidth: 3
-						        }]
-						      };
-			        	
-			        		  var total = response.one + response.two + response.three + response.four + response.five + response.six;
-			            	  for (var i = 0; i < histogramData.datasets[0].data.length; i++) {
-			              	   histogramData.datasets[0].data[i] = (histogramData.datasets[0].data[i] / total) * 100; // 백분율로 변환
-			            	  }
-
-						      var histogramContext = document.getElementById('histogramChartCanvas').getContext('2d');
-						      histogramChart = new Chart(histogramContext, {
-						        type: 'bar',
-						        data: histogramData,
-						        options: {
-						          responsive: false,
-						          title: {
-					                  display: true,
-					                  text: '연령별 비율', // 제목 설정
-					                  fontSize: 24
-					                },
-				                plugins: {
-				                	  datalabels: {
-				                	    display: true,
-				                	    anchor: 'end',
-				                	    align: 'top',
-				                	    color: 'black',
-				                	    font: {
-				                	      weight: 'bold'
-				                	    },
-				                	    formatter: function(value) {
-				                	      return value.toFixed(1) + '%';
-				                	    }
-				                	  }
-				                	},
-						          scales: {
-					        	  yAxes: [{
-					        		    ticks: {
-					        		      beginAtZero: true,
-					        		      min: 0,
-					        		      fontSize: 14,
-					        		      callback: function(value) {
-					        		        return value.toFixed(1) + '%';
-					        		      }
-					        		    },
-					        		    scaleLabel: {
-					        		      display: true,
-					        		      labelString: '백분율 (%)'
-					        		    }
-					        		  }],
-						            xAxes: [{
-						              ticks: {
-						                fontSize: 14
-						              },
-						              barThickness: 70
-						            }]
-						          }
-						        }
-						      });			          
-			        	
-			        },
-			        error: function (xhr, status, error) {
-			          console.log(error); // 에러 처리
-			        }
-			      });
-			   
-			  }
-			    
-
-               </script>
-                                  
-                </main>
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
+<footer style="margin-top: 100px;">
+    <div class="container">
+        <div class="container">
+            <div class="row">
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
-    </body>
-</html>
+        <div class="container">
+        <section class="services" id="SERVICE">
+						        <div class="container">
+						            <div class="row">
+						                <div class="col-md-3 text-center">
+						                    <div class="single_service wow fadeInUp animated" data-wow-delay="1s" style="visibility: visible; animation-delay: 1s; animation-name: fadeInUp;">
+						                        <i class="icon-pencil"></i>
+						                        <h2>착한 가격 업소란?</h2>
+						                        <p>경영효율화 노력을 통해 저렴한 가격으로 서비스를 제공하는 업소 중 행정안전부 기준에 따라 지정된 착한가격업소 정보를 제공하며,
+						                         25개 주요 서민생활 품목에 대한 시·도별 품목별 가격정보를 제공합니다.</p>
+						                    </div>
+						                </div>
+						                <div class="col-md-3 text-center">
+						                    <div class="single_service wow fadeInUp animated" data-wow-delay="2s" style="visibility: visible; animation-delay: 2s; animation-name: fadeInUp;">
+						                        <i class="icon-gears"></i>
+						                        <h2>혜자탐구대 이용서비스 </h2>
+						                        <p>착한 가격업소를 효율적으로 탐색할 수 있고 회원가입시 착한가격업소 이용 가능 포인트 지급 </p>
+						                    </div>
+						                </div>
+						                <div class="col-md-3 text-center">
+						                    <div class="single_service wow fadeInUp animated" data-wow-delay="3s" style="visibility: visible; animation-delay: 3s; animation-name: fadeInUp;">
+						                        <i class="icon-camera"></i>
+						                        <h2>데이터 시각화</h2>
+						                        <p>착한가격업소에 대한 데이터 시각화로 정확한 가게 정보와 평점 등을 확인할 수 있으며 신뢰성을 기반함</p>
+						                    </div>
+						                </div>
+						                <div class="col-md-3 text-center">
+						                    <div class="single_service wow fadeInUp animated" data-wow-delay="4s" style="visibility: visible; animation-delay: 4s; animation-name: fadeInUp;">
+						                        <i class="icon-magnifying-glass"></i>
+						                        <h2>Seo</h2>
+						                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa.</p>
+						                    </div>
+						                </div>
+						            </div>            
+						        </div>
+						    </section>
+            <div class="row">
+                <div class="col-md-12 text-center   wow fadeInUp animated" style="visibility: hidden; animation-name: none;">
+                    <div class="social">
+                        <h2>Follow Me on Here</h2>
+                        <ul class="icon_list">
+                            <li><a href="http://www.facebook.com/abdullah.noman99" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="http://www.twitter.com/absconderm" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href=""><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href=""><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="http://www.dribbble.com/abdullahnoman" target="_blank"><i class="fa fa-dribbble"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- =========================
+     SCRIPTS 
+============================== -->
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.nicescroll.js"></script>
+    <script src="js/owl.carousel.js"></script>
+    <script src="js/wow.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/main.js"></script>
+

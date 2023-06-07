@@ -6,7 +6,7 @@ var inputPw = document.getElementById("inputPassword");
 var inputPwCheck = document.getElementById("inputPasswordConfirm");
 var inputName = document.getElementById("inputLastName");
 var inputNick = document.getElementById("inputNick");
-var inputBirth = document.getElementById("inputBirth");
+var inputAge = document.getElementById("inputAge");
 var man = document.getElementById("man");
 var girl = document.getElementById("girl");
 var inputAddrNum = document.getElementById("sample4_postcode");
@@ -59,9 +59,9 @@ var inputAddr = document.getElementById("sample4_roadAddress");
 	}
 	
 	//--------------------생일-------------------------
-	if(inputBirth.value == ""){
-		alert("생년월일을 입력해 주세요");
-		inputBirth.focus();
+	if(inputAge.value == ""){
+		alert("나이를 입력해 주세요");
+		inputAge.focus();
 		return false;
 	}
 	

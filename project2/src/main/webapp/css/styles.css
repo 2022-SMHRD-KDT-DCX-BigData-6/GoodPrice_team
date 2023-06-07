@@ -8145,8 +8145,9 @@ textarea.form-control-lg {
 }
 
 .bg-primary {
-  --bs-bg-opacity: 1;
-  background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
+  	background: url(../images/header_bg.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
 }
 
 .bg-secondary {
