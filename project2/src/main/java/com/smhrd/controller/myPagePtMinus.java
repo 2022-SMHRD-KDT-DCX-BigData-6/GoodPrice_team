@@ -12,10 +12,7 @@ public class myPagePtMinus implements Command{
    @Override
    public String execute(HttpServletRequest request, HttpServletResponse response) {
       
-      /*
-       * HttpSession hs = request.getSession(); tb_memberDTO member =
-       * (tb_memberDTO)hs.getAttribute("loginResult");
-       */
+	  
       String m_id = request.getParameter("m_id");
       System.out.println(m_id);
       

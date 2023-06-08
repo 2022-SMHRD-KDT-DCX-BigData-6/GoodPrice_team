@@ -43,8 +43,4 @@ public class tb_reviewDTO {
 		this.review_dt = review_dt;
 	}
 
-
-	
-    
-	
 }

@@ -8,18 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.smhrd.command.Command;
+import com.smhrd.controller.FindId;
 import com.smhrd.controller.JoinService;
 import com.smhrd.controller.LoginService;
 import com.smhrd.controller.LogoutService;
-import com.smhrd.controller.UpdateMemberService;
 import com.smhrd.controller.ReviewDelete;
+import com.smhrd.controller.UpdateMemberService;
 import com.smhrd.controller.UpdateTb_BoardService;
 import com.smhrd.controller.WriteTb_BoardService;
 import com.smhrd.controller.emailCheck;
 import com.smhrd.controller.myDelWisilist;
 import com.smhrd.controller.myPagePtMinus;
 import com.smhrd.controller.outMemberService;
-import com.smhrd.controller.FindId;
 
 
 public class Frontcontroller1 extends HttpServlet {
@@ -54,14 +54,18 @@ public class Frontcontroller1 extends HttpServlet {
 		else if(result.equals("LogoutService.do")) {
 			service = new LogoutService();
 		}
+		
+		
 		else if (result.equals("emailCheck.do")) {
-			service = new emailCheck();
+			service = new emailCheck(); 
 		}
-		else if(result.equals("WriteTb_BoardService.do")) {
-			service = new WriteTb_BoardService();
+		 
+		 
+		 else if(result.equals("WriteTb_BoardService.do")) {
+				service = new WriteTb_BoardService();
 		}
 		else if(result.equals("UpdateTb_BoardService.do")) {
-			service = new UpdateTb_BoardService();
+				service = new UpdateTb_BoardService();
 		}
 		
 //		else if(result.equals("UpdateService.do")) {
@@ -90,7 +94,7 @@ public class Frontcontroller1 extends HttpServlet {
 		}
 		else if (result.equals("myPagePtMinus.do")) {
 			service = new myPagePtMinus();
-		}			
+		}
 		moveURL = service.execute(request, response);
 		response.sendRedirect(moveURL);
 	}
