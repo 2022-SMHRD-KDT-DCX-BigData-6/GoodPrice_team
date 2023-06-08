@@ -113,20 +113,19 @@
 
    
     <header id="HOME" style="background-position: 50% -125px;">
-           <div class="section_overlay">
-               <nav class="navbar navbar-default">
-                 <div class="container">
-                   <!-- Brand and toggle get grouped for better mobile display -->
-                   <div class="navbar-header">
-                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                       <span class="sr-only">Toggle navigation</span>
-                       <span class="icon-bar"></span>
-                       <span class="icon-bar"></span>
-                       <span class="icon-bar"></span>
-                     </button>
-                     <a  href="main.jsp"><img  src="images/Light Gray and Blue Modern Grocery Store Logo (1).png" style="width: 150px; height: 150px;"></a>
-                   </div>
-
+	        <div class="section_overlay">
+	            <nav class="navbar navbar-default">
+	              <div class="container">
+	                <!-- Brand and toggle get grouped for better mobile display -->
+	                <div class="navbar-header">
+	                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	                    <span class="sr-only">Toggle navigation</span>
+	                    <span class="icon-bar"></span>
+	                    <span class="icon-bar"></span>
+	                    <span class="icon-bar"></span>
+	                  </button>
+	                  <a  href="main.jsp"><img  src="images/Light Gray and Blue Modern Grocery Store Logo (1).png" style="width: 150px; height: 150px;"></a>
+	                </div>
                    <!-- Collect the nav links, forms, and other content for toggling -->
                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                      <ul class="nav navbar-nav navbar-right">
@@ -395,48 +394,37 @@
              </div>
 
 
-<footer style="margin-top: 100px;">
-    <div class="container">
+<footer style="margin-top: 5%;">
+    	<div class="container" style="margin-right: 168px; margin-left: 140px;">
         <div class="container">
             <div class="row">
             </div>
         </div>
         <div class="container">
-        <section class="services" id="SERVICE">
-                          <div class="container">
-                              <div class="row">
-                                  <div class="col-md-3 text-center">
-                                      <div class="single_service wow fadeInUp animated" data-wow-delay="1s" style="visibility: visible; animation-delay: 1s; animation-name: fadeInUp;">
-                                          <i class="icon-pencil"></i>
-                                          <h2>착한 가격 업소란?</h2>
-                                          <p>경영효율화 노력을 통해 저렴한 가격으로 서비스를 제공하는 업소 중 행정안전부 기준에 따라 지정된 착한가격업소 정보를 제공하며,
-                                           25개 주요 서민생활 품목에 대한 시·도별 품목별 가격정보를 제공합니다.</p>
-                                      </div>
-                                  </div>
-                                  <div class="col-md-3 text-center">
-                                      <div class="single_service wow fadeInUp animated" data-wow-delay="2s" style="visibility: visible; animation-delay: 2s; animation-name: fadeInUp;">
-                                          <i class="icon-gears"></i>
-                                          <h2>혜자탐구대 이용서비스 </h2>
-                                          <p>착한 가격업소를 효율적으로 탐색할 수 있고 회원가입시 착한가격업소 이용 가능 포인트 지급 </p>
-                                      </div>
-                                  </div>
-                                  <div class="col-md-3 text-center">
-                                      <div class="single_service wow fadeInUp animated" data-wow-delay="3s" style="visibility: visible; animation-delay: 3s; animation-name: fadeInUp;">
-                                          <i class="icon-camera"></i>
-                                          <h2>데이터 시각화</h2>
-                                          <p>착한가격업소에 대한 데이터 시각화로 정확한 가게 정보와 평점 등을 확인할 수 있으며 신뢰성을 기반함</p>
-                                      </div>
-                                  </div>
-                                  <div class="col-md-3 text-center">
-                                      <div class="single_service wow fadeInUp animated" data-wow-delay="4s" style="visibility: visible; animation-delay: 4s; animation-name: fadeInUp;">
-                                          <i class="icon-magnifying-glass"></i>
-                                          <h2>Seo</h2>
-                                          <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa.</p>
-                                      </div>
-                                  </div>
-                              </div>            
-                          </div>
-                      </section>
+			<section class="services" id="SERVICE" style="padding: 50px 0; text-align: center;">
+			    <div class="container">
+			        <div class="row">
+			            <div class="col-md-4">
+			                <div class="single_service wow fadeInUp animated" data-wow-delay="1s" style="visibility: visible; animation-delay: 1s; animation-name: fadeInUp;">
+			                    <i class="icon-pencil"></i>
+			                    <img alt="" src="images/footer1.png" style="max-width: 350px; height: auto; display: block; margin: 0 auto;">
+			                </div>
+			            </div>
+			            <div class="col-md-4">
+			                <div class="single_service wow fadeInUp animated" data-wow-delay="2s" style="visibility: visible; animation-delay: 2s; animation-name: fadeInUp;">
+			                    <i class="icon-gears"></i>
+			                    <img alt="" src="images/footer2.png" style="max-width: 350px; height: auto; display: block; margin: 0 auto; margin-top: 0px;">
+			                </div>
+			            </div>
+			            <div class="col-md-4">
+			                <div class="single_service wow fadeInUp animated" data-wow-delay="3s" style="visibility: visible; animation-delay: 3s; animation-name: fadeInUp;">
+			                    <i class="icon-camera"></i>
+			                    <img alt="" src="images/footer3.png" style="max-width: 350px; height: auto; display: block; margin: 0 auto; margin-top: 0px;">
+			                </div>
+			            </div>
+			        </div>            
+			    </div>
+			</section>
             <div class="row">
                 <div class="col-md-12 text-center   wow fadeInUp animated" style="visibility: hidden; animation-name: none;">
                     <div class="social">
