@@ -61,7 +61,7 @@ public class WriteTb_BoardService implements Command {
             System.out.println("업로드 실패");
         }
         
-        return "Board_List_check.jsp";
+        return "Board_List.jsp";
     }
 
 }
