@@ -69,19 +69,19 @@
       
       //찜 테이블 모든 컬럼
       List<tb_wishlistDTO> selectAllWish = new tb_wishlistDAO().selectAllWish(m_id);
+      %>
       
       
       
-      
-            %> 
-   <!--    <!-- <body class="is-preload">
+         
+   		<!--  <body class="is-preload">
          <div id = "top" align="right">
          <a href="main.jsp"><span>HOME</span></a>
          <a href="logout.html"><span>LOGOUT</span></a>         
          </div>
          Wrapper
             System.out.print(wishList);%> 
-   <body class="is-preload"> -->
+   		<body class="is-preload"> -->
       
          <!-- Wrapper-->
    <body class="is-preload">
@@ -89,7 +89,7 @@
       <label class="outMyPage">
          <a href="main.jsp">HOME</a> <a href="LogoutService.do">LOGOUT</a>
       </label>
-   </div> -->
+   </div>
    <!-- Wrapper-->
          <div id="wrapper"><!-- 박스 가로 너비 -->
 
@@ -224,7 +224,7 @@
                     <td><%= i + 1%></td>
                    <td><%= reviewList.get(i).getReview_content()%></td>
                    <td><%= reviewList.get(i).getReview_dt()%></td>
-                   <td><a href = "ReviewDelete.do?Review_idx=<%=reviewList.get(i).getReview_idx()%>">삭제</a></td>
+                   <td><a href = "ReviewDelete.do?Review_idx=<%=reviewList.get(i).getReview_idx()%>"><p onclick="alert('삭제되었습니다.')">삭제</a></td>
                    </tr>
                    <%}%> 
                          
@@ -233,10 +233,6 @@
                </table>
             </div>
          </div>
-
-
-                                                
-                        
                      
                         <%--   <% for(int i = 0; i < reviewList.size();i++){ %>
                              <%= i + 1%>

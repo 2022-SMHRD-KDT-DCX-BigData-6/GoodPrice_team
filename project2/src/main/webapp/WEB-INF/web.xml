@@ -5,59 +5,59 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
   <servlet>
-  	<servlet-name>JoinService</servlet-name>
-  	<display-name>JoinService</display-name>
-  	<description></description>
-  	<servlet-class>com.smhrd.controller.JoinService</servlet-class>
+     <servlet-name>JoinService</servlet-name>
+     <display-name>JoinService</display-name>
+     <description></description>
+     <servlet-class>com.smhrd.controller.JoinService</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>LoginService</servlet-name>
-  	<display-name>LoginService</display-name>
-  	<description></description>
-  	<servlet-class>com.smhrd.controller.LoginService</servlet-class>
+     <servlet-name>LoginService</servlet-name>
+     <display-name>LoginService</display-name>
+     <description></description>
+     <servlet-class>com.smhrd.controller.LoginService</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>LogoutService</servlet-name>
-  	<display-name>LogoutService</display-name>
-  	<description></description>
-  	<servlet-class>com.smhrd.controller.LogoutService</servlet-class>
+     <servlet-name>LogoutService</servlet-name>
+     <display-name>LogoutService</display-name>
+     <description></description>
+     <servlet-class>com.smhrd.controller.LogoutService</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>UpdateService</servlet-name>
-  	<display-name>UpdateService</display-name>
-  	<description></description>
-  	<servlet-class>com.smhrd.controller.UpdateService</servlet-class>
+     <servlet-name>UpdateService</servlet-name>
+     <display-name>UpdateService</display-name>
+     <description></description>
+     <servlet-class>com.smhrd.controller.UpdateService</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>DeleteService</servlet-name>
-  	<display-name>DeleteService</display-name>
-  	<description></description>
-  	<servlet-class>com.smhrd.controller.DeleteService</servlet-class>
+     <servlet-name>DeleteService</servlet-name>
+     <display-name>DeleteService</display-name>
+     <description></description>
+     <servlet-class>com.smhrd.controller.DeleteService</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>WriteBoardService</servlet-name>
-  	<display-name>WriteBoardService</display-name>
-  	<description></description>
-  	<servlet-class>com.smhrd.controller.WriteBoardService</servlet-class>
+     <servlet-name>WriteBoardService</servlet-name>
+     <display-name>WriteBoardService</display-name>
+     <description></description>
+     <servlet-class>com.smhrd.controller.WriteBoardService</servlet-class>
   </servlet>
   
   <servlet>
-  	<servlet-name>Frontcontroller1</servlet-name>
-  	<display-name>Frontcontroller1</display-name>
-  	<description>*.do</description>
-  	<servlet-class>com.smhrd.frontcontroller.Frontcontroller1</servlet-class>
+     <servlet-name>Frontcontroller1</servlet-name>
+     <display-name>Frontcontroller1</display-name>
+     <description>*.do</description>
+     <servlet-class>com.smhrd.frontcontroller.Frontcontroller1</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>SelectReviewScore</servlet-name>
-  	<display-name>SelectReviewScore</display-name>
-  	<description></description>
-  	<servlet-class>com.smhrd.controller.SelectReviewScore</servlet-class>
+     <servlet-name>SelectReviewScore</servlet-name>
+     <display-name>SelectReviewScore</display-name>
+     <description></description>
+     <servlet-class>com.smhrd.controller.SelectReviewScore</servlet-class>
   </servlet>
 <!--   <servlet> -->
-<!--   	<servlet-name>SelectGenderData</servlet-name> -->
-<!--   	<display-name>SelectGenderData</display-name> -->
-<!--   	<description></description> -->
-<!--   	<servlet-class>com.smhrd.controller.SelectGenderData</servlet-class> -->
+<!--      <servlet-name>SelectGenderData</servlet-name> -->
+<!--      <display-name>SelectGenderData</display-name> -->
+<!--      <description></description> -->
+<!--      <servlet-class>com.smhrd.controller.SelectGenderData</servlet-class> -->
 <!--   </servlet> -->
   
   <servlet>
@@ -73,67 +73,67 @@
     <servlet-class>com.smhrd.controller.UpdateTb_BoardService</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>IncreaseLikesAjax</servlet-name>
-  	<servlet-class>com.smhrd.controller.IncreaseLikesAjax</servlet-class>
+     <servlet-name>IncreaseLikesAjax</servlet-name>
+     <servlet-class>com.smhrd.controller.IncreaseLikesAjax</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>Comment_Write_ServiceAjax</servlet-name>
-  	<display-name>Comment_Write_ServiceAjax</display-name>
-  	<description></description>
-  	<servlet-class>com.smhrd.controller.Comment_Write_ServiceAjax</servlet-class>
+     <servlet-name>Comment_Write_ServiceAjax</servlet-name>
+     <display-name>Comment_Write_ServiceAjax</display-name>
+     <description></description>
+     <servlet-class>com.smhrd.controller.Comment_Write_ServiceAjax</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>SelectAgeData</servlet-name>
-  	<display-name>SelectAgeData</display-name>
-  	<description></description>
-  	<servlet-class>com.smhrd.controller.SelectAgeData</servlet-class>
+     <servlet-name>SelectAgeData</servlet-name>
+     <display-name>SelectAgeData</display-name>
+     <description></description>
+     <servlet-class>com.smhrd.controller.SelectAgeData</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>SelectReview</servlet-name>
-  	<display-name>SelectReview</display-name>
-  	<description></description>
-  	<servlet-class>com.smhrd.controller.SelectReview</servlet-class>
+     <servlet-name>SelectReview</servlet-name>
+     <display-name>SelectReview</display-name>
+     <description></description>
+     <servlet-class>com.smhrd.controller.SelectReview</servlet-class>
   </servlet>
   
   <servlet-mapping>
-  	<servlet-name>JoinService</servlet-name>
-  	<url-pattern>/JoinService</url-pattern>
+     <servlet-name>JoinService</servlet-name>
+     <url-pattern>/JoinService</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>LoginService</servlet-name>
-  	<url-pattern>/LoginService</url-pattern>
+     <servlet-name>LoginService</servlet-name>
+     <url-pattern>/LoginService</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>LogoutService</servlet-name>
-  	<url-pattern>/LogoutService</url-pattern>
+     <servlet-name>LogoutService</servlet-name>
+     <url-pattern>/LogoutService</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>UpdateService</servlet-name>
-  	<url-pattern>/UpdateService</url-pattern>
+     <servlet-name>UpdateService</servlet-name>
+     <url-pattern>/UpdateService</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>DeleteService</servlet-name>
-  	<url-pattern>/DeleteService</url-pattern>
+     <servlet-name>DeleteService</servlet-name>
+     <url-pattern>/DeleteService</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>WriteBoardService</servlet-name>
-  	<url-pattern>/WriteBoardService</url-pattern>
+     <servlet-name>WriteBoardService</servlet-name>
+     <url-pattern>/WriteBoardService</url-pattern>
   </servlet-mapping>
 <!--   <servlet-mapping>
-  	<servlet-name>Frontcontroller</servlet-name>
-  	<url-pattern>/Frontcontroller1</url-pattern>
+     <servlet-name>Frontcontroller</servlet-name>
+     <url-pattern>/Frontcontroller1</url-pattern>
   </servlet-mapping> -->
   <servlet-mapping>
-  	<servlet-name>Frontcontroller1</servlet-name>
-  	<url-pattern>*.do</url-pattern>
+     <servlet-name>Frontcontroller1</servlet-name>
+     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>SelectReviewScore</servlet-name>
-  	<url-pattern>/SelectReviewScore</url-pattern>
+     <servlet-name>SelectReviewScore</servlet-name>
+     <url-pattern>/SelectReviewScore</url-pattern>
   </servlet-mapping>
 <!--   <servlet-mapping> -->
-<!--   	<servlet-name>SelectGenderData</servlet-name> -->
-<!--   	<url-pattern>/SelectGenderData</url-pattern> -->
+<!--      <servlet-name>SelectGenderData</servlet-name> -->
+<!--      <url-pattern>/SelectGenderData</url-pattern> -->
 <!--   </servlet-mapping> -->
   
   <servlet-mapping>
@@ -141,24 +141,24 @@
     <url-pattern>/WriteTb_BoardService</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
- 	<servlet-name>IncreaseLikesAjax</servlet-name>
-  	<url-pattern>/IncreaseLikesAjax</url-pattern>
+    <servlet-name>IncreaseLikesAjax</servlet-name>
+     <url-pattern>/IncreaseLikesAjax</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>Comment_Write_ServiceAjax</servlet-name>
-  	<url-pattern>/Comment_Write_ServiceAjax</url-pattern>
+     <servlet-name>Comment_Write_ServiceAjax</servlet-name>
+     <url-pattern>/Comment_Write_ServiceAjax</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>UpdateTb_BoardService</servlet-name>
-  	<url-pattern>/UpdateTb_BoardService</url-pattern>
+     <servlet-name>UpdateTb_BoardService</servlet-name>
+     <url-pattern>/UpdateTb_BoardService</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>SelectAgeData</servlet-name>
-  	<url-pattern>/SelectAgeData</url-pattern>
+     <servlet-name>SelectAgeData</servlet-name>
+     <url-pattern>/SelectAgeData</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>SelectReview</servlet-name>
-  	<url-pattern>/SelectReview</url-pattern>
+     <servlet-name>SelectReview</servlet-name>
+     <url-pattern>/SelectReview</url-pattern>
   </servlet-mapping>
   
 </web-app>

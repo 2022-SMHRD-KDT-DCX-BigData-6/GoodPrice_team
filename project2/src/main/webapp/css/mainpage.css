@@ -32,7 +32,7 @@
   	
   	.review-write,
   	#store_table table {
-	   width: 700px;
+	   width: 650px;
 	   text-align: center;
 	   border: 1px solid #fff;
 	   border-spacing: 1px;
@@ -64,11 +64,6 @@
 	    border: 1px solid #fff;
 	    font-weight: bold;
 	    border-radius: 8px;
-	}
-
-	img {
-	    width: 300px;
-	    height: 350px;
 	}
 
 	.review,
@@ -125,10 +120,10 @@
 
 	.modal_wrap {
 	  display: none;
-	  width: 700px;
+	  width: 650px;
 	  height: 500px;
 	  position: absolute;
-	  top: 20%;
+	  top: 110%;
 	  left: 50%;
 	  transform: translate(-50%, -50%);
 	  background: #eee;
@@ -165,6 +160,7 @@
 	
 	/* 별점 스타일 */
 	.star-rating {
+	  margin: auto;
 	  display: flex;
 	  flex-direction: row-reverse;
 	  font-size: 2.25rem;
@@ -339,5 +335,3 @@
 	.review-table tr:hover {
 	  background-color: #f2f2f2;
 	}
-	      	
-      	
